@@ -2,6 +2,7 @@ from ocr import *
 from compare import *
 import timeit
 from multiprocessing import Process
+from pathlib import Path
 
 compare_file = "contract_sample/ECsample_eng.pdf"
 original_file = "contract_sample/TemplateTenancyAgreement.pdf"
@@ -32,6 +33,7 @@ if __name__ == '__main__':
 	# map(lambda x: x.join(), procs)
 	# compare difference of the two text file
 	compare_f1_f2(f1_name, f2_name)
+	[f.unlink() for f in Path("/image").glob("*") if f.is_file()]
 	stop = timeit.default_timer()
 
 	print('Time: ', stop - start)
