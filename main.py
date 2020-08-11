@@ -5,7 +5,7 @@ from multiprocessing import Process
 
 compare_file = "contract_sample/ECsample_eng.pdf"
 original_file = "contract_sample/TemplateTenancyAgreement.pdf"
-1
+
 f1_num = 1
 f2_num = 2
 contrast = 1.5
