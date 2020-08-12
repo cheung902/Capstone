@@ -5,30 +5,28 @@ import pytesseract
 from pdf2image import convert_from_path
 import timeit
 
-def ocr(input_pdf, file, size, contrast, dpiNum,fileName):
-	'''
-	Part #1 : Converting PDF to images
-	'''
-	# Store all the pages of the PDF in a variable
-	pages = convert_from_path(input_pdf,fmt='tiff')
+def ocr(inputFile, file, size, contrast, dpiNum,fileName):
 
-	# Counter to store images of each page of PDF to image
-	image_counter = 1
+	if inputFile.lower().endswith('.pdf'):
+		# Store all the pages of the PDF in a variable
+		pages = convert_from_path(inputFile,fmt='tiff')
 
-	# Iterate through all the pages stored above
-	# Declaring filename for each page of PDF as JPG
-	# Save the image of the page in system
-	# Increment the counter to update filename
-	for page in pages:
+		# Counter to store images of each page of PDF to image
+		image_counter = 1
 
-		imgName = "page_" + file + "_" + str(image_counter) + ".tif"
-		print(imgName)
-		page.save("images/" + imgName, 'JPEG')
-		image_counter = image_counter + 1
+		# Iterate through all the pages stored above
+		# Declaring filename for each page of PDF as JPG
+		# Save the image of the page in system
+		# Increment the counter to update filename
 
-	''' 
-	Part #2 - Recognizing text from the images using OCR 
-	'''
+		for page in pages:
+
+			imgName = "page_" + file + "_" + str(image_counter) + ".tif"
+			print(imgName)
+			page.save("images/" + imgName, 'JPEG')
+			image_counter = image_counter + 1
+
+
 	# Variable to get count of total number of pages
 	fileLimt = image_counter - 1
 

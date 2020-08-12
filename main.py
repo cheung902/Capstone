@@ -33,14 +33,10 @@ if __name__ == '__main__':
 	print("Original File Job Start")
 	p1.join()
 	p2.join()
-	# procs = []
-	# procs.append(Process(target=ocr(compare_file, f1_num, size, contrast, dpiNum, f1_name)))
-	# procs.append(Process(target=ocr(compare_file, f1_num, size, contrast, dpiNum, f2_name)))
-	# map(lambda x: x.start(), procs)
-	# map(lambda x: x.join(), procs)
+
 	# compare difference of the two text file
 	compare_f1_f2(f1_name, f2_name)
-	# [os.unlink(file.path) for file in os.scandir('images')]
+	[os.unlink(file.path) for file in os.scandir('images')]
 	stop = timeit.default_timer()
 
 	print('Time: ', stop - start)
