@@ -3,6 +3,7 @@ from preprocess import *
 from PIL import Image, ImageEnhance
 import pytesseract
 from pdf2image import convert_from_path
+import timeit
 
 def ocr(input_pdf, file, size, contrast, dpiNum,fileName):
 	'''
@@ -48,11 +49,14 @@ def ocr(input_pdf, file, size, contrast, dpiNum,fileName):
 	for i in range(1, fileLimt + 1):
 
 		img = "page_" + file + "_" + str(i) + ".jpg"
-		print("Preprocessing: " + img)
+
 		pre_process(img, size, contrast, dpiNum)
 
 		print("Ocring: " + img)
+		start = timeit.default_timer()
 		text = str((pytesseract.image_to_string(Image.open("images/" + img))))
+		stop = timeit.default_timer()
+		print('Time for ocr the ' + img + ': ', stop - start)
 
 		text = text.replace('-\n', '')
 
