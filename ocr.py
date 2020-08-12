@@ -9,9 +9,8 @@ def ocr(input_pdf, file, size, contrast, dpiNum,fileName):
 	'''
 	Part #1 : Converting PDF to images
 	'''
-
 	# Store all the pages of the PDF in a variable
-	pages = convert_from_path(input_pdf, 500)
+	pages = convert_from_path(input_pdf,fmt='tiff')
 
 	# Counter to store images of each page of PDF to image
 	image_counter = 1
@@ -22,8 +21,8 @@ def ocr(input_pdf, file, size, contrast, dpiNum,fileName):
 	# Increment the counter to update filename
 	for page in pages:
 
-		imgName = "page_" + file + "_" + str(image_counter) + ".jpg"
-		print("image" + imgName)
+		imgName = "page_" + file + "_" + str(image_counter) + ".tif"
+		print(imgName)
 		page.save("images/" + imgName, 'JPEG')
 		image_counter = image_counter + 1
 
@@ -48,13 +47,13 @@ def ocr(input_pdf, file, size, contrast, dpiNum,fileName):
 	# Finally, write the processed text to the file.
 	for i in range(1, fileLimt + 1):
 
-		img = "page_" + file + "_" + str(i) + ".jpg"
+		img = "page_" + file + "_" + str(i) + ".tif"
 
 		pre_process(img, size, contrast, dpiNum)
 
 		print("Ocring: " + img)
 		start = timeit.default_timer()
-		text = str((pytesseract.image_to_string(Image.open("images/" + img))))
+		text = str((pytesseract.image_to_string(Image.open("images/" + img),lang= "eng")))
 		stop = timeit.default_timer()
 		print('Time for ocr the ' + img + ': ', stop - start)
 

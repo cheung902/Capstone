@@ -10,11 +10,11 @@ original_file = "contract_sample/TemplateTenancyAgreement.pdf"
 f1 = 'Com'
 f2 = 'Ori'
 contrast = 1.5
-size = 3
+size = 2
 dpiNum = 300
 
-f1_name = "contrast" + str(contrast) + "_Size" + str(size) + "_Dpi" + str(dpiNum) + "_file" + f1 + "txt"
-f2_name = "contrast" + str(contrast) + "_Size" + str(size) + "_Dpi" + str(dpiNum) + "_file" + f2 + "txt"
+f1_name = "contrast" + str(contrast) + "_Size" + str(size) + "_Dpi" + str(dpiNum) + "_file" + f1 + ".txt"
+f2_name = "contrast" + str(contrast) + "_Size" + str(size) + "_Dpi" + str(dpiNum) + "_file" + f2 + ".txt"
 
 def main(input_pdf, file, size, contrast, dpiNum,fileName):
 
@@ -40,7 +40,7 @@ if __name__ == '__main__':
 	# map(lambda x: x.join(), procs)
 	# compare difference of the two text file
 	compare_f1_f2(f1_name, f2_name)
-	[os.unlink(file.path) for file in os.scandir('images')]
+	# [os.unlink(file.path) for file in os.scandir('images')]
 	stop = timeit.default_timer()
 
 	print('Time: ', stop - start)

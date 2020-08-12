@@ -15,6 +15,7 @@ def pre_process(fileName, size, contrast, dpiNum):
 
 	new_size = tuple(size * x for x in img.size)
 	img = img.resize(new_size, Image.ANTIALIAS)
+
 	img.save("images/" + fileName, dpi=(dpiNum, dpiNum))
 
 	stop = timeit.default_timer()
