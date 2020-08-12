@@ -5,6 +5,7 @@ import timeit
 
 
 def pre_process(fileName, size, contrast, dpiNum):
+
 	print("Preprocessing: " + fileName)
 	start = timeit.default_timer()
 

@@ -5,14 +5,15 @@ import pytesseract
 from pdf2image import convert_from_path
 import timeit
 
-def ocr(inputFile, file, size, contrast, dpiNum,fileName):
 
+def ocr(inputFile, file, size, contrast, dpiNum,fileName):
+	image_counter = 1
 	if inputFile.lower().endswith('.pdf'):
 		# Store all the pages of the PDF in a variable
 		pages = convert_from_path(inputFile,fmt='tiff')
 
 		# Counter to store images of each page of PDF to image
-		image_counter = 1
+
 
 		# Iterate through all the pages stored above
 		# Declaring filename for each page of PDF as JPG
@@ -23,7 +24,7 @@ def ocr(inputFile, file, size, contrast, dpiNum,fileName):
 
 			imgName = "page_" + file + "_" + str(image_counter) + ".tif"
 			print(imgName)
-			page.save("images/" + imgName, 'JPEG')
+			page.save("images/" + imgName)
 			image_counter = image_counter + 1
 
 
