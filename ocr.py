@@ -4,7 +4,7 @@ from PIL import Image, ImageEnhance
 import pytesseract
 from pdf2image import convert_from_path
 
-def ocr(input_pdf, fileNum, size, contrast, dpiNum,fileName):
+def ocr(input_pdf, file, size, contrast, dpiNum,fileName):
 	'''
 	Part #1 : Converting PDF to images
 	'''
@@ -21,7 +21,7 @@ def ocr(input_pdf, fileNum, size, contrast, dpiNum,fileName):
 	# Increment the counter to update filename
 	for page in pages:
 
-		imgName = "page_" + str(fileNum) + "_" + str(image_counter) + ".jpg"
+		imgName = "page_" + file + "_" + str(image_counter) + ".jpg"
 		print("image" + imgName)
 		page.save("images/" + imgName, 'JPEG')
 		image_counter = image_counter + 1
@@ -47,11 +47,13 @@ def ocr(input_pdf, fileNum, size, contrast, dpiNum,fileName):
 	# Finally, write the processed text to the file.
 	for i in range(1, fileLimt + 1):
 
-		img = "page_" + str(i) + "_" + str(fileNum) + ".jpg"
-		print("ocr" + img)
+		img = "page_" + file + "_" + str(i) + ".jpg"
+		print("Preprocessing: " + img)
 		pre_process(img, size, contrast, dpiNum)
 
+		print("Ocring: " + img)
 		text = str((pytesseract.image_to_string(Image.open("images/" + img))))
+
 		text = text.replace('-\n', '')
 
 		f.write(text)
