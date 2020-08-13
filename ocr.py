@@ -32,11 +32,11 @@ def ocr(inputFile, file, size, contrast, dpiNum,fileName):
 	fileLimt = image_counter - 1
 
 	# Creating a text file to write the output
-	outFile = "output/" + fileName
+	outFile = "output/" + fileName + ".txt"
 
 	# Open the file in append mode so that
 	# All contents of all images are added to the same file
-	f = open(outFile, "a")
+	f = open(outFile, "a+")
 
 	# Iterate from 1 to total number of pages
 	# Set filename to recognize text from
@@ -62,4 +62,9 @@ def ocr(inputFile, file, size, contrast, dpiNum,fileName):
 
 	# os.remove(filename)
 	# Close the file after writing all the text.
+
 	f.close()
+	with open(outFile) as infile , open("output/" + fileName + "_cleared.txt","w") as outfile:
+		for line in infile:
+			if not line.strip(): continue  # skip the empty line
+			outfile.write(line)

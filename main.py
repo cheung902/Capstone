@@ -17,8 +17,7 @@ f2 = 'Ori'
 contrast = 1.5
 size = 1
 dpiNum = 100
-f1_name = "contrast" + str(contrast) + "_Size" + str(size) + "_Dpi" + str(dpiNum) + "_file" + f1 + ".txt"
-f2_name = "contrast" + str(contrast) + "_Size" + str(size) + "_Dpi" + str(dpiNum) + "_file" + f2 + ".txt"
+
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -42,20 +41,29 @@ def upload_page():
 		if 	not allowed_file(comp_file.filename) or not allowed_file(ori_file.filename):
 			return render_template('upload.html', msg='File format in one of the file is not accepted')
 
-		comp_filename = secure_filename("c_" + comp_file.filename)
-		comp_file.save(os.path.join(app.config['UPLOAD_FOLDER'],comp_filename))
-		ori_filename = secure_filename("o_" + ori_file.filename)
-		ori_file.save(os.path.join(app.config['UPLOAD_FOLDER'], ori_filename))
+		[os.unlink(file.path) for file in os.scandir('output')]
 
-		p1 = Process(target=main, args=(compare_file, f1, size, contrast, dpiNum, f1_name))
+		comp_filename_wext = secure_filename("c_" + comp_file.filename)
+		ori_filename_wext = secure_filename("o_" + ori_file.filename)
+
+		com_path = os.path.join(app.config['UPLOAD_FOLDER'],comp_filename_wext)
+		ori_path = os.path.join(app.config['UPLOAD_FOLDER'], ori_filename_wext)
+		comp_file.save(com_path)
+		ori_file.save(ori_path)
+
+		comp_filename =  ('.').join(comp_filename_wext.split('.')[:-1])
+		ori_filename =  ('.').join(ori_filename_wext.split('.')[:-1])
+
+		p1 = Process(target=main, args=(com_path, f1, size, contrast, dpiNum, comp_filename))
 		p1.start()
 		print("Compare File Job Start")
-		p2 = Process(target=main, args=(original_file, f2, size, contrast, dpiNum, f2_name))
+		p2 = Process(target=main, args=(ori_path, f2, size, contrast, dpiNum, ori_filename))
 		p2.start()
 		print("Original File Job Start")
 		p1.join()
 		p2.join()
 
+		compare_f1_f2(comp_filename,ori_filename)
 		return render_template('upload.html', msg = 'Successfully processed')
 
 	elif request.method =='GET':
@@ -86,7 +94,7 @@ if __name__ == '__main__':
 	# p2.join()
 
 	# compare difference of the two text file
-	# compare_f1_f2(f1_name, f2_name)
+
 	# [os.unlink(file.path) for file in os.scandir('images')]
 
 
