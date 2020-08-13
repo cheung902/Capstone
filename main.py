@@ -1,9 +1,14 @@
 from ocr import *
 from compare import *
+# from label import *
 import timeit
 from multiprocessing import Process
 import os
+from flask import Flask, render_template, request, flash
+from werkzeug.utils import secure_filename
 
+UPLOAD_FOLDER = 'static/'
+ALLOWED_EXTENSIONS = {'pdf'}
 compare_file = "contract_sample/ECsample_eng.pdf"
 original_file = "contract_sample/TemplateTenancyAgreement.pdf"
 
@@ -12,9 +17,52 @@ f2 = 'Ori'
 contrast = 1.5
 size = 1
 dpiNum = 100
-
 f1_name = "contrast" + str(contrast) + "_Size" + str(size) + "_Dpi" + str(dpiNum) + "_file" + f1 + ".txt"
 f2_name = "contrast" + str(contrast) + "_Size" + str(size) + "_Dpi" + str(dpiNum) + "_file" + f2 + ".txt"
+
+app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+	return '.' in filename and filename.rsplit('.',1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/',methods = ['GET','POST'])
+def upload_page():
+
+	if request.method =='POST':
+
+		if 'comp_file' not in request.files or 'ori_file' not in request.files:
+			return render_template('upload.html',msg = 'No file selected')
+
+		comp_file = request.files['comp_file']
+		ori_file = request.files['ori_file']
+		if comp_file.filename == '' or ori_file.filename == '':
+			return render_template('upload.html', msg='Please make sure to upload both files to do the comparison')
+
+		if 	not allowed_file(comp_file.filename) or not allowed_file(ori_file.filename):
+			return render_template('upload.html', msg='File format in one of the file is not accepted')
+
+		comp_filename = secure_filename("c_" + comp_file.filename)
+		comp_file.save(os.path.join(app.config['UPLOAD_FOLDER'],comp_filename))
+		ori_filename = secure_filename("o_" + ori_file.filename)
+		ori_file.save(os.path.join(app.config['UPLOAD_FOLDER'], ori_filename))
+
+		p1 = Process(target=main, args=(compare_file, f1, size, contrast, dpiNum, f1_name))
+		p1.start()
+		print("Compare File Job Start")
+		p2 = Process(target=main, args=(original_file, f2, size, contrast, dpiNum, f2_name))
+		p2.start()
+		print("Original File Job Start")
+		p1.join()
+		p2.join()
+
+		return render_template('upload.html', msg = 'Successfully processed')
+
+	elif request.method =='GET':
+		return render_template('upload.html')
+	return render_template('upload.html')
+
+
 
 def main(input_pdf, file, size, contrast, dpiNum,fileName):
 
@@ -22,21 +70,25 @@ def main(input_pdf, file, size, contrast, dpiNum,fileName):
 
 
 if __name__ == '__main__':
+	app.secret_key = 'some secret key'
+	app.run()
+
 	start = timeit.default_timer()
 
 	# ocr start -> image to text
-	p1 = Process(target=main,args = (compare_file, f1, size, contrast, dpiNum,f1_name))
-	p1.start()
-	print("Compare File Job Start")
-	p2 = Process(target=main, args = (original_file, f2, size, contrast, dpiNum,f2_name))
-	p2.start()
-	print("Original File Job Start")
-	p1.join()
-	p2.join()
+	# p1 = Process(target=main,args = (compare_file, f1, size, contrast, dpiNum,f1_name))
+	# p1.start()
+	# print("Compare File Job Start")
+	# p2 = Process(target=main, args = (original_file, f2, size, contrast, dpiNum,f2_name))
+	# p2.start()
+	# print("Original File Job Start")
+	# p1.join()
+	# p2.join()
 
 	# compare difference of the two text file
-	compare_f1_f2(f1_name, f2_name)
+	# compare_f1_f2(f1_name, f2_name)
 	# [os.unlink(file.path) for file in os.scandir('images')]
+
 
 	stop = timeit.default_timer()
 

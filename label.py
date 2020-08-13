@@ -2,6 +2,8 @@ import re
 import cv2
 import pytesseract
 from pytesseract import Output
+import os
+
 
 img = cv2.imread('images/page_Com_1.tif')
 img = cv2.resize(img,(1680,2400))
