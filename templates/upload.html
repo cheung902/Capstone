@@ -20,16 +20,5 @@
         <input type=submit value=Upload>
 </form>
 
-<h1>Result:</h1>
-<!--{% if embed_src %}-->
-<embed src = "c_ECsample_eng.pdf" width = "500" height = "375">
-<!--{% endif %}-->
-
-{% if extracted_text %}
-<p> The extracted text from the image above is: <b> {{ extracted_text }} </b></p>
-
-{% else %}
-The extracted text will be displayed here
-{% endif %}
 </body>
 </html>

@@ -1,16 +1,20 @@
 # Import libraries
+import pytesseract
+import timeit
 from preprocess import *
 from PIL import Image, ImageEnhance
-import pytesseract
 from pdf2image import convert_from_path
-import timeit
+from fpdf import FPDF
 
 
-def ocr(inputFile, file, size, contrast, dpiNum,fileName):
+
+def ocr(inputFile, file, size, contrast, dpiNum,fileName,compOrori):
+
 	image_counter = 1
+	pdf = FPDF()
 	if inputFile.lower().endswith('.pdf'):
 		# Store all the pages of the PDF in a variable
-		pages = convert_from_path(inputFile,fmt='tiff')
+		pages = convert_from_path(inputFile,fmt='JPEG')
 
 		# Counter to store images of each page of PDF to image
 
@@ -22,12 +26,22 @@ def ocr(inputFile, file, size, contrast, dpiNum,fileName):
 
 		for page in pages:
 
-			imgName = "page_" + file + "_" + str(image_counter) + ".tif"
-			print(imgName)
-			page.save("images/" + imgName)
+			imgPath = "images/page_" + file + "_" + str(image_counter) + ".jpg"
+
+			page.save(imgPath)
+
+			if image_counter == 1:
+				cover = Image.open(imgPath)
+				w, h = cover.size
+				pdf = FPDF(unit="pt", format=[w, h])
+			image = imgPath
+			pdf.add_page()
+			pdf.image(image, 0, 0, w, h)
+
+
 			image_counter = image_counter + 1
 
-
+	pdf.output("output/" + compOrori + ".pdf", "F")
 	# Variable to get count of total number of pages
 	fileLimt = image_counter - 1
 
@@ -46,7 +60,7 @@ def ocr(inputFile, file, size, contrast, dpiNum,fileName):
 	# Finally, write the processed text to the file.
 	for i in range(1, fileLimt + 1):
 
-		img = "page_" + file + "_" + str(i) + ".tif"
+		img = "page_" + file + "_" + str(i) + ".jpg"
 
 		pre_process(img, size, contrast, dpiNum)
 

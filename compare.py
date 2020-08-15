@@ -2,8 +2,8 @@ def compare_f1_f2(comp,ori):
 
 
 	# Open file for reading in text mode (default mode)
-	comp_txt = open("output/" + comp + ".txt")
-	ori_txt = open("output/" + ori + ".txt")
+	comp_txt = open("output/" + comp + "_cleared.txt")
+	ori_txt = open("output/" + ori + "_cleared.txt")
 	comp_outfile = "output/" + comp + "_result.txt"
 	ori_outfile = "output/" + ori + "_result.txt"
 	comp_result = open(comp_outfile, "a")
@@ -29,8 +29,8 @@ def compare_f1_f2(comp,ori):
 
 		# Compare the lines from both file
 		if comp_line != ori_line:
-			comp_result.writelines(comp_line)
-			ori_result.writelines(ori_line)
+			comp_result.writelines(comp_line + "\n")
+			ori_result.writelines(ori_line + "\n")
 		else:
 			comp_result.writelines("line " + str(line_no) + " is same as the original file\n")
 			ori_result.writelines("line " + str(line_no) + " is same as the compare file\n")
