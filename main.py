@@ -7,6 +7,7 @@ from multiprocessing import Process
 import os
 from flask import Flask, render_template, request, flash,send_file,send_from_directory
 from werkzeug.utils import secure_filename
+from flask_cache import Cache
 
 UPLOAD_FOLDER = 'static/upload'
 ALLOWED_EXTENSIONS = {'pdf'}
@@ -23,6 +24,9 @@ dpiNum = 300
 app = Flask(__name__)
 app.register_blueprint(ref_page)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config["CACHE_TYPE"] = "null"
+cache = Cache(app)
+
 
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.',1)[1].lower() in ALLOWED_EXTENSIONS
@@ -73,9 +77,6 @@ def upload_page():
 		return render_template('upload.html')
 	return render_template('upload.html')
 
-@app.route('/viewer/web/viewer.html')
-def show_map():
-	return render_template('viewer/web/viewer.html')
 
 
 
@@ -87,6 +88,7 @@ def main(input_pdf, file, size, contrast, dpiNum,fileName,compOrOri):
 if __name__ == '__main__':
 	app.secret_key = 'some secret key'
 	app.run()
+
 
 	start = timeit.default_timer()
 

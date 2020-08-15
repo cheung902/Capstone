@@ -1,6 +1,30 @@
-from flask import Flask, render_template, request, flash,send_file,send_from_directory,Blueprint
+from flask import  render_template,send_from_directory,Blueprint,jsonify
+from werkzeug.exceptions import HTTPException
 
 ref_page = Blueprint('simple_page', __name__,)
+
+@ref_page.route('/viewer/web/viewer.html')
+def viewerHtml():
+	return render_template('viewer/web/viewer.html')
+
+@ref_page.errorhandler(Exception)
+def handle_error(e):
+    code = 500
+    if isinstance(e, HTTPException):
+        code = e.code
+    return jsonify(error=str(e)), code
+
+@ref_page.route('/viewer/web/test.pdf')
+def pdf():
+    return send_from_directory(ref_page.root_path, 'templates/test.pdf')
+
+@ref_page.route('/viewer/web/comp.pdf')
+def compPdf():
+    return send_from_directory(ref_page.root_path, 'output/comp.pdf')
+
+@ref_page.route('/viewer/web/ori.pdf')
+def oriPdf():
+    return send_from_directory(ref_page.root_path, 'output/ori.pdf')
 
 @ref_page.route('/viewer/web/locale/locale.properties')
 def locale_properties():
@@ -189,14 +213,3 @@ def findbarButton_next():
 def findbarButton_previous():
     return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/findbarButton-previous@2x.png')
 
-@ref_page.route('/viewer/web/test.pdf')
-def pdf():
-    return send_from_directory(ref_page.root_path, 'templates/test.pdf')
-
-@ref_page.route('/output/comp.pdf')
-def compPdf():
-    return send_from_directory(ref_page.root_path, 'output/comp.pdf')
-
-@ref_page.route('/output/ori.pdf')
-def oriPdf():
-    return send_from_directory(ref_page.root_path, 'output/ori.pdf')

@@ -6,20 +6,25 @@
 <body>
 <div>
     <div>
-        <iframe
-                src="viewer/web/viewer.html?file=..\..\output\comp.pdf"
+        <iframe id="comp"
                 width="50%"
                 height="750px"
                 style="border: none;"
-                align = "left"></iframe>
+                align="left"></iframe>
     </div>
     <div>
-        <iframe
-                src="viewer/web/viewer.html?file=..\..\output\ori.pdf"
+        <iframe id="ori"
                 width="50%"
                 height="750px"
                 style="border: none;"></iframe>
     </div>
 </div>
+    <script>
+        var d = new Date().getTime();
+        console.log(d);
+        document.getElementById("comp").src = "viewer/web/viewer.html?file=comp.pdf?rnd=" + d;
+        document.getElementById("ori").src = "viewer/web/viewer.html?file=ori.pdf?rnd=" + d;
+        console.log(document.getElementById("ori").src);
+    </script>
 </body>
 </html>

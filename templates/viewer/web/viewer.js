@@ -4547,7 +4547,7 @@ var defaultOptions = {
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   defaultUrl: {
-    value: "../../../static/o_ECsample_eng.pdf",
+    value: "/viewer/web/test.pdf",
     kind: OptionKind.VIEWER
   },
   defaultZoomValue: {
