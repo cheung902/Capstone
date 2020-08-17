@@ -20,7 +20,7 @@ def pdf():
 
 @ref_page.route('/viewer/web/comp.pdf')
 def compPdf():
-    return send_from_directory(ref_page.root_path, 'output/comp.pdf')
+    return send_from_directory(ref_page.root_path, 'output/diff.pdf')
 
 @ref_page.route('/viewer/web/ori.pdf')
 def oriPdf():

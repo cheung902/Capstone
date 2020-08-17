@@ -8,7 +8,7 @@ from fpdf import FPDF
 
 
 
-def ocr(inputFile, file, size, contrast, dpiNum,fileName,compOrori):
+def ocr(inputFile, size, contrast, dpiNum,fileName,compOrori):
 
 	image_counter = 1
 	pdf = FPDF()
@@ -26,7 +26,7 @@ def ocr(inputFile, file, size, contrast, dpiNum,fileName,compOrori):
 
 		for page in pages:
 
-			imgPath = "images/page_" + file + "_" + str(image_counter) + ".jpg"
+			imgPath = "images/" + compOrori + "_" + str(image_counter) + ".jpg"
 
 			page.save(imgPath)
 
@@ -46,7 +46,7 @@ def ocr(inputFile, file, size, contrast, dpiNum,fileName,compOrori):
 	fileLimt = image_counter - 1
 
 	# Creating a text file to write the output
-	outFile = "output/" + fileName + ".txt"
+	outFile = "output/" + compOrori + ".txt"
 
 	# Open the file in append mode so that
 	# All contents of all images are added to the same file
@@ -60,7 +60,7 @@ def ocr(inputFile, file, size, contrast, dpiNum,fileName,compOrori):
 	# Finally, write the processed text to the file.
 	for i in range(1, fileLimt + 1):
 
-		img = "page_" + file + "_" + str(i) + ".jpg"
+		img = compOrori + "_" + str(i) + ".jpg"
 
 		pre_process(img, size, contrast, dpiNum)
 
@@ -71,14 +71,14 @@ def ocr(inputFile, file, size, contrast, dpiNum,fileName,compOrori):
 		print('Time for ocr the ' + img + ': ', stop - start)
 
 		text = text.replace('-\n', '')
-
-		f.write(text)
-
+		f.write(text + '\n')
+		f.write(str(i) + '\n')
 	# os.remove(filename)
 	# Close the file after writing all the text.
-
 	f.close()
-	with open(outFile) as infile , open("output/" + fileName + "_cleared.txt","w") as outfile:
+
+	with open(outFile) as infile , open("output/" + compOrori + "_cleared.txt","w") as outfile:
 		for line in infile:
 			if not line.strip(): continue  # skip the empty line
 			outfile.write(line)
+

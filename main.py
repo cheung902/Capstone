@@ -1,6 +1,6 @@
 from ocr import *
 from compare import *
-# from label import *
+from label import *
 from flaskRoute import ref_page
 import timeit
 from multiprocessing import Process
@@ -14,8 +14,6 @@ ALLOWED_EXTENSIONS = {'pdf'}
 compare_file = "contract_sample/ECsample_eng.pdf"
 original_file = "contract_sample/TemplateTenancyAgreement.pdf"
 
-f1 = 'Com'
-f2 = 'Ori'
 contrast = 1.5
 size = 1
 dpiNum = 300
@@ -49,6 +47,9 @@ def upload_page():
 
 		[os.unlink(file.path) for file in os.scandir('output')]
 		[os.unlink(file.path) for file in os.scandir('images')]
+		[os.unlink(file.path) for file in os.scandir('static/upload')]
+		[os.unlink(file.path) for file in os.scandir('compare/comp/images')]
+		[os.unlink(file.path) for file in os.scandir('compare/comp/txtFile')]
 
 		comp_filename_wext = secure_filename("c_" + comp_file.filename)
 		ori_filename_wext = secure_filename("o_" + ori_file.filename)
@@ -61,16 +62,19 @@ def upload_page():
 		comp_filename =  ('.').join(comp_filename_wext.split('.')[:-1])
 		ori_filename =  ('.').join(ori_filename_wext.split('.')[:-1])
 
-		p1 = Process(target=main, args=(com_path, f1, size, contrast, dpiNum, comp_filename,"comp"))
+		p1 = Process(target=main, args=(com_path, size, contrast, dpiNum, comp_filename,"comp"))
 		p1.start()
 		print("Compare File Job Start")
-		p2 = Process(target=main, args=(ori_path, f2, size, contrast, dpiNum, ori_filename,"ori"))
+		p2 = Process(target=main, args=(ori_path, size, contrast, dpiNum, ori_filename,"ori"))
 		p2.start()
 		print("Original File Job Start")
 		p1.join()
 		p2.join()
 
-		compare_f1_f2(comp_filename,ori_filename)
+		compare_f1_f2()
+		label()
+
+		print('Finished')
 		return render_template('pdf_view.html')
 
 	elif request.method =='GET':
@@ -78,11 +82,14 @@ def upload_page():
 	return render_template('upload.html')
 
 
+@app.after_request
+def add_header(response):
+	response.cache_control.no_store = True
+	return response
 
+def main(input_pdf, size, contrast, dpiNum,fileName,compOrOri):
 
-def main(input_pdf, file, size, contrast, dpiNum,fileName,compOrOri):
-
-	ocr(input_pdf, file, size, contrast, dpiNum,fileName,compOrOri)
+	ocr(input_pdf, size, contrast, dpiNum,fileName,compOrOri)
 
 
 if __name__ == '__main__':
