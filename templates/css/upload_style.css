@@ -1,0 +1,48 @@
+/* Add a black background color to the top navigation */
+body {
+    margin: 0;
+}
+
+.topnav {
+  list-style-type:none;
+  margin-left: auto;
+  background-color: DodgerBlue;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a,button {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Style buttons */
+.btn {
+  background-color: DodgerBlue; /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  margin: 0;
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: RoyalBlue;
+}
