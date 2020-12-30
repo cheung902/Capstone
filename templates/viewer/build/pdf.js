@@ -28,7 +28,7 @@
 	else if(typeof exports === 'object')
 		exports["pdfjs-dist/build/pdf"] = factory();
 	else
-		root["pdfjs-dist/build/pdf"] = root.pdfjsLib = factory();
+		root["pdfjs-dist/build/pdf"] = root.    pdfjsLib = factory();
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

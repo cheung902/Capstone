@@ -2,9 +2,15 @@
 <html>
 <head>
     <title>Upload Image</title>
-
+    <link rel="stylesheet" href="css/upload_style.css">
 </head>
 <body>
+
+<div class="topnav">
+    <button class="btn"><i class="fa fa-bars"></i> Menu</button>
+    <a class="active" href="#title">OCR Solution</a>
+
+</div>
 
 {% if msg %}
 <h1>{{ msg }}</h1>
@@ -20,6 +26,7 @@
         <input type=file name=ori_file multiple>
         <input type=submit value=Upload>
 </form>
+
 
 </body>
 </html>

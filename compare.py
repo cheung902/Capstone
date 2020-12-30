@@ -27,8 +27,8 @@ def compare_f1_f2():
 
 
 	# Open file for reading in text mode (default mode)
-	comp_txt = open("output/comp_cleared.txt")
-	ori_txt = open("output/ori_cleared.txt")
+	comp_txt = open("output/comp.txt")
+	ori_txt = open("output/ori.txt")
 	comp_outfile = "output/comp_result.txt"
 	ori_outfile = "output/ori_result.txt"
 	comp_result = open(comp_outfile, "a")
@@ -71,14 +71,17 @@ def compare_f1_f2():
 	ori_result.close()
 
 	totalPageComp = open("output/comp_cleared.txt").readlines()[-1]
-	shutil.copy('output/comp_result.txt', 'compare/comp/txtFile/comp.txt')
+	shutil.copy('output/comp_result.txt', 'compare/comp/pdfs/comp.txt')
 
 	for i in range(1, int(totalPageComp) + 1):
-		with open("compare/comp/txtFile/comp.txt") as file, open("compare/comp/txtFile/" + str(i) + "_.txt", "w") as file2:
+		with open("compare/comp/pdfs/comp.txt") as file, open("compare/comp/pdfs/" + str(i) + "_.txt", "w") as file2:
 			for line in file:
-				if line != str(i) + "\n":
+				if line != str(i)+'\n':
 					file2.write(line)
-					delete_line("compare/comp/txtFile/comp.txt", 0)
+					delete_line("compare/comp/pdfs/comp.txt", 0)
 				else:
-					delete_line("compare/comp/txtFile/comp.txt", 0)
+					delete_line("compare/comp/pdfs/comp.txt", 0)
 					break
+
+if __name__ == '__main__':
+	compare_f1_f2()

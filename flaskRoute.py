@@ -20,11 +20,15 @@ def pdf():
 
 @ref_page.route('/viewer/web/comp.pdf')
 def compPdf():
-    return send_from_directory(ref_page.root_path, 'output/diff.pdf')
+    return send_from_directory(ref_page.root_path, 'output/comp.pdf')
 
 @ref_page.route('/viewer/web/ori.pdf')
 def oriPdf():
     return send_from_directory(ref_page.root_path, 'output/ori.pdf')
+
+@ref_page.route('/css/upload_style.css')
+def uploadCss():
+    return send_from_directory(ref_page.root_path, 'templates/css/upload_style.css')
 
 @ref_page.route('/viewer/web/locale/locale.properties')
 def locale_properties():
@@ -73,9 +77,9 @@ def toolbarButton_viewThumbnail():
 def toolbarButton_earch():
     return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-search@2x.png')
 
-@ref_page.route('/viewer/web/images/viewOutline@2x.png')
+@ref_page.route('/viewer/web/images/toolbarButton-viewOutline@2x.png')
 def viewOutline():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/viewOutline@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-viewOutline@2x.png')
 
 @ref_page.route('/viewer/web/images/sidebarToggle@2x.png')
 def sidebarToggle():

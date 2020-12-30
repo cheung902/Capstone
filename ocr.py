@@ -1,10 +1,15 @@
 # Import libraries
+from commonFNC import removeFiles
 import pytesseract
 import timeit
+import cv2
 from preprocess import *
 from PIL import Image, ImageEnhance
 from pdf2image import convert_from_path
 from fpdf import FPDF
+from PyPDF2 import PdfFileMerger
+import json
+import img2pdf
 
 
 
@@ -12,9 +17,12 @@ def ocr(inputFile, size, contrast, dpiNum,fileName,compOrori):
 
 	image_counter = 1
 	pdf = FPDF()
+	pdf_paths = []
+	data = []
+
 	if inputFile.lower().endswith('.pdf'):
 		# Store all the pages of the PDF in a variable
-		pages = convert_from_path(inputFile,fmt='JPEG')
+		pages = convert_from_path(inputFile,fmt='tiff')
 
 		# Counter to store images of each page of PDF to image
 
@@ -26,31 +34,21 @@ def ocr(inputFile, size, contrast, dpiNum,fileName,compOrori):
 
 		for page in pages:
 
-			imgPath = "images/" + compOrori + "_" + str(image_counter) + ".jpg"
+			imgPath = "images/" + compOrori + "_" + str(image_counter) + ".tiff"
+
+			if compOrori == "comp":
+				imgPath_comp = "compare/comp/images/" + compOrori + "_" + str(image_counter) + ".tiff"
+			else:
+				imgPath_comp = "compare/ori/images/" + compOrori + "_" + str(image_counter) + ".tiff"
 
 			page.save(imgPath)
-
-			if image_counter == 1:
-				cover = Image.open(imgPath)
-				w, h = cover.size
-				pdf = FPDF(unit="pt", format=[w, h])
-			image = imgPath
-			pdf.add_page()
-			pdf.image(image, 0, 0, w, h)
-
-
+			page.save(imgPath_comp)
 			image_counter = image_counter + 1
 
-	pdf.output("output/" + compOrori + ".pdf", "F")
+	#pdf.output("output/" + compOrori + ".pdf", "F")
+
 	# Variable to get count of total number of pages
 	fileLimt = image_counter - 1
-
-	# Creating a text file to write the output
-	outFile = "output/" + compOrori + ".txt"
-
-	# Open the file in append mode so that
-	# All contents of all images are added to the same file
-	f = open(outFile, "a+")
 
 	# Iterate from 1 to total number of pages
 	# Set filename to recognize text from
@@ -60,25 +58,49 @@ def ocr(inputFile, size, contrast, dpiNum,fileName,compOrori):
 	# Finally, write the processed text to the file.
 	for i in range(1, fileLimt + 1):
 
-		img = compOrori + "_" + str(i) + ".jpg"
+		imgName = compOrori + "_" + str(i)
+		imgFile = compOrori + "_" + str(i) + ".tiff"
 
-		pre_process(img, size, contrast, dpiNum)
+		pre_process(imgFile, size, contrast, dpiNum)
 
-		print("Ocring: " + img)
+		print("Ocring: " + imgFile)
 		start = timeit.default_timer()
-		text = str((pytesseract.image_to_string(Image.open("images/" + img),lang= "eng")))
+
+		img = cv2.imread("images/" + imgFile)
+		data.append(pytesseract.image_to_data(img, output_type= pytesseract.Output.DICT))
+
 		stop = timeit.default_timer()
-		print('Time for ocr the ' + img + ': ', stop - start)
+		print('Time for ocr the ' + imgFile + ': ', stop - start)
 
-		text = text.replace('-\n', '')
-		f.write(text + '\n')
-		f.write(str(i) + '\n')
-	# os.remove(filename)
-	# Close the file after writing all the text.
-	f.close()
+		#createSearchablePDF(imgFile, imgName)
 
-	with open(outFile) as infile , open("output/" + compOrori + "_cleared.txt","w") as outfile:
-		for line in infile:
-			if not line.strip(): continue  # skip the empty line
-			outfile.write(line)
+		#pdf_paths.append("output/" + imgName + ".pdf")
 
+	#out_path = "output/" + compOrori + ".pdf"
+	#mergePDF(pdf_paths, out_path)
+	#removeFiles(pdf_paths)
+
+	print(data)
+	with open ("output/" + compOrori + ".txt", 'w') as file:
+		file.write(json.dumps(data))
+
+
+def createSearchablePDF(imgFile, imgName):
+	img = cv2.imread("images/" + imgFile)
+	img = pytesseract.image_to_pdf_or_hocr(img, extension="pdf")
+	pdf = open("output/" + imgName + ".pdf", "w+b")
+	pdf.write(bytearray(img))
+
+def mergePDF(input_paths, output_path):
+	pdf_merger = PdfFileMerger()
+
+	for path in input_paths:
+		pdf_merger.append(path)
+
+	with open(output_path, 'wb') as fileobj:
+		pdf_merger.write(fileobj)
+
+def addLineIndex(input_path, output_path):
+	with open(input_path) as finp, open(output_path, "w") as fout:
+		for index, line in enumerate(finp):
+			fout.write(str(index) + ": " + line)

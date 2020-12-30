@@ -1,5 +1,5 @@
 from ocr import *
-from compare import *
+from compare_diff import *
 from label import *
 from flaskRoute import ref_page
 import timeit
@@ -49,7 +49,7 @@ def upload_page():
 		[os.unlink(file.path) for file in os.scandir('images')]
 		[os.unlink(file.path) for file in os.scandir('static/upload')]
 		[os.unlink(file.path) for file in os.scandir('compare/comp/images')]
-		[os.unlink(file.path) for file in os.scandir('compare/comp/txtFile')]
+		[os.unlink(file.path) for file in os.scandir('compare/comp/pdfs')]
 
 		comp_filename_wext = secure_filename("c_" + comp_file.filename)
 		ori_filename_wext = secure_filename("o_" + ori_file.filename)
@@ -72,7 +72,6 @@ def upload_page():
 		p2.join()
 
 		compare_f1_f2()
-		label()
 
 		print('Finished')
 		return render_template('pdf_view.html')
@@ -96,9 +95,3 @@ if __name__ == '__main__':
 	app.secret_key = 'some secret key'
 	app.run()
 
-
-	start = timeit.default_timer()
-
-	stop = timeit.default_timer()
-
-	print('Time: ', stop - start)

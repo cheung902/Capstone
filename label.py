@@ -1,30 +1,34 @@
 import pytesseract
-from pytesseract import Output
 import os
 import cv2
 from fpdf import FPDF
+from pytesseract import Output
+from commonFNC import *
 
 def label():
 	totalPageComp = open("output/comp_cleared.txt").readlines()[-1]
+	totalPageComp = getLineNum(totalPageComp)
 	pdf = FPDF()
 
 	for page in range(1, int(totalPageComp) + 1):
-		with open("compare/comp/txtFile/" + str(page) + "_.txt") as file:
-			img = cv2.imread('images/comp_' + str(page) + ".jpg")
+		with open("compare/comp/pdfs/" + str(page) + "_.txt") as file:
+			img = cv2.imread('images/comp_' + str(page) + ".tiff")
 			d = pytesseract.image_to_data(img, output_type=Output.DICT, lang='eng')
 			n_boxes = len(d['level'])
 			overlay = img.copy()
-			print(d)
+			#print(d)
 			for line in file:
 				wordList = line.split()
+				line_num = getLineNum(wordList[0])
 				print(wordList)
+				print(line_num)
 				for i in range(0,n_boxes):
 					text = d['text'][i]
-					print(text, text == "Yes")
+					#print(text, text == "Yes")
 					if text in wordList:
-						print(text,i)
+						#print(text,i)
 						(x, y, w, h) = (d['left'][i], d['top'][i], d['width'][i], d['height'][i])
-						print(x,y,w,h)
+						#print(x,y,w,h)
 						# cv2.rectangle(img, (x, y), (x1 + w1, y1 + h1), (0, 255, 0), 2)
 						cv2.rectangle(overlay, (x, y), (x + w, y + h), (255, 0, 0), -1)
 						# cv2.rectangle(img, (x2, y2), (x2 + w2, y2 + h2), (0, 255, 0), 2)
@@ -48,3 +52,6 @@ def label():
 			pdf.add_page()
 			pdf.image("compare/comp/images/" +str(i)+ ".jpg", x=0, y=0, w=210, h=297)
 	pdf.output("output/diff.pdf", "F")
+
+if __name__ == '__main__':
+	label()
