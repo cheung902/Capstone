@@ -1,1 +1,0 @@
-ori_size = os.path.getsize()

@@ -4,7 +4,20 @@ body {
 }
 
 #main_view{
-margin: 10px 10px 10px 10px;
+text-align: center;
+}
+
+#form_upload{
+margin-top: 50px;
+}
+
+.column{
+float: left;
+width: 50%;
+}
+
+#submit_div{
+padding-top: 100px;
 }
 
 .topnav {
@@ -113,7 +126,7 @@ color: grey;
 }
 
 label {
-  background-color: indigo;
+  background-color: DodgerBlue;
   color: white;
   padding: 0.5rem;
   font-family: sans-serif;

@@ -27,15 +27,23 @@
 
 <div id = "main_view">
     <a href = "#" class = "sample_comparison">See a sample comparison</a>
-    <form method=post enctype=multipart/form-data>
-        <p>
-            <input type=file id="upload_origion" name=ori_file hidden>
-            <label for="upload_origion">Original File</label>
-            <input type=file id="upload_compare" name=comp_file hidden >
-            <label for="upload_compare">Compare File</label>
-            <input type=submit value=Upload>
-
-        </p>
+    <h2>Select Files to Compare</h2>
+    <form method=post enctype=multipart/form-data id="form_upload">
+        <div>
+            <div>
+                <span class="column">
+                    <input type=file id="upload_origion" name=ori_file hidden>
+                    <label for="upload_origion">Original File</label>
+                </span>
+                <span class="column">
+                    <input type=file id="upload_compare" name=comp_file hidden>
+                    <label for="upload_compare">Compare File</label>
+                </span>
+            </div>
+            <div id="submit_div">
+                <input type=submit value=Compare    >
+            </div>
+        </div>
     </form>
 </div>
 
