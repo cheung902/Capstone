@@ -50,6 +50,8 @@ def upload_page():
 		[os.unlink(file.path) for file in os.scandir('static/upload')]
 		[os.unlink(file.path) for file in os.scandir('compare/comp/images')]
 		[os.unlink(file.path) for file in os.scandir('compare/comp/pdfs')]
+		[os.unlink(file.path) for file in os.scandir('compare/ori/images')]
+		[os.unlink(file.path) for file in os.scandir('compare/ori/pdfs')]
 
 		comp_filename_wext = secure_filename("c_" + comp_file.filename)
 		ori_filename_wext = secure_filename("o_" + ori_file.filename)

@@ -17,6 +17,9 @@ def compare_f1_f2():
 	ori_word_position = []
 	comp_word_position = []
 
+	#Comparison Report
+
+
 	ori_data_frame, comp_data_frame = get_data_frame()
 
 	ori_max_block = ori_data_frame["block_num_adjusted"].max()
@@ -43,19 +46,22 @@ def compare_f1_f2():
 				block_inserted = comp_block_num - ori_block_num
 				ori_data_frame['block_num_adjusted'].values[ori_data_frame['block_num_adjusted'] >= ori_block_num] += block_inserted
 				ori_diff, comp_diff = diff_match(ori_block_text, comp_block_text)
+				print(ori_diff)
+				print(comp_diff)
 				if (comp_diff != None):
 
 					comp_word_and_line_num = get_diff_word_and_line_num(data_frame= comp_data_frame,
 																		diff_list = comp_diff,
 																		block_num= comp_block_num)
+
 					ori_word_and_line_num = get_diff_word_and_line_num(data_frame=ori_data_frame,
 																		diff_list=ori_diff,
 																		block_num=ori_block_num)
-
 					comp_word_position = get_word_position(data_frame = comp_data_frame,
 														   block_num = comp_block_num,
 														   word_and_line_num_list = comp_word_and_line_num,
 														   position_list = comp_word_position)
+
 
 					ori_word_position = get_word_position(data_frame=ori_data_frame,
 														   block_num=ori_block_num,
@@ -63,8 +69,9 @@ def compare_f1_f2():
 														   position_list=ori_word_position)
 
 					break
-	label_word(comp_word_position, comp_max_page, "comp")
 	label_word(ori_word_position, ori_max_page, "ori")
+	label_word(comp_word_position, comp_max_page, "comp")
+
 
 def get_word_position(data_frame, block_num, word_and_line_num_list, position_list):
 
@@ -95,7 +102,6 @@ def label_word(diff_list, max_page, compOrori):
 	page_exist = []
 	for item in diff_list:
 		page_exist.append(item[0])
-
 	page_exist = list(set(page_exist))
 
 	for page in page_exist:
@@ -110,7 +116,7 @@ def label_word(diff_list, max_page, compOrori):
 				img_new = cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0)
 
 
-				cv2.imwrite('compare/comp/images/'+ compOrori+'_' + str(page) + '.tiff', img_new)
+				cv2.imwrite('compare/' + compOrori + '/images/'+ compOrori+'_' + str(page) + '.tiff', img_new)
 
 	pdf_paths = []
 	for i in range(1,max_page):
@@ -169,8 +175,6 @@ def diff_match(line1, line2):
 	dmp = dmp_module.diff_match_patch()
 	diff = dmp.diff_main(line1, line2)
 	dmp.diff_cleanupEfficiency(diff)
-	print("line1:", line1)
-	print("line2:", line2)
 	print(diff)
 	for i in diff:
 		if i[0] == 0:
@@ -179,8 +183,13 @@ def diff_match(line1, line2):
 			pass
 		elif i[0] == -1:
 			ori_output.append("**%%$$" + i[1])
+			comp_output.append("**%%$$")
 		elif i[0] == 1:
+			ori_output.append("**%%$$")
 			comp_output.append("**%%$$" + i[1])
+
+	diff = dmp.diff_main(line2, line1)
+	dmp.diff_cleanupEfficiency(diff)
 
 	ori_output = "".join(ori_output)
 	comp_output = "".join(comp_output)

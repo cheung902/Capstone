@@ -3,30 +3,41 @@
 <head>
     <title>Upload Image</title>
     <link rel="stylesheet" href="css/upload_style.css">
+    <script src="js/upload.js"></script>
+    <script src="https://kit.fontawesome.com/1602f398c5.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
 <div class="topnav">
-    <button class="btn"><i class="fa fa-bars"></i> Menu</button>
+    <button class="openSideBar_btn" onclick="openNav()"><i class="fas fa-bars"></i></button>
     <a class="active" href="#title">OCR Solution</a>
-
 </div>
 
-{% if msg %}
-<h1>{{ msg }}</h1>
-{% endif %}
+<div class="class_sideBar" id = "id_sideBar">
+    <!--<a href="javascript:void(0)" class="closeSideBar_btn" onclick="closeNav()">×</a>-->
+    <div class = "side_upload">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <i>Upload Documents</i>
+    </div>
+    <div class = "side_processor">
+        <i class="fas fa-microchip"></i>
+        <i>Processor</i>
+    </div>
+</div>
 
-<h1>Upload new File</h1>
+<div id = "main_view">
+    <a href = "#" class = "sample_comparison">See a sample comparison</a>
+    <form method=post enctype=multipart/form-data>
+        <p>
+            <input type=file id="upload_origion" name=ori_file hidden>
+            <label for="upload_origion">Original File</label>
+            <input type=file id="upload_compare" name=comp_file hidden >
+            <label for="upload_compare">Compare File</label>
+            <input type=submit value=Upload>
 
-<form method=post enctype=multipart/form-data>
-    <p>
-        <label>Compare File :</label>
-        <input type=file name=comp_file multiple>
-        <label>Original File :</label>
-        <input type=file name=ori_file multiple>
-        <input type=submit value=Upload>
-</form>
-
+        </p>
+    </form>
+</div>
 
 </body>
 </html>

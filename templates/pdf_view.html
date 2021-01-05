@@ -2,9 +2,30 @@
 <html>
 <head>
     <title>PDF Result</title>
+    <link rel="stylesheet" href="css/pdf_view.css">
+    <script src="js/pdf_view.js"></script>
+    <script src="https://kit.fontawesome.com/1602f398c5.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<div>
+
+<div class="topnav">
+    <button class="openSideBar_btn" onclick="openNav()"><i class="fas fa-bars"></i></button>
+    <a class="active" href="#title">OCR Solution</a>
+</div>
+
+<div class="class_sideBar" id = "id_sideBar" style="width:0">
+    <!--<a href="javascript:void(0)" class="closeSideBar_btn" onclick="closeNav()">×</a>-->
+    <div class = "side_upload">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <i>Upload Documents</i>
+    </div>
+    <div class = "side_processor">
+        <i class="fas fa-microchip"></i>
+        <i>Processor</i>
+    </div>
+</div>
+
+<div id="main_view">
     <div>
         <iframe id="comp"
                 width="50%"
