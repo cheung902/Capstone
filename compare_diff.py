@@ -18,7 +18,8 @@ def compare_f1_f2():
 	comp_word_position = []
 
 	#Comparison Report
-
+	insertion_num = 0
+	deletion_num = 0
 
 	ori_data_frame, comp_data_frame = get_data_frame()
 
@@ -45,7 +46,7 @@ def compare_f1_f2():
 
 				block_inserted = comp_block_num - ori_block_num
 				ori_data_frame['block_num_adjusted'].values[ori_data_frame['block_num_adjusted'] >= ori_block_num] += block_inserted
-				ori_diff, comp_diff = diff_match(ori_block_text, comp_block_text)
+				ori_diff, comp_diff, insertion_num, deletion_num = diff_match(ori_block_text, comp_block_text, insertion_num, deletion_num)
 				print(ori_diff)
 				print(comp_diff)
 				if (comp_diff != None):
@@ -71,7 +72,7 @@ def compare_f1_f2():
 					break
 	label_word(ori_word_position, ori_max_page, "ori")
 	label_word(comp_word_position, comp_max_page, "comp")
-
+	return insertion_num, deletion_num
 
 def get_word_position(data_frame, block_num, word_and_line_num_list, position_list):
 
@@ -167,7 +168,7 @@ def get_data_frame():
 	comp_data_frame.reset_index(inplace=True)
 	return ori_data_frame, comp_data_frame
 
-def diff_match(line1, line2):
+def diff_match(line1, line2, insertion_num, deletion_num):
 
 	ori_output = []
 	comp_output = []
@@ -184,17 +185,18 @@ def diff_match(line1, line2):
 		elif i[0] == -1:
 			ori_output.append("**%%$$" + i[1])
 			comp_output.append("**%%$$")
+			deletion_num+=1
 		elif i[0] == 1:
 			ori_output.append("**%%$$")
 			comp_output.append("**%%$$" + i[1])
+			insertion_num+=1
 
 	diff = dmp.diff_main(line2, line1)
 	dmp.diff_cleanupEfficiency(diff)
-
 	ori_output = "".join(ori_output)
 	comp_output = "".join(comp_output)
-
-	return ori_output, comp_output
+	print(insertion_num,deletion_num)
+	return ori_output, comp_output, insertion_num, deletion_num
 
 def get_group_of_text(data_frame, col_name, block_num):
 
@@ -235,4 +237,5 @@ def delete_line(original_file, line_number):
 		os.remove(dummy_file)
 
 if __name__ == '__main__':
-	compare_f1_f2()
+	insertion_num, deletion_num = compare_f1_f2()
+	print(insertion_num,deletion_num)

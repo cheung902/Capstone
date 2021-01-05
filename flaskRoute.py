@@ -30,9 +30,17 @@ def oriPdf():
 def uploadCss():
     return send_from_directory(ref_page.root_path, 'templates/css/upload_style.css')
 
+@ref_page.route('/css/pdf_view.css')
+def pdf_view_Css():
+    return send_from_directory(ref_page.root_path, 'templates/css/pdf_view.css')
+
 @ref_page.route('/js/upload.js')
 def uploadJs():
     return send_from_directory(ref_page.root_path, 'templates/js/upload.js')
+
+@ref_page.route('/js/pdf_view.js')
+def pdf_view_Js():
+    return send_from_directory(ref_page.root_path, 'templates/js/pdf_view.js')
 
 @ref_page.route('/viewer/web/locale/locale.properties')
 def locale_properties():

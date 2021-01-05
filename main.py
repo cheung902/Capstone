@@ -1,6 +1,6 @@
 from ocr import *
 from compare_diff import *
-from label import *
+from datetime import datetime
 from flaskRoute import ref_page
 import timeit
 from multiprocessing import Process
@@ -56,15 +56,15 @@ def upload_page():
 		comp_filename_wext = secure_filename("c_" + comp_file.filename)
 		ori_filename_wext = secure_filename("o_" + ori_file.filename)
 
-		com_path = os.path.join(app.config['UPLOAD_FOLDER'],comp_filename_wext)
+		comp_path = os.path.join(app.config['UPLOAD_FOLDER'],comp_filename_wext)
 		ori_path = os.path.join(app.config['UPLOAD_FOLDER'], ori_filename_wext)
-		comp_file.save(com_path)
+		comp_file.save(comp_path)
 		ori_file.save(ori_path)
 
 		comp_filename =  ('.').join(comp_filename_wext.split('.')[:-1])
 		ori_filename =  ('.').join(ori_filename_wext.split('.')[:-1])
 
-		p1 = Process(target=main, args=(com_path, size, contrast, dpiNum, comp_filename,"comp"))
+		p1 = Process(target=main, args=(comp_path, size, contrast, dpiNum, comp_filename,"comp"))
 		p1.start()
 		print("Compare File Job Start")
 		p2 = Process(target=main, args=(ori_path, size, contrast, dpiNum, ori_filename,"ori"))
@@ -73,7 +73,15 @@ def upload_page():
 		p1.join()
 		p2.join()
 
-		compare_f1_f2()
+		insertion_num, deletion_num = compare_f1_f2()
+
+		#Comparison Metrics
+		ori_size = os.path.getsize(ori_path)
+		comp_size = os.path.getsize(comp_path)
+		print(ori_size)
+		print(ori_path)
+		process_datetime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+		total_changes = insertion_num + deletion_num
 
 		print('Finished')
 		return render_template('pdf_view.html')
