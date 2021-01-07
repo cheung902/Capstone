@@ -16,7 +16,6 @@ def compare_f1_f2():
 
 	ori_word_position = []
 	comp_word_position = []
-
 	#Comparison Report
 	insertion_num = 0
 	deletion_num = 0
@@ -47,8 +46,6 @@ def compare_f1_f2():
 				block_inserted = comp_block_num - ori_block_num
 				ori_data_frame['block_num_adjusted'].values[ori_data_frame['block_num_adjusted'] >= ori_block_num] += block_inserted
 				ori_diff, comp_diff, insertion_num, deletion_num = diff_match(ori_block_text, comp_block_text, insertion_num, deletion_num)
-				print(ori_diff)
-				print(comp_diff)
 				if (comp_diff != None):
 
 					comp_word_and_line_num = get_diff_word_and_line_num(data_frame= comp_data_frame,
@@ -58,6 +55,7 @@ def compare_f1_f2():
 					ori_word_and_line_num = get_diff_word_and_line_num(data_frame=ori_data_frame,
 																		diff_list=ori_diff,
 																		block_num=ori_block_num)
+
 					comp_word_position = get_word_position(data_frame = comp_data_frame,
 														   block_num = comp_block_num,
 														   word_and_line_num_list = comp_word_and_line_num,
@@ -72,10 +70,9 @@ def compare_f1_f2():
 					break
 	label_word(ori_word_position, ori_max_page, "ori")
 	label_word(comp_word_position, comp_max_page, "comp")
-	return insertion_num, deletion_num
+	return insertion_num, deletion_num, ori_max_page, comp_max_page
 
 def get_word_position(data_frame, block_num, word_and_line_num_list, position_list):
-
 	for index, row in data_frame.iterrows():
 		if row['block_num_adjusted'] == block_num:
 			for i in word_and_line_num_list:
@@ -84,34 +81,45 @@ def get_word_position(data_frame, block_num, word_and_line_num_list, position_li
 					# print("word:", row['text'])
 					# print(row['block_num_adjusted'], comp_block_num, comp_diff)
 					position_list.append(
-						data_frame.loc[index, ["page_num", "height", "left", "top", "width", "text"]])
+						[data_frame.loc[index, ["page_num", "height", "left", "top", "width", "text"]],i[2]])
+
 	return position_list
 
 def get_diff_word_and_line_num(data_frame, diff_list, block_num):
 	list = []
 	diff_list_split = diff_list.split()
 	for i, element in enumerate(diff_list_split):
-		if "**%%$$" in element:
-			word = element.replace("**%%$$", "")
+		if "**%%$$*" in element:
+			word = element.replace("**%%$$*", "")
 			line = data_frame[(data_frame['text'] == word)
 											& (data_frame['block_num_adjusted'] == block_num)
 											& (data_frame['word_num'] == i + 1)]['line_num'].values
-			list.append([i + 1, line])
+			list.append([i + 1, line, "-1"])
+		elif "**%%$$#" in element:
+			word = element.replace("**%%$$#", "")
+			line = data_frame[(data_frame['text'] == word)
+							  & (data_frame['block_num_adjusted'] == block_num)
+							  & (data_frame['word_num'] == i + 1)]['line_num'].values
+			list.append([i + 1, line, "1"])
 	return list
 
 def label_word(diff_list, max_page, compOrori):
 	page_exist = []
 	for item in diff_list:
-		page_exist.append(item[0])
+		page_exist.append(item[0][0])
 	page_exist = list(set(page_exist))
 
 	for page in page_exist:
 		img = cv2.imread('images/' + compOrori + '_' + str(page) + ".tiff")
 		overlay = img.copy()
 		for item in diff_list:
-			if item[0] == page:
-				(x, y, w, h) = (item['left'], item['top'], item['width'], item['height'])
-				cv2.rectangle(overlay, (x, y), (x + w, y + h), (255, 0, 0), -1)
+			if item[0][0] == page:
+				(x, y, w, h) = (item[0]['left'], item[0]['top'], item[0]['width'], item[0]['height'])
+				if item[1] == "-1":
+					print(item[0]['text'])
+					cv2.rectangle(overlay, (x, y), (x + w, y + h), (255, 0, 0), -1)
+				else:
+					cv2.rectangle(overlay, (x, y), (x + w, y + h), (0, 255, 0), -1)
 				alpha = 0.1  # Trxansparency factor.
 				# Following line overlays transparent rectangle over the image
 				img_new = cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0)
@@ -176,26 +184,30 @@ def diff_match(line1, line2, insertion_num, deletion_num):
 	dmp = dmp_module.diff_match_patch()
 	diff = dmp.diff_main(line1, line2)
 	dmp.diff_cleanupEfficiency(diff)
-	print(diff)
+	print("line1: ", line1)
+	print("line2: ", line2)
+	print("difference: ", diff)
 	for i in diff:
 		if i[0] == 0:
 			ori_output.append(i[1])
 			comp_output.append(i[1])
 			pass
 		elif i[0] == -1:
-			ori_output.append("**%%$$" + i[1])
-			comp_output.append("**%%$$")
+			ori_output.append(addTextLabel(i[1], "**%%$$*"))
+			comp_output.append("**%%$$*")
 			deletion_num+=1
 		elif i[0] == 1:
-			ori_output.append("**%%$$")
-			comp_output.append("**%%$$" + i[1])
+			ori_output.append("**%%$$#")
+			comp_output.append("**%%$$#" + i[1])
 			insertion_num+=1
 
 	diff = dmp.diff_main(line2, line1)
 	dmp.diff_cleanupEfficiency(diff)
 	ori_output = "".join(ori_output)
 	comp_output = "".join(comp_output)
-	print(insertion_num,deletion_num)
+	print("ori",ori_output)
+	print("comp", comp_output)
+	print("----------- end of 1 block comparison -----------")
 	return ori_output, comp_output, insertion_num, deletion_num
 
 def get_group_of_text(data_frame, col_name, block_num):
@@ -236,6 +248,18 @@ def delete_line(original_file, line_number):
 	else:
 		os.remove(dummy_file)
 
+def addTextLabel(text, symbol):
+	text = text.split(" ")
+	lenText = len(text)
+	output = ""
+	for num, item in enumerate(text):
+		if item != "":
+			output = symbol + item
+			output = " " * num + output
+			if lenText > num:
+				output = output + " " * (lenText - num - 1)
+	return output
+
 if __name__ == '__main__':
-	insertion_num, deletion_num = compare_f1_f2()
+	insertion_num, deletion_num, ori_max_page, comp_max_page = compare_f1_f2()
 	print(insertion_num,deletion_num)

@@ -26,9 +26,29 @@ def compPdf():
 def oriPdf():
     return send_from_directory(ref_page.root_path, 'output/ori.pdf')
 
+@ref_page.route('/viewer/web/comp_sample.pdf')
+def compPdf_sample():
+    return send_from_directory(ref_page.root_path, 'contract_sample/comp_sample.pdf')
+
+@ref_page.route('/viewer/web/ori_sample.pdf')
+def oriPdf_sample():
+    return send_from_directory(ref_page.root_path, 'contract_sample/ori_sample.pdf')
+
+@ref_page.route('/upload.html')
+def uploadHtml():
+    return send_from_directory(ref_page.root_path, 'templates/upload.html')
+
+@ref_page.route('/sample.html')
+def sampleHtml():
+    return send_from_directory(ref_page.root_path, 'templates/sample.html')
+
 @ref_page.route('/css/upload_style.css')
 def uploadCss():
     return send_from_directory(ref_page.root_path, 'templates/css/upload_style.css')
+
+@ref_page.route('/css/sample_style.css')
+def sampleCss():
+    return send_from_directory(ref_page.root_path, 'templates/css/sample_style.css')
 
 @ref_page.route('/css/pdf_view.css')
 def pdf_view_Css():
@@ -37,6 +57,10 @@ def pdf_view_Css():
 @ref_page.route('/js/upload.js')
 def uploadJs():
     return send_from_directory(ref_page.root_path, 'templates/js/upload.js')
+
+@ref_page.route('/js/sample.js')
+def sampleJs():
+    return send_from_directory(ref_page.root_path, 'templates/js/sample.js')
 
 @ref_page.route('/js/pdf_view.js')
 def pdf_view_Js():

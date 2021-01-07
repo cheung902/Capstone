@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>PDF Result</title>
-    <link rel="stylesheet" href="css/pdf_view.css">
-    <script src="js/pdf_view.js"></script>
+    <title>Sample Comparison</title>
+    <link rel="stylesheet" href="css/sample_style.css">
+    <script src="js/sample.js"></script>
     <script src="https://kit.fontawesome.com/1602f398c5.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -33,37 +33,37 @@
 
     <div class="full_view_sample">
         <div>
-            <iframe id="comp"
+            <iframe id="comp_sample"
                     width="50%"
                     height="750px"
                     style="border: none;"
                     align="left"></iframe>
         </div>
         <div>
-            <iframe id="ori"
+            <iframe id="ori_sample"
                     width="50%"
                     height="750px"
                     style="border: none;"></iframe>
         </div>
     </div>
 
-    <div class="comparison_report">
+    <div class="comparison_report_sample">
         <div class="comparison_report_header">
-            <p>{{process_datetime}}</p>
+            <p>05/10/2020 05:02:05 PM</p>
             <h1>Comparison Report</h1>
         </div>
         <div class="general_info">
             <div class="general_info_column" id="compare_file">
                 <b>Compare File:</b>
-                <p>{{comp_filename}}</p>
-                <p>{{comp_max_page}} pages ({{comp_size}} KB)</p>
+                <p>New File:</p>
+                <p>10 pages (256 KB)</p>
                 <p>8/5/2016 3:27:37 PM</p>
             </div>
 
             <div class="general_info_column" id="ori_file">
                 <b>Original File:</b>
-                <p>{{ori_filename}}</p>
-                <p>{{ori_max_page}} pages ({{ori_size}} KB)</p>
+                <p>Old File:</p>
+                <p>10 pages (250 KB)</p>
                 <p>8/5/2016 3:31:55 PM</p>
             </div>
         </div>
@@ -78,7 +78,7 @@
                         </circle>
                     </svg>
                     <div style="position: relative;">
-                        <div id="total_changes_num">{{total_changes}}</div>
+                        <div id="total_changes_num">38</div>
                     </div>
                 </div>
 
@@ -88,11 +88,11 @@
                     <b>Content</b>
                 </div>
                 <div class="metrics_Content_block">
-                    <span class="metrics_Content_num" id="insert_num">{{insertion_num}}</span>
+                    <span class="metrics_Content_num" id="insert_num">20</span>
                     <span>Insertions</span>
                 </div>
                 <div class="metrics_Content_block">
-                    <span class="metrics_Content_num" id="delete_num">{{deletion_num}}</span>
+                    <span class="metrics_Content_num" id="delete_num">18</span>
                     <span>Deletions</span>
                 </div>
             </div>
@@ -103,10 +103,8 @@
     <script>
         var d = new Date().getTime();
         console.log(d);
-        document.getElementById("comp").src = "viewer/web/viewer.html?file=comp.pdf?rnd=" + d;
-        document.getElementById("ori").src = "viewer/web/viewer.html?file=ori.pdf?rnd=" + d;
-        console.log(document.getElementById("ori").src);
-
+        document.getElementById("comp_sample").src = "viewer/web/viewer.html?file=comp_sample.pdf?rnd=" + d;
+        document.getElementById("ori_sample").src = "viewer/web/viewer.html?file=ori_sample.pdf?rnd=" + d;
 
         $(document).ready(function(){
 
@@ -117,13 +115,13 @@
         });
 
         $("#full_view_tab").click(function(){
-        $(".comparison_report").hide();
-        $(".full_view").show();
+        $(".comparison_report_sample").hide();
+        $(".full_view_sample").show();
         });
 
         $("#comparison_report_tab").click(function(){
-        $(".full_view").hide();
-        $(".comparison_report").show();
+        $(".full_view_sample").hide();
+        $(".comparison_report_sample").show();
         });
 
         });

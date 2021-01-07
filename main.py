@@ -73,18 +73,32 @@ def upload_page():
 		p1.join()
 		p2.join()
 
-		insertion_num, deletion_num = compare_f1_f2()
+		insertion_num, deletion_num, ori_max_page, comp_max_page = compare_f1_f2()
 
 		#Comparison Metrics
-		ori_size = os.path.getsize(ori_path)
-		comp_size = os.path.getsize(comp_path)
-		print(ori_size)
-		print(ori_path)
+		ori_size = os.path.getsize(ori_path)/1000
+		comp_size = os.path.getsize(comp_path)/1000
 		process_datetime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 		total_changes = insertion_num + deletion_num
+		insertion_radius = insertion_num/total_changes * 880
+		deletion_radius = deletion_num/total_changes * 880
+
+
 
 		print('Finished')
-		return render_template('pdf_view.html')
+		return render_template('pdf_view.html',
+							   process_datetime = process_datetime,
+							   comp_max_page = comp_max_page,
+							   ori_max_page = ori_max_page,
+							   comp_size = comp_size,
+							   ori_size = ori_size,
+							   comp_filename = comp_file.filename,
+							   ori_filename = ori_file.filename,
+							   total_changes = total_changes,
+							   insertion_num = insertion_num,
+							   deletion_num = deletion_num,
+							   insertion_radius = str(insertion_radius) + ",880" ,
+							   deletion_radius = str(deletion_radius) + ",880")
 
 	elif request.method =='GET':
 		return render_template('upload.html')
