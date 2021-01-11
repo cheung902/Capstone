@@ -25,13 +25,14 @@
         <div class="process_subTabs">
             <button type="button" class ="tab_button" id="full_view_tab"><i class="far fa-eye"></i> Full View Comparison</button>
             <button type="button" class ="tab_button" id="comparison_report_tab"><i class="fas fa-book-open"></i> Comparison Report</button>
+            <button type="button" class ="tab_button" id="trial_tab"><i class="fas fa-book-open"></i> Trial</button>
         </div>
     </div>
 </div>
 
 <div id="main_view">
 
-    <div class="full_view_sample">
+    <div class="full_view">
         <div>
             <iframe id="comp"
                     width="50%"
@@ -98,6 +99,9 @@
             </div>
         </div>
     </div>
+    <div class = trial_view>
+
+    </div>
 
 </div>
     <script>
@@ -106,7 +110,6 @@
         document.getElementById("comp").src = "viewer/web/viewer.html?file=comp.pdf?rnd=" + d;
         document.getElementById("ori").src = "viewer/web/viewer.html?file=ori.pdf?rnd=" + d;
         console.log(document.getElementById("ori").src);
-
 
         $(document).ready(function(){
 
@@ -124,6 +127,14 @@
         $("#comparison_report_tab").click(function(){
         $(".full_view").hide();
         $(".comparison_report").show();
+        });
+
+        });
+
+        $("#trial_tab").click(function(){
+        $(".full_view").hide();
+        $(".comparison_report").hide();
+        $(".trial_view).show();
         });
 
         });

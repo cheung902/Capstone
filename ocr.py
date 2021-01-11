@@ -1,23 +1,16 @@
 # Import libraries
-from commonFNC import removeFiles
 import pytesseract
-import timeit
 import cv2
 from preprocess import *
-from PIL import Image, ImageEnhance
 from pdf2image import convert_from_path
-from fpdf import FPDF
 from PyPDF2 import PdfFileMerger
 import json
-import img2pdf
 
 
 
-def ocr(inputFile, size, contrast, dpiNum,fileName,compOrori):
+def ocr(inputFile, size, contrast, dpiNum,compOrori):
 
 	image_counter = 1
-	pdf = FPDF()
-	pdf_paths = []
 	data = []
 
 	if inputFile.lower().endswith('.pdf'):
@@ -45,8 +38,6 @@ def ocr(inputFile, size, contrast, dpiNum,fileName,compOrori):
 			page.save(imgPath_comp)
 			image_counter = image_counter + 1
 
-	#pdf.output("output/" + compOrori + ".pdf", "F")
-
 	# Variable to get count of total number of pages
 	fileLimt = image_counter - 1
 
@@ -58,7 +49,6 @@ def ocr(inputFile, size, contrast, dpiNum,fileName,compOrori):
 	# Finally, write the processed text to the file.
 	for i in range(1, fileLimt + 1):
 
-		imgName = compOrori + "_" + str(i)
 		imgFile = compOrori + "_" + str(i) + ".tiff"
 
 		pre_process(imgFile, size, contrast, dpiNum)
@@ -71,14 +61,6 @@ def ocr(inputFile, size, contrast, dpiNum,fileName,compOrori):
 
 		stop = timeit.default_timer()
 		print('Time for ocr the ' + imgFile + ': ', stop - start)
-
-		#createSearchablePDF(imgFile, imgName)
-
-		#pdf_paths.append("output/" + imgName + ".pdf")
-
-	#out_path = "output/" + compOrori + ".pdf"
-	#mergePDF(pdf_paths, out_path)
-	#removeFiles(pdf_paths)
 
 	print(data)
 	with open ("output/" + compOrori + ".txt", 'w') as file:
