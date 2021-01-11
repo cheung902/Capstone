@@ -15,6 +15,8 @@ def compare_f1_f2():
 	# label
 	insert_label = "G_label"
 	delete_label = "R_label"
+	case_label = "B_label"
+
 	caseSensitive = True
 	# Comparison Report
 	insertion_num = 0
@@ -28,31 +30,23 @@ def compare_f1_f2():
 
 	ori_diff, comp_diff, insertion_num, deletion_num = diff_match(ori_text, comp_text,
 																  insertion_num, deletion_num,
-																  insert_label, delete_label, caseSensitive)
+																  insert_label, delete_label, case_label, caseSensitive)
 
 	if (comp_diff != None):
 		ori_word_position = get_position(data_frame=ori_data_frame, diff_list=ori_diff,
-										 insert_label=insert_label, delete_label=delete_label)
+										 insert_label=insert_label, delete_label=delete_label,
+										 case_label = case_label)
 
 		comp_word_position = get_position(data_frame=comp_data_frame, diff_list=comp_diff,
-										  insert_label=insert_label, delete_label=delete_label)
+										  insert_label=insert_label, delete_label=delete_label,
+										  case_label = case_label)
 
 		label_word(ori_word_position, ori_max_page, "ori")
 		label_word(comp_word_position, comp_max_page, "comp")
 
 	return insertion_num, deletion_num, ori_max_page, comp_max_page
 
-def get_word_position(data_frame, word_and_line_num_list, position_list):
-	for index, row in data_frame.iterrows():
-		for i in word_and_line_num_list:
-			if i[0] == row['word_num'] and i[1] == row['line_num']:
-				position_list.append(
-					[data_frame.loc[index, ["page_num", "height", "left", "top", "width", "text"]], i[2]])
-
-	return position_list
-
-
-def get_position(data_frame, diff_list, insert_label, delete_label):
+def get_position(data_frame, diff_list, insert_label, delete_label, case_label):
 	print("---------------Getting Word Number and Line Number-------------")
 	print(diff_list)
 	position_list = []
@@ -142,7 +136,7 @@ def label_word(diff_list, max_page, compOrori):
 	# removeFiles(pdf_paths)
 
 
-def diff_match(line1, line2, insertion_num, deletion_num, insert_label, delete_label, caseSensitive):
+def diff_match(line1, line2, insertion_num, deletion_num, insert_label, delete_label, case_label, caseSensitive):
 
 	ori_output = []
 	comp_output = []
