@@ -28,20 +28,20 @@ cache = Cache(app)
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/',methods = ['GET','POST'])
+@app.route('/',methods = ['GET', 'POST'])
 def upload_page():
 
-	if request.method == 'POST':
+	if (request.method == 'POST'):
 
-		if 'comp_file' not in request.files or 'ori_file' not in request.files:
+		if ('comp_file' not in request.files or 'ori_file' not in request.files):
 			return render_template('upload.html', msg = 'No file selected')
 
 		comp_file = request.files['comp_file']
 		ori_file = request.files['ori_file']
-		if comp_file.filename == '' or ori_file.filename == '':
+		if (comp_file.filename == '' or ori_file.filename == ''):
 			return render_template('upload.html', msg='Please make sure to upload both files to do the comparison')
 
-		if not allowed_file(comp_file.filename) or not allowed_file(ori_file.filename):
+		if (not allowed_file(comp_file.filename) or not allowed_file(ori_file.filename)):
 			return render_template('upload.html', msg='File format in one of the file is not accepted')
 
 		[os.unlink(file.path) for file in os.scandir('output')]
@@ -94,7 +94,7 @@ def upload_page():
 							insertion_radius = str(insertion_radius) + ",880" ,
 							deletion_radius = str(deletion_radius) + ",880")
 
-	elif request.method == 'GET':
+	elif (request.method == 'GET'):
 		return render_template('upload.html')
 	return render_template('upload.html')
 
@@ -106,7 +106,6 @@ def add_header(response):
 
 def main(input_pdf, size, contrast, dpiNum, compOrOri):
 	ocr(input_pdf, size, contrast, dpiNum, compOrOri)
-
 
 if __name__ == '__main__':
 	app.secret_key = 'some secret key'
