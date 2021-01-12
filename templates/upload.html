@@ -8,63 +8,64 @@
 </head>
 <body>
 
-<div class="topnav">
+<div class="topnav" id="id_topnav">
     <button class="openSideBar_btn" onclick="openNav()"><i class="fas fa-bars"></i></button>
     <a class="active" href="/upload.html">OCR Solution</a>
     <button class="help-button" ><i class="far fa-question-circle"></i></button>
 </div>
 
-<div class="class_sideBar" id = "id_sideBar" style="width:0">
-    <!--<a href="javascript:void(0)" class="closeSideBar_btn" onclick="closeNav()">×</a>-->
-    <div class = "sideBar_tabs">
-        <button type="button" class ="tab_button"><i class="fas fa-cloud-upload-alt"></i> Upload Documents</button>
+<div class="class_main_view" id="main_view">
+    <div class="class_sideBar" id = "id_sideBar" style="width:0">
+        <!--<a href="javascript:void(0)" class="closeSideBar_btn" onclick="closeNav()">×</a>-->
+        <div class = "sideBar_tabs">
+            <button type="button" class ="tab_button"><i class="fas fa-cloud-upload-alt"></i> Upload Documents</button>
+        </div>
+        <div class = "sideBar_tabs">
+            <button type="button" class ="tab_button" id="process_tabs"><i class="fas fa-microchip"></i> Processor</button>
+        </div>
     </div>
-    <div class = "sideBar_tabs">
-        <button type="button" class ="tab_button" id="process_tabs"><i class="fas fa-microchip"></i> Processor</button>
-    </div>
-</div>
 
-<div id = "main_view">
-    <a href = "/sample.html" class = "sample_comparison">See a sample comparison</a>
-    <h2 class="header">Select Files to Compare</h2>
-    <div>
-        <form method=post enctype=multipart/form-data id="form_upload">
-                <div id="upload_block">
-                    <div class="column" id="column_left">
-                        <div class="column_describe">
-                            <span class="upload_icon"><i class="fas fa-upload"></i></span>
-                            <div class="column_describe_text">
-                                <div><b>New File</b></div>
-                                <div><b>Select a newer file here</b></div>
+    <div id = "full_view">
+        <a href = "/sample.html" class = "sample_comparison">See a sample comparison</a>
+        <h2 class="header">Select Files to Compare</h2>
+        <div>
+            <form method=post enctype=multipart/form-data id="form_upload">
+                    <div id="upload_block">
+                        <div class="column" id="column_left">
+                            <div class="column_describe">
+                                <span class="upload_icon"><i class="fas fa-upload"></i></span>
+                                <div class="column_describe_text">
+                                    <div><b>New File</b></div>
+                                    <div><b>Select a newer file here</b></div>
+                                </div>
+                            </div>
+                            <div class="column_upload">
+                                <input type=file id="upload_compare" name=comp_file hidden>
+                                <label for="upload_compare">Compare File</label>
                             </div>
                         </div>
-                        <div class="column_upload">
-                            <input type=file id="upload_compare" name=comp_file hidden>
-                            <label for="upload_compare">Compare File</label>
-                        </div>
-                    </div>
-                    <div class="column" id="column_right">
-                        <div class="column_describe">
-                            <span class="upload_icon"><i class="fas fa-upload"></i></span>
-                            <div class="column_describe_text">
-                                <div><b>Old File</b></div>
-                                <div><b>Select an older file here</b></div>
+                        <div class="column" id="column_right">
+                            <div class="column_describe">
+                                <span class="upload_icon"><i class="fas fa-upload"></i></span>
+                                <div class="column_describe_text">
+                                    <div><b>Old File</b></div>
+                                    <div><b>Select an older file here</b></div>
+                                </div>
+                            </div>
+                            <div class="column_upload">
+                                <input type=file id="upload_origion" name=ori_file hidden>
+                                <label for="upload_origion">Original File</label>
                             </div>
                         </div>
-                        <div class="column_upload">
-                            <input type=file id="upload_origion" name=ori_file hidden>
-                            <label for="upload_origion">Original File</label>
-                        </div>
                     </div>
-                </div>
 
-                <div id="submit_div">
-                    <input type=submit value=Compare class="submit_button">
-                </div>
+                    <div id="submit_div">
+                        <input type=submit value=Compare class="submit_button">
+                    </div>
 
-        </form>
+            </form>
+        </div>
     </div>
 </div>
-
 </body>
 </html>

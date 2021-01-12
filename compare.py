@@ -21,6 +21,7 @@ def compare_f1_f2():
 	# Comparison Report
 	insertion_num = 0
 	deletion_num = 0
+	case_diff_num = 0
 
 	ori_data_frame, comp_data_frame = get_data_frame()
 	ori_max_page = ori_data_frame["page_num"].max()
@@ -28,9 +29,10 @@ def compare_f1_f2():
 	ori_text = get_group_of_text(ori_data_frame)
 	comp_text = get_group_of_text(comp_data_frame)
 
-	ori_diff, comp_diff, insertion_num, deletion_num = diff_match(ori_text, comp_text,
-																  insertion_num, deletion_num,
-																  insert_label, delete_label, case_label, caseSensitive)
+	ori_diff, comp_diff, insertion_num, deletion_num, case_diff_num = diff_match(ori_text, comp_text, insertion_num,
+																				 deletion_num, case_diff_num,
+																				 insert_label, delete_label,
+																				 case_label, caseSensitive)
 
 	if (comp_diff != None):
 		ori_word_position = get_position(data_frame=ori_data_frame, diff_list=ori_diff,
@@ -44,7 +46,7 @@ def compare_f1_f2():
 		label_word(ori_word_position, ori_max_page, "ori")
 		label_word(comp_word_position, comp_max_page, "comp")
 
-	return insertion_num, deletion_num, ori_max_page, comp_max_page
+	return insertion_num, deletion_num, case_diff_num, ori_max_page, comp_max_page
 
 def get_position(data_frame, diff_list, insert_label, delete_label, case_label):
 	print("---------------Getting Word Number and Line Number-------------")
@@ -55,8 +57,11 @@ def get_position(data_frame, diff_list, insert_label, delete_label, case_label):
 	insert_label_end = "-" + insert_label + "S"
 	delete_label_start = delete_label + "S-"
 	delete_label_end = "-" + delete_label + "S"
+	case_label_start = case_label + "S-"
+	case_label_end = "-" + case_label + "S"
 	insert_label = insert_label + "-"
 	delete_label = delete_label + "-"
+	case_label = case_label + "-"
 	print(diff_list_split)
 	for num, element in enumerate(diff_list_split):
 		if (insert_label_start in element):
@@ -86,6 +91,20 @@ def get_position(data_frame, diff_list, insert_label, delete_label, case_label):
 				append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="-1")
 				continue
 
+		elif case_label_start in element:
+			word = element.replace(case_label_start, "")
+
+			append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="2")
+			num += 1
+			while case_label_end not in diff_list_split[num]:
+				word = diff_list_split[num]
+				append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="2")
+				num += 1
+			if case_label_end in diff_list_split[num]:
+				word = diff_list_split[num].replace(case_label_end, "")
+				append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="2")
+				continue
+
 		elif delete_label in element:
 			word = element.replace(delete_label, "")
 			append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="-1")
@@ -94,10 +113,16 @@ def get_position(data_frame, diff_list, insert_label, delete_label, case_label):
 			word = element.replace(insert_label, "")
 			append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="1")
 
+		elif case_label in element:
+
+			word = element.replace(case_label, "")
+			append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="2")
+
 	return position_list
 
 
 def label_word(diff_list, max_page, compOrori):
+	print("Creating ", compOrori, ".pdf")
 	page_exist = []
 	for item in diff_list:
 		page_exist.append(item[0])
@@ -112,9 +137,12 @@ def label_word(diff_list, max_page, compOrori):
 				if item[2] == "-1":
 					print("Deleted: ", item[3])
 					cv2.rectangle(overlay, (x, y), (x + w, y + h), (255, 0, 0), -1)
-				else:
+				elif item[2] == "1":
 					print("Inserted: ", item[3])
 					cv2.rectangle(overlay, (x, y), (x + w, y + h), (0, 255, 0), -1)
+				elif item[2] == "2":
+					print("Case Difference: ", item[3])
+					cv2.rectangle(overlay, (x, y), (x + w, y + h), (0, 0, 255), -1)
 				alpha = 0.1  # Trxansparency factor.
 				# Following line overlays transparent rectangle over the image
 				img_new = cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0)
@@ -136,7 +164,7 @@ def label_word(diff_list, max_page, compOrori):
 	# removeFiles(pdf_paths)
 
 
-def diff_match(line1, line2, insertion_num, deletion_num, insert_label, delete_label, case_label, caseSensitive):
+def diff_match(line1, line2, insertion_num, deletion_num, case_diff_num, insert_label, delete_label, case_label, caseSensitive):
 
 	ori_output = []
 	comp_output = []
@@ -151,17 +179,33 @@ def diff_match(line1, line2, insertion_num, deletion_num, insert_label, delete_l
 	skip = False
 	print("CaseSensitive: ", caseSensitive)
 	if caseSensitive is True:
-		for i in diff:
-			if i[0] == 0:
-				ori_output.append(i[1])
-				comp_output.append(i[1])
-				pass
-			elif i[0] == -1:
-				ori_output.append(addTextLabel(text=i[1], label=delete_label))
-				deletion_num += 1
-			elif i[0] == 1:
-				comp_output.append(addTextLabel(text=i[1], label=insert_label))
-				insertion_num += 1
+		for index, element in enumerate(diff):
+			if (skip is True):
+				skip = False
+				continue
+			if (element[0] == 0):
+				ori_output.append(element[1])
+				comp_output.append(element[1])
+				skip = False
+			elif (element[0] == -1 or element[0] == 1):
+				next_item = diff[index + 1][1]
+				if (next_item.lower() == element[1].lower()):
+					if (element[0] == -1):
+						ori_output.append(addTextLabel(text=element[1], label=case_label))
+						comp_output.append(addTextLabel(text=next_item, label=case_label))
+						case_diff_num += 1
+					elif (element[0] == 1):
+						comp_output.append(addTextLabel(text=element[1], label=case_label))
+						ori_output.append(addTextLabel(text=next_item, label=case_label))
+						case_diff_num += 1
+					skip = True
+				else:
+					if (element[0] == -1):
+						ori_output.append(addTextLabel(text=element[1], label=delete_label))
+						deletion_num += 1
+					elif (element[0] == 1):
+						comp_output.append(addTextLabel(text=element[1], label=insert_label))
+						insertion_num += 1
 	else:
 		for index, element in enumerate(diff):
 			if (skip is True):
@@ -180,15 +224,17 @@ def diff_match(line1, line2, insertion_num, deletion_num, insert_label, delete_l
 				else:
 					if (element[0] == -1):
 						ori_output.append(addTextLabel(text=element[1], label=delete_label))
+						deletion_num += 1
 					elif (element[0] == 1):
 						comp_output.append(addTextLabel(text=element[1], label=insert_label))
+						insertion_num += 1
 
 	ori_output = "".join(ori_output)
 	comp_output = "".join(comp_output)
 	print("ori", ori_output)
 	print("comp", comp_output)
 	print("----------- end of 1 block comparison -----------")
-	return ori_output, comp_output, insertion_num, deletion_num
+	return ori_output, comp_output, insertion_num, deletion_num, case_diff_num
 
 
 def get_group_of_text(data_frame):
@@ -238,7 +284,7 @@ def get_data_frame():
 	ori_data_frame = adjustWordNum(ori_data_frame)
 	comp_data_frame = adjustWordNum(comp_data_frame)
 
-	print(ori_data_frame.to_string())
+	print(comp_data_frame.to_string())
 	return ori_data_frame, comp_data_frame
 
 
@@ -258,7 +304,6 @@ def addTextLabel(text, label):
 	if text == " ":
 		return " "
 	sentence = text.split()
-	print(text, sentence)
 	sentence_with_space = text.split(" ")
 	lenWord = len(sentence)
 	lenWord_space = len(sentence_with_space)
@@ -293,7 +338,6 @@ def append_position_list(data_frame, position_list, num, word, insert_or_delete)
 
 	word_num = num + 1
 	word_position = data_frame[(data_frame['text'] == word) & (data_frame['word_num'] == word_num)]
-	print(word, word_num)
 	position_list.append([word_position.iloc[0]['page_num'],
 				[word_position.iloc[0]['left'], word_position.iloc[0]['top'],
 				word_position.iloc[0]['width'], word_position.iloc[0]['height']],

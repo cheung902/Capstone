@@ -34,6 +34,14 @@ def compPdf_sample():
 def oriPdf_sample():
     return send_from_directory(ref_page.root_path, 'contract_sample/ori_sample.pdf')
 
+@ref_page.route('/viewer/web/comp.pdf')
+def compPdf_trial():
+    return send_from_directory(ref_page.root_path, 'output/comp.pdf')
+
+@ref_page.route('/viewer/web/ori.pdf')
+def oriPdf_trial():
+    return send_from_directory(ref_page.root_path, 'output/ori.pdf')
+
 @ref_page.route('/upload.html')
 def uploadHtml():
     return send_from_directory(ref_page.root_path, 'templates/upload.html')

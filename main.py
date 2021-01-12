@@ -69,13 +69,13 @@ def upload_page():
 		p1.join()
 		p2.join()
 
-		insertion_num, deletion_num, ori_max_page, comp_max_page = compare_f1_f2()
+		insertion_num, deletion_num, case_diff_num, ori_max_page, comp_max_page = compare_f1_f2()
 
 		# Comparison Metrics
 		ori_size = os.path.getsize(ori_path)/1000
 		comp_size = os.path.getsize(comp_path)/1000
 		process_datetime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-		total_changes = insertion_num + deletion_num
+		total_changes = insertion_num + deletion_num + case_diff_num
 		insertion_radius = insertion_num/total_changes * 880
 		deletion_radius = deletion_num/total_changes * 880
 

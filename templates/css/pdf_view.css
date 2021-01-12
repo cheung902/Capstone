@@ -36,6 +36,20 @@ margin: 10px 10px 10px 10px;
   color: white;
 }
 
+.class_main_view{
+padding: 16px;
+}
+
+.sticky{
+position: fixed;
+top: 0;
+width: 100%;
+}
+
+.sticky + .class_main_view{
+padding-top: 60px;
+}
+
 
 /* Style buttons */
 .openSideBar_btn, .help-button{
@@ -60,12 +74,11 @@ font-size: 20px;
   width: 0;
   position: fixed;
   z-index: 1;
-  height: 100%;
   left: 0;
   background-color: white;
   overflow-x: hidden;
   transition: all 1s;
-  padding-top: 0;
+  padding-top: 20px;
 }
 
 /* The navigation menu links */
@@ -93,7 +106,7 @@ font-size: 20px;
 
 .process_subTabs{
     padding-left: 15px;
-    padding-top]: 5px;
+    padding-top: 5px;
     padding-bottom: 5px;
 }
 
@@ -173,4 +186,51 @@ color: green;
 
 #delete_num {
 color: red;
+}
+
+.trial_view{
+margin-top: 100px;
+display: flex;
+}
+
+.trial_column{
+flex: 33.33%;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
