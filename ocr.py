@@ -57,7 +57,7 @@ def ocr(inputFile, size, contrast, dpiNum,compOrori):
 		start = timeit.default_timer()
 
 		img = cv2.imread("images/" + imgFile)
-		data.append(pytesseract.image_to_data(img, output_type= pytesseract.Output.DICT))
+		data.append(pytesseract.image_to_data(img, output_type= pytesseract.Output.DICT, lang="eng+chi_tra"))
 
 		stop = timeit.default_timer()
 		print('Time for ocr the ' + imgFile + ': ', stop - start)

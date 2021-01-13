@@ -6,8 +6,7 @@ import numpy as np
 import cv2
 
 
-def compare_f1_f2():
-
+def compare_f1_f2(caseSensitive):
 	print("-----------------------------------")
 	print("Comparing files ")
 	print("-----------------------------------")
@@ -17,7 +16,6 @@ def compare_f1_f2():
 	delete_label = "R_label"
 	case_label = "B_label"
 
-	caseSensitive = True
 	# Comparison Report
 	insertion_num = 0
 	deletion_num = 0
@@ -178,7 +176,7 @@ def diff_match(line1, line2, insertion_num, deletion_num, case_diff_num, insert_
 
 	skip = False
 	print("CaseSensitive: ", caseSensitive)
-	if caseSensitive is True:
+	if caseSensitive == "True":
 		for index, element in enumerate(diff):
 			if (skip is True):
 				skip = False
