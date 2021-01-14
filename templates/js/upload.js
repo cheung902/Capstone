@@ -77,5 +77,5 @@ function start_ocr()
 {
 
 document.getElementById('upload_page').style.display = "none";
-document.getElementById('loading_page').style.display = "block";
+document.getElementById('loading_page').style.display = "flex";
 }

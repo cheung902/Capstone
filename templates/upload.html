@@ -27,7 +27,6 @@
 
         <div id = "full_view">
             <a href = "/sample.html" class = "sample_comparison">See a sample comparison</a>
-            <h2 class="header">Select Files to Compare</h2>
             <div>
                 <form method="post" enctype=multipart/form-data id="form_upload">
                         <div id="upload_block">
@@ -105,17 +104,50 @@
             </form>
         </div>
     </div>
-
 </div>
+
+<!-- <div id="loading_page">
+    <div id="loading_content">
+        <div class="loading">
+            <div class="bounceball"></div>
+            <div class="text">Comparing</div>
+        </div>
+    </div>
+</div> -->
+
 <div id="loading_page">
-<div id="loading_content">
-  <div class="loading">
-    <div class="bounceball"></div>
-    <div class="text">Comparing</div>
+    <div class="loader">
+      <div class="box box0">
+        <div></div>
+      </div>
+      <div class="box box1">
+        <div></div>
+      </div>
+      <div class="box box2">
+        <div></div>
+      </div>
+      <div class="box box3">
+        <div></div>
+      </div>
+      <div class="box box4">
+        <div></div>
+      </div>
+      <div class="box box5">
+        <div></div>
+      </div>
+      <div class="box box6">
+        <div></div>
+      </div>
+      <div class="box box7">
+        <div></div>
+      </div>
+      <div class="ground">
+        <div></div>
+      </div>
+    </div>
+  <small>Weird Google Chrome Bug, you'll need to hover the body to make sure all is rendered - anyone knows a solution?</small>
+  <a class="dribbble" href="https://dribbble.com/shots/7227469-3D-Boxes-Loader" target="_blank"><img src="https://dribbble.com/assets/logo-small-2x-9fe74d2ad7b25fba0f50168523c15fda4c35534f9ea0b1011179275383035439.png"/></a>
   </div>
-</div>
-</div>
-
     {% if error == "no_file" %}
         <script>
             alert("Please make sure to upload both files to do the comparison")
