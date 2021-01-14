@@ -4,10 +4,12 @@ from datetime import datetime
 from flaskRoute import ref_page
 from multiprocessing import Process
 import os
-from flask import Flask, render_template, request, flash, session
+from flask import Flask, render_template, request, flash, session, redirect
 from werkzeug.utils import secure_filename
 from flask_cache import Cache
 from datetime import timedelta
+import time
+
 
 UPLOAD_FOLDER = 'static/upload'
 ALLOWED_EXTENSIONS = {'pdf'}
@@ -34,6 +36,7 @@ def allowed_file(filename):
 def upload_page():
 	if (request.method == 'POST'):
 		if (request.form['upload'] == "submit"):
+
 			[os.unlink(file.path) for file in os.scandir('output')]
 			[os.unlink(file.path) for file in os.scandir('images')]
 			[os.unlink(file.path) for file in os.scandir('static/upload')]
@@ -58,8 +61,6 @@ def upload_page():
 			session['comp_filename'] = comp_file.filename
 			session['ori_filename'] = ori_file.filename
 
-
-
 			if ('comp_file' not in request.files or 'ori_file' not in request.files):
 				return render_template('upload.html', msg='No file selected')
 			if (comp_file.filename == '' or ori_file.filename == ''):
@@ -77,14 +78,16 @@ def upload_page():
 			print(lang_list)
 			if len(lang_list) > 1:
 				lang = "+".join(lang_list)
-			else:
+			elif len(lang_list) == 1:
 				lang = lang_list[0]
+			else:
+				lang = ""
 
 			print(lang)
-			p1 = Process(target=main, args=(comp_path, size, contrast, dpiNum, "comp"))
+			p1 = Process(target=main, args=(comp_path, size, contrast, dpiNum, "comp", lang))
 			p1.start()
 			print("Compare File Job Start")
-			p2 = Process(target=main, args=(ori_path, size, contrast, dpiNum, "ori"))
+			p2 = Process(target=main, args=(ori_path, size, contrast, dpiNum, "ori", lang))
 			p2.start()
 			print("Original File Job Start")
 			p1.join()
@@ -119,14 +122,18 @@ def upload_page():
 		return render_template('upload.html')
 	return ('', 204)
 
+@app.route('/loading',methods = ['GET', 'POST'])
+def loading_page():
+	print(1)
+	return render_template('pdf_view.html')
 
 @app.after_request
 def add_header(response):
 	response.cache_control.no_store = True
 	return response
 
-def main(input_pdf, size, contrast, dpiNum, compOrOri):
-	ocr(input_pdf, size, contrast, dpiNum, compOrOri)
+def main(input_pdf, size, contrast, dpiNum, compOrOri, lang):
+	ocr(input_pdf, size, contrast, dpiNum, compOrOri, lang)
 
 if __name__ == '__main__':
 	app.secret_key = 'some secret key'

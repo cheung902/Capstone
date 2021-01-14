@@ -2,11 +2,12 @@
 <html>
 <head>
     <title>Upload Image</title>
-    <link rel="stylesheet" href="css/upload_style.css">
+    <link id="page_style" rel="stylesheet" href="css/upload_style.css">
     <script src="https://kit.fontawesome.com/1602f398c5.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
+<div id="upload_page">
     <div class="topnav" id="id_topnav">
         <button class="openSideBar_btn" onclick="openNav()"><i class="fas fa-bars"></i></button>
         <a class="active" href="/upload.html">OCR Solution</a>
@@ -31,28 +32,48 @@
                 <form method="post" enctype=multipart/form-data id="form_upload">
                         <div id="upload_block">
                             <div class="column" id="column_left">
-                                <div class="column_describe">
-                                    <span class="upload_icon"><i class="fas fa-upload"></i></span>
-                                    <div class="column_describe_text">
-                                        <div><b>New File</b></div>
-                                        <div><b>Select a newer file here</b></div>
+                                <div id="comp_before_upload">
+                                    <div class="column_describe">
+                                        <span class="upload_icon"><i class="fas fa-upload"></i></span>
+                                        <div class="column_describe_text">
+                                            <div><b>New File</b></div>
+                                            <div><b>Select a newer file here</b></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="comp_after_upload" class="class_comp_after_upload">
+                                    <div class="column_describe">
+                                        <span class="upload_icon"><i class="far fa-file-pdf"></i></span>
+                                        <div class="column_describe_text">
+                                            <div><p id="comp_filename">Filename</p></div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="column_upload">
-                                    <input type=file id="upload_compare" name=comp_file hidden>
+                                    <input type=file id="upload_compare" name=comp_file onchange="comp_uploaded(this);" hidden>
                                     <label for="upload_compare">Compare File</label>
                                 </div>
                             </div>
                             <div class="column" id="column_right">
-                                <div class="column_describe">
-                                    <span class="upload_icon"><i class="fas fa-upload"></i></span>
-                                    <div class="column_describe_text">
-                                        <div><b>Old File</b></div>
-                                        <div><b>Select an older file here</b></div>
+                                <div id="ori_before_upload">
+                                    <div class="column_describe">
+                                        <span class="upload_icon"><i class="fas fa-upload"></i></span>
+                                        <div class="column_describe_text">
+                                            <div><b>Old File</b></div>
+                                            <div><b>Select an older file here</b></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="ori_after_upload">
+                                    <div class="column_describe">
+                                        <span class="upload_icon"><i class="far fa-file-pdf"></i></span>
+                                        <div class="column_describe_text">
+                                            <div><p id="ori_filename">Filename</p></div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="column_upload">
-                                    <input type=file id="upload_ori" name=ori_file hidden>
+                                    <input type=file id="upload_ori" name=ori_file onchange="ori_uploaded(this);" hidden>
                                     <label for="upload_ori">Original File</label>
                                 </div>
                             </div>
@@ -65,9 +86,13 @@
         </div>
     </div>
     <div id="id-functions" class="class-functions">
+
         <div class="functions-content">
             <span class="functions-close" id="id-functions-close">&times;</span>
-            <form method="post" enctype=multipart/form-data>
+            <div class="functions-header">
+                    <h2>Comparing Options</h2>
+            </div>
+            <form method="post" enctype=multipart/form-data class="functions_form">
                 <input type="checkbox" id="id_case_diff" name="name_case_diff" value="True">
                 <label for="id_case_diff">Case Sensitive</label><br>
                 <label for="language">Language Options</label><br>
@@ -76,10 +101,20 @@
                     <option value="chi_tra">Traditional Chinese</option>
                     <option value="chi_sim">Simplified Chinese</option>
                 </select>
-                <input type="submit" name=upload value="filter">
+                <input type="submit" name=upload value="filter" onclick="start_ocr()">
             </form>
         </div>
     </div>
+
+</div>
+<div id="loading_page">
+<div id="loading_content">
+  <div class="loading">
+    <div class="bounceball"></div>
+    <div class="text">Comparing</div>
+  </div>
+</div>
+</div>
 
     {% if error == "no_file" %}
         <script>

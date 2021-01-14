@@ -25,12 +25,29 @@ function myFunction() {
   }
 }
 
+var comp_before_upload = document.getElementById("comp_before_upload")
+var comp_after_upload = document.getElementById("comp_after_upload")
+var ori_before_upload = document.getElementById("ori_before_upload")
+var ori_after_upload = document.getElementById("ori_after_upload")
+
+function comp_uploaded(file)
+{
+    comp_before_upload.style.display = "none";
+    comp_after_upload.style.display = "block";
+    document.getElementById("comp_filename").innerHTML = file.files[0].name;
+}
+
+function ori_uploaded(file)
+{
+    ori_before_upload.style.display = "none";
+    ori_after_upload.style.display = "block";
+    document.getElementById("ori_filename").innerHTML = file.files[0].name;
+}
+
+
 // Get the modal
 var modal = document.getElementById("id-functions");
-// Get the button that opens the modal
 var submitBtn = document.getElementById("id-submit-btn");
-// Get the <span> element that closes the modal
-
 var close = document.getElementById("id-functions-close");
 
 
@@ -55,3 +72,10 @@ window.onclick = function(event) {
 var form = document.getElementById("id-submit-btn");
 function handleForm(event) { event.preventDefault(); }
 form.addEventListener('submit', handleForm);
+
+function start_ocr()
+{
+
+document.getElementById('upload_page').style.display = "none";
+document.getElementById('loading_page').style.display = "block";
+}

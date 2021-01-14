@@ -54,6 +54,10 @@ def sampleHtml():
 def uploadCss():
     return send_from_directory(ref_page.root_path, 'templates/css/upload_style.css')
 
+@ref_page.route('/css/loading_style.css')
+def loadingCss():
+    return send_from_directory(ref_page.root_path, 'templates/css/loading_style.css')
+
 @ref_page.route('/css/sample_style.css')
 def sampleCss():
     return send_from_directory(ref_page.root_path, 'templates/css/sample_style.css')

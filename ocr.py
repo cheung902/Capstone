@@ -8,18 +8,16 @@ import json
 
 
 
-def ocr(inputFile, size, contrast, dpiNum,compOrori):
+def ocr(inputFile, size, contrast, dpiNum, compOrori, lang):
 
 	image_counter = 1
 	data = []
 
 	if inputFile.lower().endswith('.pdf'):
 		# Store all the pages of the PDF in a variable
-		pages = convert_from_path(inputFile,fmt='tiff')
+		pages = convert_from_path(inputFile, fmt='tiff')
 
 		# Counter to store images of each page of PDF to image
-
-
 		# Iterate through all the pages stored above
 		# Declaring filename for each page of PDF as JPG
 		# Save the image of the page in system
@@ -57,13 +55,16 @@ def ocr(inputFile, size, contrast, dpiNum,compOrori):
 		start = timeit.default_timer()
 
 		img = cv2.imread("images/" + imgFile)
-		data.append(pytesseract.image_to_data(img, output_type= pytesseract.Output.DICT, lang="eng+chi_tra"))
 
+		if lang != "":
+			data.append(pytesseract.image_to_data(img, output_type= pytesseract.Output.DICT, lang= lang))
+		else:
+			data.append(pytesseract.image_to_data(img, output_type=pytesseract.Output.DICT))
 		stop = timeit.default_timer()
 		print('Time for ocr the ' + imgFile + ': ', stop - start)
 
 	print(data)
-	with open ("output/" + compOrori + ".txt", 'w') as file:
+	with open("output/" + compOrori + ".txt", 'w') as file:
 		file.write(json.dumps(data))
 
 
@@ -73,6 +74,7 @@ def createSearchablePDF(imgFile, imgName):
 	pdf = open("output/" + imgName + ".pdf", "w+b")
 	pdf.write(bytearray(img))
 
+
 def mergePDF(input_paths, output_path):
 	pdf_merger = PdfFileMerger()
 
@@ -81,6 +83,7 @@ def mergePDF(input_paths, output_path):
 
 	with open(output_path, 'wb') as fileobj:
 		pdf_merger.write(fileobj)
+
 
 def addLineIndex(input_path, output_path):
 	with open(input_path) as finp, open(output_path, "w") as fout:
