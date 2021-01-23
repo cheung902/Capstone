@@ -2,7 +2,8 @@
 <html>
 <head>
     <title>PDF Result</title>
-    <link rel="stylesheet" href="css/pdf_view.css">
+    <link rel="stylesheet" href="css/pdf_view/pdf_view.css">
+    <link rel="stylesheet" href="css/pdf_view/pdfjs.css">
     <script src="https://kit.fontawesome.com/1602f398c5.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -10,7 +11,7 @@
 
 <div class="topnav" id="id_topnav">
     <button class="openSideBar_btn" onclick="openNav()"><i class="fas fa-bars"></i></button>
-    <a class="active" href="/upload.html">OCR Solution</a>
+    <a class="active" href="/">OCR Solution</a>
     <button class="help-button" id="id-help-button">
         <i class="far fa-question-circle"></i>
     </button>
@@ -51,17 +52,10 @@
 
     <div class="full_view">
         <div>
-            <iframe id="comp"
-                    width="50%"
-                    height="750px"
-                    style="border: none;"
-                    align="left"></iframe>
+            <iframe class="comp" id="comp" width="50%" height="750px" style="border: none;" align="left"></iframe>
         </div>
         <div>
-            <iframe id="ori"
-                    width="50%"
-                    height="750px"
-                    style="border: none;"></iframe>
+            <iframe class="comp" id="ori" width="50%" height="750px" style="border: none;"></iframe>
         </div>
     </div>
 

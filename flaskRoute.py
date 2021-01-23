@@ -7,6 +7,27 @@ ref_page = Blueprint('simple_page', __name__,)
 def viewerHtml():
 	return render_template('viewer/web/viewer.html')
 
+@ref_page.route('/viewer/web/annotate.html')
+def annotateHtml():
+	return render_template('viewer/web/annotate.html')
+
+@ref_page.route('/viewer/web/annotate.js')
+def annotate_Js():
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/annotate.js')  
+
+@ref_page.route('/viewer/web/annotate.css')
+def annotate_Css():
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/annotate.css')  
+
+@ref_page.route('/contract_sample/comp_sample.pdf')
+def comp_sample():
+    return send_from_directory(ref_page.root_path, 'contract_sample/comp_sample.pdf')  
+
+
+@ref_page.route('/node_modules/annotpdf/_bundles/pdfAnnotate.js')
+def pdfannot():
+    return send_from_directory(ref_page.root_path, 'node_modules/annotpdf/_bundles/pdfAnnotate.js')  
+
 @ref_page.errorhandler(Exception)
 def handle_error(e):
     code = 500
@@ -62,9 +83,17 @@ def loadingCss():
 def sampleCss():
     return send_from_directory(ref_page.root_path, 'templates/css/sample_style.css')
 
-@ref_page.route('/css/pdf_view.css')
+@ref_page.route('/css/pdf_view/pdf_view.css')
 def pdf_view_Css():
-    return send_from_directory(ref_page.root_path, 'templates/css/pdf_view.css')
+    return send_from_directory(ref_page.root_path, 'templates/css/pdf_view/pdf_view.css')
+
+@ref_page.route('/css/pdf_view/pdfjs.css')
+def pdf_view_pdfjs_Css():
+    return send_from_directory(ref_page.root_path, 'templates/css/pdf_view/pdfjs.css')
+
+@ref_page.route('/css/pdf_annotate.css')
+def pdf_annotate_Css():
+    return send_from_directory(ref_page.root_path, 'templates/css/pdf_annotate.css')
 
 @ref_page.route('/js/upload.js')
 def uploadJs():
@@ -77,6 +106,22 @@ def sampleJs():
 @ref_page.route('/js/pdf_view.js')
 def pdf_view_Js():
     return send_from_directory(ref_page.root_path, 'templates/js/pdf_view.js')
+
+@ref_page.route('/js/pdf_view_test.js')
+def pdf_view_test_Js():
+    return send_from_directory(ref_page.root_path, 'templates/js/pdf_view_test.js')
+
+@ref_page.route('/js/pdf_annotate.js')
+def pdf_annotate_Js():
+    return send_from_directory(ref_page.root_path, 'templates/js/pdf_annotate.js')  
+
+@ref_page.route('/viewer/web/viewer.js')
+def viewer_Js():
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/viewer.js')  
+
+@ref_page.route('/js/annotate.js')
+def pdff_annotate_Js():
+    return send_from_directory(ref_page.root_path, 'templates/js/annotate.js')
 
 @ref_page.route('/viewer/web/locale/locale.properties')
 def locale_properties():

@@ -4,10 +4,12 @@ function openNav() {
 
         document.getElementById("id_sideBar").style.width = "250px";
         document.getElementById("main_view").style.marginLeft = "250px";
+        document.getElementById("id_sideBar").style.borderRight = "1px solid #f2f2f2";
     }
     else{
         document.getElementById("id_sideBar").style.width = "0";
         document.getElementById("main_view").style.marginLeft = "10px";
+        document.getElementById("id_sideBar").style.borderRight = "none";
     }
 
 }
@@ -45,6 +47,7 @@ function ori_uploaded(file)
 }
 
 
+
 // Get the modal
 var modal = document.getElementById("id-functions");
 var submitBtn = document.getElementById("id-submit-btn");
@@ -73,9 +76,6 @@ var form = document.getElementById("id-submit-btn");
 function handleForm(event) { event.preventDefault(); }
 form.addEventListener('submit', handleForm);
 
-function start_ocr()
-{
-
-document.getElementById('upload_page').style.display = "none";
-document.getElementById('loading_page').style.display = "flex";
-}
+$(document).ready(function() {
+  $('.js-example-basic-multiple').select2();
+});

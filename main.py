@@ -4,11 +4,16 @@ from datetime import datetime
 from flaskRoute import ref_page
 from multiprocessing import Process
 import os
-from flask import Flask, render_template, request, flash, session, redirect
+from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from werkzeug.utils import secure_filename
 from flask_cache import Cache
 from datetime import timedelta
+from PyPDF2 import PdfFileWriter, PdfFileReader
+from PyPDF2Highlight import createHighlight, addHighlightToPage
+
+import json
 import time
+import itertools
 
 
 UPLOAD_FOLDER = 'static/upload'
@@ -33,7 +38,7 @@ def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/',methods = ['GET', 'POST'])
-def upload_page():
+def upload_page():	
 	if (request.method == 'POST'):
 		if (request.form['upload'] == "submit"):
 
@@ -48,7 +53,6 @@ def upload_page():
 			comp_file = request.files['comp_file']
 			ori_file = request.files['ori_file']
 
-
 			comp_filename_wext = secure_filename("c_" + comp_file.filename)
 			ori_filename_wext = secure_filename("o_" + ori_file.filename)
 			comp_path = os.path.join(app.config['UPLOAD_FOLDER'], comp_filename_wext)
@@ -61,21 +65,35 @@ def upload_page():
 			session['comp_filename'] = comp_file.filename
 			session['ori_filename'] = ori_file.filename
 
-			if ('comp_file' not in request.files or 'ori_file' not in request.files):
-				return render_template('upload.html', msg='No file selected')
 			if (comp_file.filename == '' or ori_file.filename == ''):
-				return render_template('upload.html', error = "no_file")
+				return redirect('/pdf_annotate')
+				#return render_template('upload.html', error = "no_file")
 			if (not allowed_file(comp_file.filename) or not allowed_file(ori_file.filename)):
 				return render_template('upload.html', error = "file_format")
 
 		elif (request.form['upload'] == "filter"):
+			return redirect('/pdf_annotate')
+
+	elif (request.method == 'GET'):
+		return render_template('upload.html')
+	return ('', 204)
+
+@app.route('/pdf_annotate',methods = ['GET', 'POST'])	
+def annotate():
+	if (request.method == 'POST'):
+		if (request.form["name_next"] == "submit"):
+
 			comp_path = session.get('comp')
 			ori_path = session.get('ori')
 			comp_filename = session.get('comp_filename')
 			ori_filename = session.get('ori_filename')
+			region_list = session.get('region_list')
+			print(region_list)
+
 			caseSensitive = request.form.get('name_case_diff')
 			lang_list = request.form.getlist('name_language')
-			print(lang_list)
+			extract_list = request.form.get('extract')
+
 			if len(lang_list) > 1:
 				lang = "+".join(lang_list)
 			elif len(lang_list) == 1:
@@ -93,7 +111,7 @@ def upload_page():
 			p1.join()
 			p2.join()
 
-			insertion_num, deletion_num, case_diff_num, ori_max_page, comp_max_page = compare_f1_f2(caseSensitive)
+			insertion_num, deletion_num, case_diff_num, ori_max_page, comp_max_page = compare_f1_f2(extract_list, caseSensitive)
 
 			# Comparison Metrics
 			ori_size = os.path.getsize(ori_path)/1000
@@ -118,17 +136,88 @@ def upload_page():
 								insertion_radius = str(insertion_radius) + ",880" ,
 								deletion_radius = str(deletion_radius) + ",880")
 
-	elif (request.method == 'GET'):
-		return render_template('upload.html')
+	return render_template('pdf_annotate.html')
+
+@app.route('/sever',methods = ['GET', 'POST'])	
+def sever():
+	ignore, shdChange, shdNotChange = [], [], []
+	page = None
+
+	# print(request.form)
+	# print(request.form.to_dict(flat=False).keys())
+	# print(list(request.form.to_dict(flat=False).values())[0][0])
+	array_value = list(request.form.to_dict(flat=False).values())
+	print(array_value)
+
+	if (array_value[0][0] == "ignore"):
+		array_value.pop(0)
+		for item in array_value:
+			if len(item) == 1:
+				page = item[0]
+				continue
+			ignore.append([page, item])
+	elif (array_value[0][0] == "shdChange"):
+		array_value.pop(0)
+		for item in array_value:
+			if len(item) == 1:
+				page = item[0]
+				continue
+			shdChange.append([page, item])
+	elif (array_value[0][0] == "shdNotChange"):
+		array_value.pop(0)
+		for item in array_value:
+			if len(item) == 1:
+				page = item[0]
+				continue
+			shdNotChange.append([page, item])
+
+	pdfInput = PdfFileReader(open("contract_sample/comp_sample.pdf", "rb"))
+	numOfPages = pdfInput.getNumPages()
+	pdfOutput = PdfFileWriter()
+
+	for pageNum in range(0, numOfPages):
+		page = pdfInput.getPage(pageNum)
+		for item in ignore:
+			pageIndex = int(item[0][0])
+			if (pageIndex == pageNum):
+				print("pageIndex", pageIndex)
+				x_1 = float(item[1][0])
+				y_1 = float(item[1][1])
+				x_2 = float(item[1][2])
+				y_2 = float(item[1][3])
+				highlight = createHighlight(x1 = x_1, y1 = y_2, x2 = x_2, y2= y_1,
+											meta = {"author": "", "contents": "Bla-bla-bla"},
+											color = [0.01,0.01,0.01])
+				print("x_1", x_1, "y_1", y_1, "x_2", x_2, "y_2", y_2)
+				addHighlightToPage(highlight, page, pdfOutput)
+		print("create page", pageNum)
+		pdfOutput.addPage(page)
+
+	outputStream = open("output.pdf", "wb")
+	pdfOutput.write(outputStream)
+	# page1 = pdfInput.getPage(0)
+	#
+	# highlight = createHighlight(906.171875, 1976.7284375, 1110.3644561767578, 2011.7284375, {
+	# 	"author": "",
+	# 	"contents": "Bla-bla-bla"
+	# })
+	# addHighlightToPage(highlight, page1, pdfOutput)
+	#
+	# pdfOutput.addPage(page1)
+	#
+	# outputStream = open("output.pdf", "wb")
+	# pdfOutput.write(outputStream)
+
+
+	return ('', 204)
+	
+@app.route('/pdf_view',methods = ['GET', 'POST'])	
+def pdf_view():
+
 	return ('', 204)
 
-@app.route('/loading',methods = ['GET', 'POST'])
-def loading_page():
-	print(1)
-	return render_template('pdf_view.html')
-
 @app.after_request
-def add_header(response):
+def add_header(response):	
 	response.cache_control.no_store = True
 	return response
 

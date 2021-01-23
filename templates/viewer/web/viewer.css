@@ -642,6 +642,11 @@ html[dir='rtl'] #sidebarContent {
   left: 0;
   outline: none;
 }
+
+#viewerContainer::-webkit-scrollbar {
+  display: none;
+}
+
 #viewerContainer:not(.pdfPresentationMode) {
   -webkit-transition-duration: 200ms;
           transition-duration: 200ms;

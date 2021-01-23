@@ -2,6 +2,8 @@ var d = new Date().getTime();
         console.log(d);
         document.getElementById("comp").src = "viewer/web/viewer.html?file=comp.pdf?rnd=" + d;
         document.getElementById("ori").src = "viewer/web/viewer.html?file=ori.pdf?rnd=" + d;
+        // document.getElementById("comp").src = "viewer/web/viewer.html?file=comp_sample.pdf?rnd=" + d;
+        // document.getElementById("ori").src = "viewer/web/viewer.html?file=ori_sample.pdf?rnd=" + d;
         document.getElementById("trial_comp").src = "viewer/web/viewer.html?file=comp.pdf?rnd=" + d;
         document.getElementById("trial_ori").src = "viewer/web/viewer.html?file=ori.pdf?rnd=" + d;
         console.log(document.getElementById("ori").src);
@@ -49,10 +51,12 @@ function openNav() {
 
         document.getElementById("id_sideBar").style.width = "250px";
         document.getElementById("main_view").style.marginLeft = "250px";
+        document.getElementById("id_sideBar").style.borderRight = "1px solid #f2f2f2";
     }
     else{
         document.getElementById("id_sideBar").style.width = "0";
         document.getElementById("main_view").style.marginLeft = "10px";
+        document.getElementById("id_sideBar").style.borderRight = "none";
     }
 
 }
@@ -60,10 +64,7 @@ function openNav() {
 // When the user scrolls the page, execute myFunction
 window.onscroll = function() {myFunction()};
 
-// Get the navbar
 var navbar = document.getElementById("id_topnav");
-
-// Get the offset position of the navbar
 var sticky = navbar.offsetTop;
 
 // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
@@ -98,3 +99,18 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+$("#comp").on('load', function(){
+
+  $("#comp").contents().find("#viewerContainer").on('scroll', function(){ 
+    $("#ori").contents().find("#viewerContainer").scrollTop($(this).scrollTop());
+  });
+  
+  });
+  
+  
+  $("#ori").on('load', function(){
+  $("#ori").contents().find("#viewerContainer").on('scroll', function(){ 
+   $("#comp").contents().find("#viewerContainer").scrollTop($(this).scrollTop());
+   });
+  });

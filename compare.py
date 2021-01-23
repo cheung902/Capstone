@@ -6,7 +6,7 @@ import numpy as np
 import cv2
 
 
-def compare_f1_f2(caseSensitive):
+def compare_f1_f2(extract_list="", caseSensitive = "True"):
 	print("-----------------------------------")
 	print("Comparing files ")
 	print("-----------------------------------")
@@ -20,6 +20,9 @@ def compare_f1_f2(caseSensitive):
 	insertion_num = 0
 	deletion_num = 0
 	case_diff_num = 0
+	
+	#extract
+	extract = ['']
 
 	ori_data_frame, comp_data_frame = get_data_frame()
 	ori_max_page = ori_data_frame["page_num"].max()
@@ -48,7 +51,6 @@ def compare_f1_f2(caseSensitive):
 
 def get_position(data_frame, diff_list, insert_label, delete_label, case_label):
 	print("---------------Getting Word Number and Line Number-------------")
-	print(diff_list)
 	position_list = []
 	diff_list_split = diff_list.split()
 	insert_label_start = insert_label + "S-"
@@ -60,7 +62,6 @@ def get_position(data_frame, diff_list, insert_label, delete_label, case_label):
 	insert_label = insert_label + "-"
 	delete_label = delete_label + "-"
 	case_label = case_label + "-"
-	print(diff_list_split)
 	for num, element in enumerate(diff_list_split):
 		if (insert_label_start in element):
 			word = element.replace(insert_label_start, "")
@@ -170,62 +171,84 @@ def diff_match(line1, line2, insertion_num, deletion_num, case_diff_num, insert_
 	dmp = dmp_module.diff_match_patch()
 	diff = dmp.diff_main(line1, line2)
 	dmp.diff_cleanupEfficiency(diff)
-	print("line1: ", line1)
-	print("line2: ", line2)
 	print("difference: ", diff)
 
 	skip = False
 	print("CaseSensitive: ", caseSensitive)
 	if caseSensitive == "True":
 		for index, element in enumerate(diff):
-			if (skip is True):
-				skip = False
-				continue
-			if (element[0] == 0):
-				ori_output.append(element[1])
-				comp_output.append(element[1])
-				skip = False
-			elif (element[0] == -1 or element[0] == 1):
-				next_item = diff[index + 1][1]
-				if (next_item.lower() == element[1].lower()):
-					if (element[0] == -1):
-						ori_output.append(addTextLabel(text=element[1], label=case_label))
-						comp_output.append(addTextLabel(text=next_item, label=case_label))
-						case_diff_num += 1
-					elif (element[0] == 1):
-						comp_output.append(addTextLabel(text=element[1], label=case_label))
-						ori_output.append(addTextLabel(text=next_item, label=case_label))
-						case_diff_num += 1
-					skip = True
-				else:
-					if (element[0] == -1):
-						ori_output.append(addTextLabel(text=element[1], label=delete_label))
-						deletion_num += 1
-					elif (element[0] == 1):
-						comp_output.append(addTextLabel(text=element[1], label=insert_label))
-						insertion_num += 1
-	else:
-		for index, element in enumerate(diff):
-			if (skip is True):
-				skip = False
-				continue
-			if (element[0] == 0):
-				ori_output.append(element[1])
-				comp_output.append(element[1])
-				skip = False
-			elif (element[0] == -1 or element[0] == 1):
-				next_item = diff[index + 1][1]
-				if (next_item.lower() == element[1].lower()):
+			try:
+				if (skip is True):
+					skip = False
+					continue
+				if (element[0] == 0):
 					ori_output.append(element[1])
 					comp_output.append(element[1])
-					skip = True
-				else:
-					if (element[0] == -1):
-						ori_output.append(addTextLabel(text=element[1], label=delete_label))
-						deletion_num += 1
-					elif (element[0] == 1):
-						comp_output.append(addTextLabel(text=element[1], label=insert_label))
-						insertion_num += 1
+					skip = False
+				elif (element[0] == -1 or element[0] == 1):
+					next_item = diff[index + 1][1]
+					if (next_item.lower() == element[1].lower()):
+						if (element[0] == -1):
+							ori_output.append(addTextLabel(text=element[1], label=case_label))
+							comp_output.append(addTextLabel(text=next_item, label=case_label))
+							case_diff_num += 1
+						elif (element[0] == 1):
+							comp_output.append(addTextLabel(text=element[1], label=case_label))
+							ori_output.append(addTextLabel(text=next_item, label=case_label))
+							case_diff_num += 1
+						skip = True
+					else:
+						if (element[0] == -1):
+							ori_output.append(addTextLabel(text=element[1], label=delete_label))
+							deletion_num += 1
+						elif (element[0] == 1):
+							comp_output.append(addTextLabel(text=element[1], label=insert_label))
+							insertion_num += 1
+			except:
+				if element[0] == 0:
+					ori_output.append(element[1])
+					comp_output.append(element[1])
+				if element[0] == -1:
+					ori_output.append(addTextLabel(text=element[1], label=delete_label))
+				elif element[0] == 1:
+					comp_output.append(addTextLabel(text=element[1], label=insert_label))
+	else:
+		for index, element in enumerate(diff):
+			try:
+				if (skip is True):
+					skip = False
+					continue
+				if (element[0] == 0):
+					ori_output.append(element[1])
+					comp_output.append(element[1])
+					skip = False
+				elif (element[0] == -1 or element[0] == 1):
+					if len(diff) == 1:
+						if element[0] == -1:
+							ori_output.append(addTextLabel(text=element[1], label=delete_label))
+						elif element[0] == 1:
+							comp_output.append(addTextLabel(text=element[1], label=insert_label))
+						break
+					next_item = diff[index + 1][1]
+					if (next_item.lower() == element[1].lower()):
+						ori_output.append(element[1])
+						comp_output.append(element[1])
+						skip = True
+					else:
+						if (element[0] == -1):
+							ori_output.append(addTextLabel(text=element[1], label=delete_label))
+							deletion_num += 1
+						elif (element[0] == 1):
+							comp_output.append(addTextLabel(text=element[1], label=insert_label))
+							insertion_num += 1
+			except:
+				if element[0] == 0:
+					ori_output.append(element[1])
+					comp_output.append(element[1])
+				if element[0] == -1:
+					ori_output.append(addTextLabel(text=element[1], label=delete_label))
+				elif element[0] == 1:
+					comp_output.append(addTextLabel(text=element[1], label=insert_label))
 
 	ori_output = "".join(ori_output)
 	comp_output = "".join(comp_output)
