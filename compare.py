@@ -4,6 +4,10 @@ from commonFNC import *
 import diff_match_patch as dmp_module
 import numpy as np
 import cv2
+from PyPDF2 import PdfFileWriter, PdfFileReader
+from PyPDF2Highlight import createHighlight, addHighlightToPage
+from flask import session
+from shapely.geometry import Polygon
 
 
 def compare_f1_f2(extract_list="", caseSensitive = "True"):
@@ -23,6 +27,13 @@ def compare_f1_f2(extract_list="", caseSensitive = "True"):
 	
 	#extract
 	extract = ['']
+
+	# ignore_region = session.get('ignore_region')
+	# shdChange_region = session.get('shdChange_region')
+	# shdNotChange_region = session.get('shdNotChange_region')
+	ignore_region = ""
+	shdChange_region = ""
+	shdNotChange_region = ""
 
 	ori_data_frame, comp_data_frame = get_data_frame()
 	ori_max_page = ori_data_frame["page_num"].max()
@@ -44,8 +55,8 @@ def compare_f1_f2(extract_list="", caseSensitive = "True"):
 										  insert_label=insert_label, delete_label=delete_label,
 										  case_label = case_label)
 
-		label_word(ori_word_position, ori_max_page, "ori")
-		label_word(comp_word_position, comp_max_page, "comp")
+		label_word(ignore_region, shdChange_region, shdNotChange_region, ori_word_position, ori_max_page, "ori")
+		label_word(ignore_region, shdChange_region, shdNotChange_region, comp_word_position, comp_max_page, "comp")
 
 	return insertion_num, deletion_num, case_diff_num, ori_max_page, comp_max_page
 
@@ -65,7 +76,7 @@ def get_position(data_frame, diff_list, insert_label, delete_label, case_label):
 	for num, element in enumerate(diff_list_split):
 		if (insert_label_start in element):
 			word = element.replace(insert_label_start, "")
-			append_position_list(data_frame = data_frame, position_list = position_list, num = num, word = word, insert_or_delete="1")
+			append_position_list(data_frame = data_frame, position_list = position_list, num = num, word = word, insert_or_delete="1s")
 			num +=1
 			while insert_label_end not in diff_list_split[num]:
 				word = diff_list_split[num]
@@ -74,12 +85,12 @@ def get_position(data_frame, diff_list, insert_label, delete_label, case_label):
 
 			if (insert_label_end in diff_list_split[num]):
 				word = diff_list_split[num].replace(insert_label_end, "")
-				append_position_list(data_frame=data_frame, position_list=position_list, num=num, word = word, insert_or_delete="1")
+				append_position_list(data_frame=data_frame, position_list=position_list, num=num, word = word, insert_or_delete="1e")
 				continue
 
 		elif delete_label_start in element:
 			word = element.replace(delete_label_start, "")
-			append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="-1")
+			append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="-1s")
 			num += 1
 			while delete_label_end not in diff_list_split[num]:
 				word = diff_list_split[num]
@@ -87,13 +98,13 @@ def get_position(data_frame, diff_list, insert_label, delete_label, case_label):
 				num += 1
 			if delete_label_end in diff_list_split[num]:
 				word = diff_list_split[num].replace(delete_label_end, "")
-				append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="-1")
+				append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="-1e")
 				continue
 
 		elif case_label_start in element:
 			word = element.replace(case_label_start, "")
 
-			append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="2")
+			append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="2s")
 			num += 1
 			while case_label_end not in diff_list_split[num]:
 				word = diff_list_split[num]
@@ -101,7 +112,7 @@ def get_position(data_frame, diff_list, insert_label, delete_label, case_label):
 				num += 1
 			if case_label_end in diff_list_split[num]:
 				word = diff_list_split[num].replace(case_label_end, "")
-				append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="2")
+				append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="2e")
 				continue
 
 		elif delete_label in element:
@@ -120,46 +131,67 @@ def get_position(data_frame, diff_list, insert_label, delete_label, case_label):
 	return position_list
 
 
-def label_word(diff_list, max_page, compOrori):
+def label_word(ignore_region, shdChange_region, shdNotChange_region, diff_list, max_page, compOrori):
 	print("Creating ", compOrori, ".pdf")
-	page_exist = []
-	for item in diff_list:
-		page_exist.append(item[0])
-	page_exist = list(set(page_exist))
 
-	for page in page_exist:
-		img = cv2.imread('images/' + compOrori + '_' + str(page) + ".tiff")
-		overlay = img.copy()
-		for item in diff_list:
-			if item[0] == page:
+	pdfInput = PdfFileReader(open("output/" + compOrori + ".pdf", "rb"))
+
+	numOfPages = pdfInput.getNumPages()
+	pdfOutput = PdfFileWriter()
+
+	for diff_pageIndex in range(0, numOfPages):
+		page = pdfInput.getPage(diff_pageIndex)
+		pypdf2_height = page.mediaBox.getHeight()
+		pypdf2_width = page.mediaBox.getWidth()
+
+		#top left and bottom right
+		img = cv2.imread('images/' + compOrori + '_' + str(diff_pageIndex + 1) + ".tiff")
+		cv2_height, cv2_width, _ = img.shape
+
+		nh = pypdf2_height/cv2_height
+		nw = pypdf2_width/cv2_width
+		for index, item in enumerate(diff_list):
+			if item[0] - 1 == diff_pageIndex:
+				overlap = False
 				(x, y, w, h) = (item[1][0], item[1][1], item[1][2], item[1][3])
+				#transform to pypdf2 region
+				(x_1, y_1, x_2, y_2) = (x*nw, (cv2_height - y - h)*nh, (x + w) *nw, (cv2_height - y)*nh)
+				diff_region = [x_1, y_1, x_2, y_2]
+				if (ignore_region is not None):
+					for marked_region in ignore_region:
+						marked_pageIndex = int(marked_region[0][0])
+						if (marked_pageIndex == diff_pageIndex):
+							overlap = cal_overlap_area(marked_region, diff_region)
+							if (overlap == True):
+								break
+				if overlap == True:
+					break
+
+
 				if item[2] == "-1":
 					print("Deleted: ", item[3])
-					cv2.rectangle(overlay, (x, y), (x + w, y + h), (255, 0, 0), -1)
+					highlight = createHighlight(x1=x_1, y1=y_1, x2=x_2, y2=y_2,
+												meta={"author": "", "contents": "Bla-bla-bla"},
+												color=[1, 0.5, 0])
+					addHighlightToPage(highlight, page, pdfOutput)
 				elif item[2] == "1":
-					print("Inserted: ", item[3])
-					cv2.rectangle(overlay, (x, y), (x + w, y + h), (0, 255, 0), -1)
+					print("Deleted: ", item[3])
+					highlight = createHighlight(x1=x_1, y1=y_1, x2=x_2, y2=y_2,
+												meta={"author": "", "contents": "Bla-bla-bla"},
+												color=[0, 1, 0])
+					addHighlightToPage(highlight, page, pdfOutput)
 				elif item[2] == "2":
-					print("Case Difference: ", item[3])
-					cv2.rectangle(overlay, (x, y), (x + w, y + h), (0, 0, 255), -1)
-				alpha = 0.1  # Trxansparency factor.
-				# Following line overlays transparent rectangle over the image
-				img_new = cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0)
-				cv2.imwrite('compare/' + compOrori + '/images/' + compOrori + '_' + str(page) + '.tiff', img_new)
-
-	pdf_paths = []
-	for i in range(1, max_page):
-		input_path = "compare/" + compOrori + "/images/" + compOrori	+ "_" + str(i) + ".tiff"
-		output_path = "compare/" + compOrori + "/pdfs/" + compOrori + "_" + str(i) + ".pdf"
-		pdf_paths.append(output_path)
-
-		createSearchablePDF(input_path=input_path, output_path=output_path)
-		# pdf_paths.append("output/diff" + str(i) + ".pdf")
-		# with open("output/diff" + str(i) +".pdf", "wb") as pdf:
-		# 	pdf.write(img2pdf.convert("compare/comp/images/comp_" + str(i) + ".tiff"))
-
-	out_path = "output/" + compOrori + ".pdf"
-	mergePDF(pdf_paths, out_path)
+					print("Deleted: ", item[3])
+					highlight = createHighlight(x1=x_1, y1=y_1, x2=x_2, y2=y_2,
+												meta={"author": "", "contents": "Bla-bla-bla"},
+												color=[0, 0.5, 1])
+					addHighlightToPage(highlight, page, pdfOutput)
+		print("create page", diff_pageIndex)
+		pdfOutput.addPage(page)
+	outputStream = open("output/" +compOrori + "_final.pdf", "wb")
+	pdfOutput.write(outputStream)
+	# outputStream.close()
+	# os.rename("output/" + compOrori + "_final.pdf", "output/" + compOrori + ".pdf")
 	# removeFiles(pdf_paths)
 
 
@@ -177,7 +209,7 @@ def diff_match(line1, line2, insertion_num, deletion_num, case_diff_num, insert_
 	print("CaseSensitive: ", caseSensitive)
 	if caseSensitive == "True":
 		for index, element in enumerate(diff):
-			try:
+			# try:
 				if (skip is True):
 					skip = False
 					continue
@@ -199,56 +231,51 @@ def diff_match(line1, line2, insertion_num, deletion_num, case_diff_num, insert_
 						skip = True
 					else:
 						if (element[0] == -1):
-							ori_output.append(addTextLabel(text=element[1], label=delete_label))
+							if (element[1].isspace()):
+								ori_output.append(element[1])
+							else:
+								ori_output.append(addTextLabel(text=element[1], label=delete_label))
 							deletion_num += 1
 						elif (element[0] == 1):
-							comp_output.append(addTextLabel(text=element[1], label=insert_label))
+							if (element[1].isspace()):
+								comp_output.append(element[1])
+							else:
+								comp_output.append(addTextLabel(text=element[1], label=insert_label))
 							insertion_num += 1
-			except:
-				if element[0] == 0:
-					ori_output.append(element[1])
-					comp_output.append(element[1])
-				if element[0] == -1:
-					ori_output.append(addTextLabel(text=element[1], label=delete_label))
-				elif element[0] == 1:
-					comp_output.append(addTextLabel(text=element[1], label=insert_label))
 	else:
 		for index, element in enumerate(diff):
-			try:
-				if (skip is True):
-					skip = False
-					continue
-				if (element[0] == 0):
+			if (skip is True):
+				skip = False
+				continue
+			if (element[0] == 0):
+				ori_output.append(element[1])
+				comp_output.append(element[1])
+				skip = False
+			elif (element[0] == -1 or element[0] == 1):
+				if len(diff) == 1:
+					if element[0] == -1:
+						ori_output.append(addTextLabel(text=element[1], label=delete_label))
+					elif element[0] == 1:
+						comp_output.append(addTextLabel(text=element[1], label=insert_label))
+					break
+				next_item = diff[index + 1][1]
+				if (next_item.lower() == element[1].lower()):
 					ori_output.append(element[1])
 					comp_output.append(element[1])
-					skip = False
-				elif (element[0] == -1 or element[0] == 1):
-					if len(diff) == 1:
-						if element[0] == -1:
+					skip = True
+				else:
+					if (element[0] == -1):
+						if (element[1].isspace()):
+							ori_output.append(element[1])
+						else:
 							ori_output.append(addTextLabel(text=element[1], label=delete_label))
-						elif element[0] == 1:
+						deletion_num += 1
+					elif (element[0] == 1):
+						if (element[1].isspace()):
+							comp_output.append(element[1])
+						else:
 							comp_output.append(addTextLabel(text=element[1], label=insert_label))
-						break
-					next_item = diff[index + 1][1]
-					if (next_item.lower() == element[1].lower()):
-						ori_output.append(element[1])
-						comp_output.append(element[1])
-						skip = True
-					else:
-						if (element[0] == -1):
-							ori_output.append(addTextLabel(text=element[1], label=delete_label))
-							deletion_num += 1
-						elif (element[0] == 1):
-							comp_output.append(addTextLabel(text=element[1], label=insert_label))
-							insertion_num += 1
-			except:
-				if element[0] == 0:
-					ori_output.append(element[1])
-					comp_output.append(element[1])
-				if element[0] == -1:
-					ori_output.append(addTextLabel(text=element[1], label=delete_label))
-				elif element[0] == 1:
-					comp_output.append(addTextLabel(text=element[1], label=insert_label))
+						insertion_num += 1
 
 	ori_output = "".join(ori_output)
 	comp_output = "".join(comp_output)
@@ -305,7 +332,7 @@ def get_data_frame():
 	ori_data_frame = adjustWordNum(ori_data_frame)
 	comp_data_frame = adjustWordNum(comp_data_frame)
 
-	print(comp_data_frame.to_string())
+	print(ori_data_frame.to_string())
 	return ori_data_frame, comp_data_frame
 
 
@@ -322,6 +349,7 @@ def adjustWordNum(data_frame):
 
 
 def addTextLabel(text, label):
+
 	if text == " ":
 		return " "
 	sentence = text.split()
@@ -359,11 +387,32 @@ def append_position_list(data_frame, position_list, num, word, insert_or_delete)
 
 	word_num = num + 1
 	word_position = data_frame[(data_frame['text'] == word) & (data_frame['word_num'] == word_num)]
+	word_page_num = word_position.iloc[0]['page_num']
+
 	position_list.append([word_position.iloc[0]['page_num'],
 				[word_position.iloc[0]['left'], word_position.iloc[0]['top'],
 				word_position.iloc[0]['width'], word_position.iloc[0]['height']],
 				insert_or_delete, word_position.iloc[0]['text']])
 
+def cal_overlap_area(marked_region, diff_region):
+
+	for i in range(1, len(marked_region)):
+
+		marked_x1, marked_y1, marked_x2, marked_y2 = float(marked_region[i][0]), float(marked_region[i][1]),float(marked_region[i][2]),float(marked_region[i][3])
+		diff_x1, diff_y1, diff_x2, diff_y2 = diff_region[0], diff_region[1], diff_region[2], diff_region[3]
+
+
+		marked_polygon = Polygon([(marked_x1, marked_y1), (marked_x2, marked_y1),
+						   (marked_x2, marked_y2), (marked_x1, marked_y2)])
+		if (marked_polygon.area == 0):
+			continue
+
+		diff_polygon = Polygon([(diff_x1, diff_y1), (diff_x2, diff_y1),
+						   (diff_x2, diff_y2), (diff_x1, diff_y2)])
+		overlap_area = marked_polygon.intersection(diff_polygon).area/ marked_polygon.area
+		if overlap_area > 0.6:
+			return True
+	return False
 
 if __name__ == '__main__':
 	compare_f1_f2()

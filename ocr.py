@@ -5,6 +5,7 @@ from preprocess import *
 from pdf2image import convert_from_path
 from PyPDF2 import PdfFileMerger
 import json
+from commonFNC import *
 
 
 
@@ -63,16 +64,29 @@ def ocr(inputFile, size, contrast, dpiNum, compOrori, lang):
 		stop = timeit.default_timer()
 		print('Time for ocr the ' + imgFile + ': ', stop - start)
 
-	print(data)
 	with open("output/" + compOrori + ".txt", 'w') as file:
 		file.write(json.dumps(data))
 
+	pdf_paths = []
+	for i in range(1, fileLimt):
+		input_path = "images/" + compOrori	+ "_" + str(i) + ".tiff"
+		output_path = "compare/" + compOrori + "/pdfs/" + compOrori + "_" + str(i) + ".pdf"
+		pdf_paths.append(output_path)
 
-def createSearchablePDF(imgFile, imgName):
-	img = cv2.imread("images/" + imgFile)
-	img = pytesseract.image_to_pdf_or_hocr(img, extension="pdf")
-	pdf = open("output/" + imgName + ".pdf", "w+b")
-	pdf.write(bytearray(img))
+		createSearchablePDF(input_path=input_path, output_path=output_path)
+		# pdf_paths.append("output/diff" + str(i) + ".pdf")
+		# with open("output/diff" + str(i) +".pdf", "wb") as pdf:
+		# 	pdf.write(img2pdf.convert("compare/comp/images/comp_" + str(i) + ".tiff"))
+
+	out_path = "output/" + compOrori + ".pdf"
+	mergePDF(pdf_paths, out_path)
+
+
+# def createSearchablePDF(imgFile, imgName):
+# 	img = cv2.imread("images/" + imgFile)
+# 	img = pytesseract.image_to_pdf_or_hocr(img, extension="pdf")
+# 	pdf = open("output/" + imgName + ".pdf", "w+b")
+# 	pdf.write(bytearray(img))
 
 
 def mergePDF(input_paths, output_path):

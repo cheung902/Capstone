@@ -6,19 +6,13 @@ pdfOutput = PdfFileWriter()
 
 page1 = pdfInput.getPage(0)
 
-highlight = createHighlight(906.171875,1976.7284375, 1110.3644561767578, 2011.7284375, {
+highlight = createHighlight(524,1449.83, 709, 1477.83, {
     "author": "",
     "contents": "Bla-bla-bla"
 })
 
 addHighlightToPage(highlight, page1, pdfOutput)
 
-highlight = createHighlight(200.171875,1976.7284375, -1110.3644561767578, 2011.7284375, {
-    "author": "",
-    "contents": "Bla-bla-bla"
-})
-
-addHighlightToPage(highlight, page1, pdfOutput)
 
 pdfOutput.addPage(page1)
 

@@ -15,7 +15,7 @@ def createSearchablePDF(input_path, output_path):
 	img = cv2.imread(input_path)
 	img = pytesseract.image_to_pdf_or_hocr(img, extension="pdf")
 	pdf = open(output_path, "w+b")
-	pdf.write(bytearray(img))
+	pdf.write(img)
 
 def mergePDF(input_paths, output_path):
 	pdf_merger = PdfFileMerger()
@@ -25,3 +25,4 @@ def mergePDF(input_paths, output_path):
 
 	with open(output_path, 'wb') as fileobj:
 		pdf_merger.write(fileobj)
+

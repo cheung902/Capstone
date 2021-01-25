@@ -1,7 +1,7 @@
 var d = new Date().getTime();
         console.log(d);
-        document.getElementById("comp").src = "viewer/web/viewer.html?file=comp.pdf?rnd=" + d;
-        document.getElementById("ori").src = "viewer/web/viewer.html?file=ori.pdf?rnd=" + d;
+        document.getElementById("comp").src = "viewer/web/viewer.html?file=comp_final.pdf?rnd=" + d;
+        document.getElementById("ori").src = "viewer/web/viewer.html?file=ori_final.pdf?rnd=" + d;
         // document.getElementById("comp").src = "viewer/web/viewer.html?file=comp_sample.pdf?rnd=" + d;
         // document.getElementById("ori").src = "viewer/web/viewer.html?file=ori_sample.pdf?rnd=" + d;
         document.getElementById("trial_comp").src = "viewer/web/viewer.html?file=comp.pdf?rnd=" + d;

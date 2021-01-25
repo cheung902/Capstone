@@ -21,7 +21,7 @@ def annotate_Css():
 
 @ref_page.route('/contract_sample/comp_sample.pdf')
 def comp_sample():
-    return send_from_directory(ref_page.root_path, 'contract_sample/comp_sample.pdf')  
+    return send_from_directory(ref_page.root_path, 'contract_sample/comp_sample.pdf')
 
 
 @ref_page.route('/node_modules/annotpdf/_bundles/pdfAnnotate.js')
@@ -46,6 +46,14 @@ def compPdf():
 @ref_page.route('/viewer/web/ori.pdf')
 def oriPdf():
     return send_from_directory(ref_page.root_path, 'output/ori.pdf')
+
+@ref_page.route('/viewer/web/comp_final.pdf')
+def compPdf_final():
+    return send_from_directory(ref_page.root_path, 'output/comp_final.pdf')
+
+@ref_page.route('/viewer/web/ori_final.pdf')
+def oriPdf_final():
+    return send_from_directory(ref_page.root_path, 'output/ori_final.pdf')
 
 @ref_page.route('/viewer/web/comp_sample.pdf')
 def compPdf_sample():
@@ -162,73 +170,73 @@ def viewerJsMap():
 def texture():
     return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/texture.png')
 
-@ref_page.route('/viewer/web/images/toolbarButton-viewThumbnail@2x.png')
+@ref_page.route('/viewer/web/images/toolbarButton-viewThumbnail.svg')
 def toolbarButton_viewThumbnail():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-viewThumbnail@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-viewThumbnail.svg')
 
-@ref_page.route('/viewer/web/images/toolbarButton-search@2x.png')
+@ref_page.route('/viewer/web/images/toolbarButton-search.svg')
 def toolbarButton_earch():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-search@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-search.svg')
 
-@ref_page.route('/viewer/web/images/toolbarButton-viewOutline@2x.png')
+@ref_page.route('/viewer/web/images/toolbarButton-viewOutline.svg')
 def viewOutline():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-viewOutline@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-viewOutline.svg')
 
-@ref_page.route('/viewer/web/images/sidebarToggle@2x.png')
+@ref_page.route('/viewer/web/images/sidebarToggle.svg')
 def sidebarToggle():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/sidebarToggle@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/sidebarToggle.svg')
 
-@ref_page.route('/viewer/web/images/toolbarButton-pageUp@2x.png')
+@ref_page.route('/viewer/web/images/toolbarButton-pageUp.svg')
 def toolbarButton_pageUp():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-pageUp@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-pageUp.svg')
 
-@ref_page.route('/viewer/web/images/toolbarButton-viewAttachments@2x.png')
+@ref_page.route('/viewer/web/images/toolbarButton-viewAttachments.svg')
 def toolbarButton_viewAttachments():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-viewAttachments@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-viewAttachments.svg')
 
-@ref_page.route('/viewer/web/images/toolbarButton-viewOutline@2x.png')
+@ref_page.route('/viewer/web/images/toolbarButton-viewOutline.svg')
 def toolbarButton_viewOutline():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-viewOutline@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-viewOutline.svg')
 
-@ref_page.route('/viewer/web/images/toolbarButton-sidebarToggle@2x.png')
+@ref_page.route('/viewer/web/images/toolbarButton-sidebarToggle.svg')
 def toolbarButton_sidebarToggle():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-sidebarToggle@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-sidebarToggle.svg')
 
-@ref_page.route('/viewer/web/images/toolbarButton-pageDown@2x.png')
+@ref_page.route('/viewer/web/images/toolbarButton-pageDown.svg')
 def toolbarButton_pageDown():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-pageDown@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-pageDown.svg')
 
-@ref_page.route('/viewer/web/images/toolbarButton-print@2x.png')
+@ref_page.route('/viewer/web/images/toolbarButton-print.svg')
 def toolbarButton_print():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-print@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-print.svg')
 
-@ref_page.route('/viewer/web/images/secondaryToolbarToggle@2x.png')
+@ref_page.route('/viewer/web/images/secondaryToolbarToggle.svg')
 def secondaryToolbarToggle():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarToggle@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarToggle.svg')
 
-@ref_page.route('/viewer/web/images/toolbarButton-bookmark@2x.png')
+@ref_page.route('/viewer/web/images/toolbarButton-bookmark.svg')
 def toolbarButton_bookmark():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-bookmark@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-bookmark.svg')
 
-@ref_page.route('/viewer/web/images/toolbarButton-secondaryToolbarToggle@2x.png')
+@ref_page.route('/viewer/web/images/toolbarButton-secondaryToolbarToggle.svg')
 def toolbarButton_secondaryToolbarToggle():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-secondaryToolbarToggle@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-secondaryToolbarToggle.svg')
 
-@ref_page.route('/viewer/web/images/toolbarButton-zoomOut@2x.png')
+@ref_page.route('/viewer/web/images/toolbarButton-zoomOut.svg')
 def toolbarButton_zoomOut():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-zoomOut@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-zoomOut.svg')
 
-@ref_page.route('/viewer/web/images/toolbarButton-zoomIn@2x.png')
+@ref_page.route('/viewer/web/images/toolbarButton-zoomIn.svg')
 def toolbarButton_zoomIn():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-zoomIn@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-zoomIn.svg')
 
-@ref_page.route('/viewer/web/images/toolbarButton-menuArrows@2x.png')
+@ref_page.route('/viewer/web/images/toolbarButton-menuArrow.svg')
 def toolbarButton_menuArrows():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-menuArrows@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-menuArrow.svg')
 
-@ref_page.route('/viewer/web/images/toolbarButton-download@2x.png')
+@ref_page.route('/viewer/web/images/toolbarButton-download.svg')
 def toolbarButton_download():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-download@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-download.svg')
 
 @ref_page.route('/viewer/web/images/shadow.png')
 def shadow():
@@ -238,75 +246,78 @@ def shadow():
 def loading_icon():
     return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/loading-icon.gif')
 
-@ref_page.route('/viewer/web/images/loading-small@2x.png')
+@ref_page.route('/viewer/web/images/loading.svg')
 def loading_small():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/loading-small@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/loading.svg')
 
-@ref_page.route('/viewer/web/images/toolbarButton-presentationMode@2x.png')
+@ref_page.route('/viewer/web/images/toolbarButton-presentationMode.svg')
 def toolbarButton_presentationMode():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-presentationMode@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-presentationMode.svg')
 
-@ref_page.route('/viewer/web/images/toolbarButton-openFile@2x.png')
+@ref_page.route('/viewer/web/images/toolbarButton-openFile.svg')
 def toolbarButton_openFile():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-openFile@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-openFile.svg')
 
-@ref_page.route('/viewer/web/images/secondaryToolbarButton-firstPage@2x.png')
+@ref_page.route('/viewer/web/images/secondaryToolbarButton-firstPage.svg')
 def secondaryToolbarButton_firstPage():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-firstPage@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-firstPage.svg')
 
-@ref_page.route('/viewer/web/images/secondaryToolbarButton-lastPage@2x.png')
+@ref_page.route('/viewer/web/images/secondaryToolbarButton-lastPage.svg')
 def secondaryToolbarButton_lastPage():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-lastPage@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-lastPage.svg')
 
-@ref_page.route('/viewer/web/images/secondaryToolbarButton-rotateCw@2x.png')
+@ref_page.route('/viewer/web/images/secondaryToolbarButton-rotateCw.svg')
 def secondaryToolbarButton_rotateCw():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-rotateCw@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-rotateCw.svg')
 
-@ref_page.route('/viewer/web/images/secondaryToolbarButton-rotateCcw@2x.png')
+@ref_page.route('/viewer/web/images/secondaryToolbarButton-rotateCcw.svg')
 def secondaryToolbarButton_rotateCcw():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-rotateCcw@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-rotateCcw.svg')
 
-@ref_page.route('/viewer/web/images/secondaryToolbarButton-selectTool@2x.png')
+@ref_page.route('/viewer/web/images/secondaryToolbarButton-selectTool.svg')
 def secondaryToolbarButton_selectTool():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-selectTool@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-selectTool.svg')
 
-@ref_page.route('/viewer/web/images/secondaryToolbarButton-handTool@2x.png')
+@ref_page.route('/viewer/web/images/secondaryToolbarButton-handTool.svg')
 def secondaryToolbarButton_handTool():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-handTool@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-handTool.svg')
 
-@ref_page.route('/viewer/web/images/secondaryToolbarButton-scrollVertical@2x.png')
+@ref_page.route('/viewer/web/images/secondaryToolbarButton-scrollVertical.svg')
 def secondaryToolbarButton_scrollVertical():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-scrollVertical@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-scrollVertical.svg')
 
-@ref_page.route('/viewer/web/images/secondaryToolbarButton-scrollHorizontal@2x.png')
+@ref_page.route('/viewer/web/images/secondaryToolbarButton-scrollHorizontal.svg')
 def secondaryToolbarButton_scrollHorizontal():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-scrollHorizontal@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-scrollHorizontal.svg')
 
-@ref_page.route('/viewer/web/images/secondaryToolbarButton-scrollWrapped@2x.png')
+@ref_page.route('/viewer/web/images/secondaryToolbarButton-scrollWrapped.svg')
 def secondaryToolbarButton_scrollWrapped():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-scrollWrapped@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-scrollWrapped.svg')
 
-@ref_page.route('/viewer/web/images/secondaryToolbarButton-spreadNone@2x.png')
+@ref_page.route('/viewer/web/images/secondaryToolbarButton-spreadNone.svg')
 def secondaryToolbarButton_spreadNone():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-spreadNone@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-spreadNone.svg')
 
-@ref_page.route('/viewer/web/images/secondaryToolbarButton-spreadOdd@2x.png')
+@ref_page.route('/viewer/web/images/secondaryToolbarButton-spreadOdd.svg')
 def secondaryToolbarButton_spreadOdd():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-spreadOdd@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-spreadOdd.svg')
 
-@ref_page.route('/viewer/web/images/secondaryToolbarButton-spreadEven@2x.png')
+@ref_page.route('/viewer/web/images/secondaryToolbarButton-spreadEven.svg')
 def secondaryToolbarButton_spreadEven():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-spreadEven@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-spreadEven.svg')
 
-@ref_page.route('/viewer/web/images/secondaryToolbarButton-documentProperties@2x.png')
+@ref_page.route('/viewer/web/images/secondaryToolbarButton-documentProperties.svg')
 def secondaryToolbarButton_documentProperties():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-documentProperties@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/secondaryToolbarButton-documentProperties.svg')
 
-@ref_page.route('/viewer/web/images/findbarButton-next@2x.png')
+@ref_page.route('/viewer/web/images/findbarButton-next.svg')
 def findbarButton_next():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/findbarButton-next@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/findbarButton-next.svg')
 
-@ref_page.route('/viewer/web/images/findbarButton-previous@2x.png')
+@ref_page.route('/viewer/web/images/findbarButton-previous.svg')
 def findbarButton_previous():
-    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/findbarButton-previous@2x.png')
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/findbarButton-previous.svg')
 
+@ref_page.route('/viewer/web/images/toolbarButton-viewLayers.svg')
+def viewLayers():
+    return send_from_directory(ref_page.root_path, 'templates/viewer/web/images/toolbarButton-viewLayers.svg')

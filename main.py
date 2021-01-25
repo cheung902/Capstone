@@ -72,6 +72,39 @@ def upload_page():
 				return render_template('upload.html', error = "file_format")
 
 		elif (request.form['upload'] == "filter"):
+
+
+			lang_list = request.form.getlist('name_language')
+			caseSensitive = request.form.get('name_case_diff')
+			extract_list = request.form.get('extract')
+			session['caseSensitive'] = caseSensitive
+			session['extract_list'] = extract_list
+
+			comp_path = session.get('comp')
+			ori_path = session.get('ori')
+			ori_pdf_size = session.get('ori_pdf_size')
+			comp_pdf_size = session.get('comp_pdf_size')
+
+			if len(lang_list) > 1:
+				lang = "+".join(lang_list)
+			elif len(lang_list) == 1:
+				lang = lang_list[0]
+			else:
+				lang = ""
+
+			print("Language option:", lang)
+			print("Case Sensitive Option", caseSensitive)
+			print("extract_list", extract_list)
+
+			p1 = Process(target=main, args=(comp_path, size, contrast, dpiNum, "comp", lang))
+			p1.start()
+			print("Compare File Job Start")
+			p2 = Process(target=main, args=(ori_path, size, contrast, dpiNum, "ori", lang))
+			p2.start()
+			print("Original File Job Start")
+			p1.join()
+			p2.join()
+
 			return redirect('/pdf_annotate')
 
 	elif (request.method == 'GET'):
@@ -87,29 +120,13 @@ def annotate():
 			ori_path = session.get('ori')
 			comp_filename = session.get('comp_filename')
 			ori_filename = session.get('ori_filename')
-			region_list = session.get('region_list')
-			print(region_list)
+			caseSensitive = session.get('caseSensitive')
+			extract_list = session.get('extract_list')
 
-			caseSensitive = request.form.get('name_case_diff')
-			lang_list = request.form.getlist('name_language')
-			extract_list = request.form.get('extract')
+			ignore_region = session.get('ignore_region')
+			shdChange_region = session.get('shdChange_region')
+			shdNotChange_region = session.get('shdNotChange_region')
 
-			if len(lang_list) > 1:
-				lang = "+".join(lang_list)
-			elif len(lang_list) == 1:
-				lang = lang_list[0]
-			else:
-				lang = ""
-
-			print(lang)
-			p1 = Process(target=main, args=(comp_path, size, contrast, dpiNum, "comp", lang))
-			p1.start()
-			print("Compare File Job Start")
-			p2 = Process(target=main, args=(ori_path, size, contrast, dpiNum, "ori", lang))
-			p2.start()
-			print("Original File Job Start")
-			p1.join()
-			p2.join()
 
 			insertion_num, deletion_num, case_diff_num, ori_max_page, comp_max_page = compare_f1_f2(extract_list, caseSensitive)
 
@@ -147,7 +164,6 @@ def sever():
 	# print(request.form.to_dict(flat=False).keys())
 	# print(list(request.form.to_dict(flat=False).values())[0][0])
 	array_value = list(request.form.to_dict(flat=False).values())
-	print(array_value)
 
 	if (array_value[0][0] == "ignore"):
 		array_value.pop(0)
@@ -171,6 +187,11 @@ def sever():
 				continue
 			shdNotChange.append([page, item])
 
+	session["ignore_region"] = ignore
+	session["shdChange_region"] = shdChange
+	session["shdNotChange_region"] = shdNotChange
+
+
 	pdfInput = PdfFileReader(open("contract_sample/comp_sample.pdf", "rb"))
 	numOfPages = pdfInput.getNumPages()
 	pdfOutput = PdfFileWriter()
@@ -187,7 +208,7 @@ def sever():
 				y_2 = float(item[1][3])
 				highlight = createHighlight(x1 = x_1, y1 = y_2, x2 = x_2, y2= y_1,
 											meta = {"author": "", "contents": "Bla-bla-bla"},
-											color = [0.01,0.01,0.01])
+											color = [1,1,1])
 				print("x_1", x_1, "y_1", y_1, "x_2", x_2, "y_2", y_2)
 				addHighlightToPage(highlight, page, pdfOutput)
 		print("create page", pageNum)
