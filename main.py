@@ -22,7 +22,7 @@ compare_file = "contract_sample/ECsample_eng.pdf"
 original_file = "contract_sample/TemplateTenancyAgreement.pdf"
 
 contrast = 1.5
-size = 1
+size = 2
 dpiNum = 300
 
 

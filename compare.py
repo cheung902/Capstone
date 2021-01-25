@@ -75,45 +75,48 @@ def get_position(data_frame, diff_list, insert_label, delete_label, case_label):
 	case_label = case_label + "-"
 	for num, element in enumerate(diff_list_split):
 		if (insert_label_start in element):
-			word = element.replace(insert_label_start, "")
-			append_position_list(data_frame = data_frame, position_list = position_list, num = num, word = word, insert_or_delete="1s")
+			word_end = ""
+			word_end_num = 0
+			word_start = element.replace(insert_label_start, "")
+			word_start_num = num
 			num +=1
 			while insert_label_end not in diff_list_split[num]:
-				word = diff_list_split[num]
-				append_position_list(data_frame=data_frame, position_list=position_list, num=num, word = word, insert_or_delete="1")
 				num += 1
-
 			if (insert_label_end in diff_list_split[num]):
-				word = diff_list_split[num].replace(insert_label_end, "")
-				append_position_list(data_frame=data_frame, position_list=position_list, num=num, word = word, insert_or_delete="1e")
-				continue
-
+				word_end = diff_list_split[num].replace(insert_label_end, "")
+				word_end_num = num
+			append_position_list_sentence(data_frame=data_frame, position_list=position_list, word_start_num=word_start_num,
+									  word_end_num=word_end_num, insert_or_delete="1")
+			continue
 		elif delete_label_start in element:
-			word = element.replace(delete_label_start, "")
-			append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="-1s")
+			word_end = ""
+			word_end_num = 0
+			word_start = element.replace(delete_label_start, "")
+			word_start_num = num
 			num += 1
 			while delete_label_end not in diff_list_split[num]:
-				word = diff_list_split[num]
-				append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="-1")
 				num += 1
 			if delete_label_end in diff_list_split[num]:
-				word = diff_list_split[num].replace(delete_label_end, "")
-				append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="-1e")
-				continue
+				word_end = diff_list_split[num].replace(delete_label_end, "")
+				word_end_num = num
+			append_position_list_sentence(data_frame=data_frame, position_list=position_list,word_start_num=word_start_num,
+											  word_end_num=word_end_num, insert_or_delete="1")
+			continue
 
 		elif case_label_start in element:
-			word = element.replace(case_label_start, "")
-
-			append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="2s")
+			word_end = ""
+			word_end_num = 0
+			word_start = element.replace(case_label_start, "")
+			word_start_num = num
 			num += 1
 			while case_label_end not in diff_list_split[num]:
-				word = diff_list_split[num]
-				append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="2")
 				num += 1
 			if case_label_end in diff_list_split[num]:
-				word = diff_list_split[num].replace(case_label_end, "")
-				append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="2e")
-				continue
+				word_end = diff_list_split[num].replace(case_label_end, "")
+				word_end_num = num
+			append_position_list_sentence(data_frame=data_frame, position_list=position_list,word_start_num=word_start_num,
+											  word_end_num=word_end_num, insert_or_delete="2")
+			continue
 
 		elif delete_label in element:
 			word = element.replace(delete_label, "")
@@ -175,13 +178,14 @@ def label_word(ignore_region, shdChange_region, shdNotChange_region, diff_list, 
 												color=[1, 0.5, 0])
 					addHighlightToPage(highlight, page, pdfOutput)
 				elif item[2] == "1":
-					print("Deleted: ", item[3])
+					print("Inserted: ", item[3])
+					print(item[1])
 					highlight = createHighlight(x1=x_1, y1=y_1, x2=x_2, y2=y_2,
 												meta={"author": "", "contents": "Bla-bla-bla"},
 												color=[0, 1, 0])
 					addHighlightToPage(highlight, page, pdfOutput)
 				elif item[2] == "2":
-					print("Deleted: ", item[3])
+					print("Case Difference: ", item[3])
 					highlight = createHighlight(x1=x_1, y1=y_1, x2=x_2, y2=y_2,
 												meta={"author": "", "contents": "Bla-bla-bla"},
 												color=[0, 0.5, 1])
@@ -321,7 +325,6 @@ def get_data_frame():
 		data['block_num_adjusted'] = data['block_num'] + block_num + 1
 		block_num = data['block_num_adjusted'].max()
 		comp_data_frame = comp_data_frame.append(data)
-
 	comp_txt.close()
 	ori_txt.close()
 	ori_data_frame["block_num_adjusted"] = ori_data_frame["block_num_adjusted"].apply(np.int64)
@@ -332,7 +335,6 @@ def get_data_frame():
 	ori_data_frame = adjustWordNum(ori_data_frame)
 	comp_data_frame = adjustWordNum(comp_data_frame)
 
-	print(ori_data_frame.to_string())
 	return ori_data_frame, comp_data_frame
 
 
@@ -393,6 +395,97 @@ def append_position_list(data_frame, position_list, num, word, insert_or_delete)
 				[word_position.iloc[0]['left'], word_position.iloc[0]['top'],
 				word_position.iloc[0]['width'], word_position.iloc[0]['height']],
 				insert_or_delete, word_position.iloc[0]['text']])
+def append_position_list_sentence(data_frame, position_list, word_start_num, word_end_num, insert_or_delete):
+	word_start_num += 1
+	word_end_num +=1
+	first_word_line_num = data_frame[data_frame['word_num'] == word_start_num].iloc[0]['line_num']
+
+	# sometimes the PyTesseract recognise the block incorrectly
+	this_block_num = position_block(data_frame, word_start_num)
+	last_block_num = position_block(data_frame, word_end_num)
+	block_diff = last_block_num - this_block_num
+	if (block_diff != 0):
+		for i in range(this_block_num+1, last_block_num+1):
+			if word_end_num in data_frame[data_frame['block_num_adjusted'] == i].word_num.values:
+				start_num = min(data_frame[(data_frame['block_num_adjusted'] == i) & (data_frame['word_num'] != 0)]['word_num'])
+				append_position_list_sentence(data_frame, position_list, start_num, word_end_num-1, insert_or_delete)
+				break
+			else:
+				start_num = min(data_frame[(data_frame['block_num_adjusted']==i) & (data_frame['word_num'] != 0)]['word_num'])
+				end_num = max(data_frame[data_frame['block_num_adjusted'] == i]['word_num'])
+				append_position_list_sentence(data_frame, position_list, start_num, end_num, insert_or_delete)
+
+		last_word_line_num = max(data_frame[data_frame['block_num_adjusted'] == this_block_num]['line_num'])
+		word_end_num = max(data_frame[(data_frame['block_num_adjusted']==this_block_num) & (data_frame['line_num'] == last_word_line_num)]['word_num'])
+
+
+	else:
+		last_word_line_num = data_frame[data_frame['word_num'] == word_end_num].iloc[0]['line_num']
+	block_num = data_frame[data_frame['word_num'] == word_start_num].iloc[0]['block_num_adjusted']
+
+	if first_word_line_num == last_word_line_num:
+		pageIndex = page_num(data_frame, word_start_num)
+		final_left = position_left(data_frame, word_start_num)
+		final_top = position_top(data_frame, word_start_num, word_end_num)
+		final_width = position_width(data_frame, word_start_num, word_end_num)
+		final_height = position_height(data_frame, word_start_num, word_end_num)
+
+		position_list.append([pageIndex, [final_left, final_top, final_width, final_height], insert_or_delete, "text"])
+		return
+
+	for i in range(1, last_word_line_num+1):
+		if i == first_word_line_num:
+			last_word_num = max(data_frame[(data_frame['block_num_adjusted'] == block_num) & (data_frame['line_num'] == i)]['word_num'])
+			pageIndex = page_num(data_frame, word_start_num)
+			final_left = position_left(data_frame, word_start_num)
+			final_top = position_top(data_frame, word_start_num, last_word_num)
+			final_width = position_width(data_frame, word_start_num, last_word_num)
+			final_height = position_height(data_frame, word_start_num, last_word_num)
+			position_list.append([pageIndex, [final_left, final_top, final_width, final_height], insert_or_delete, "text"])
+			continue
+
+		if i == last_word_line_num:
+			first_word_num = min(data_frame[
+									 (data_frame['block_num_adjusted'] == block_num) & (data_frame['line_num'] == i) & (
+												 data_frame['word_num'] != 0)]['word_num'])
+			pageIndex = page_num(data_frame, first_word_num)
+			final_left = position_left(data_frame, first_word_num)
+			final_top = position_top(data_frame, first_word_num, word_end_num)
+			final_width = position_width(data_frame, first_word_num, word_end_num)
+			final_height = position_height(data_frame, first_word_num, word_end_num)
+
+			position_list.append(
+				[pageIndex, [final_left, final_top, final_width, final_height], insert_or_delete, "text"])
+			return
+		else:
+			first_word_num = min(data_frame[(data_frame['block_num_adjusted'] == block_num) & (data_frame['line_num'] == i) & (data_frame['word_num'] != 0)]['word_num'])
+			last_word_num = max(data_frame[(data_frame['block_num_adjusted'] == block_num) & (data_frame['line_num'] == i) & (data_frame['word_num'] != 0)]['word_num'])
+			pageIndex = page_num(data_frame, first_word_num)
+			final_left = position_left(data_frame, first_word_num)
+			final_top = position_top(data_frame, first_word_num, last_word_num)
+			final_width = position_width(data_frame, first_word_num, last_word_num)
+			final_height = position_height(data_frame, first_word_num, last_word_num)
+			position_list.append([pageIndex, [final_left, final_top, final_width, final_height], insert_or_delete, "text"])
+	return
+
+def page_num(data_frame, first_word_num):
+	return data_frame[data_frame['word_num'] == first_word_num].iloc[0]['page_num']
+
+def position_left(data_frame, first_word_num):
+	return data_frame[data_frame['word_num'] == first_word_num].iloc[0]['left']
+
+def position_top(data_frame, first_word_num, last_word_num):
+	return min(data_frame[data_frame['word_num'] == first_word_num].iloc[0]['top'], data_frame[data_frame['word_num'] == last_word_num].iloc[0]['top'])
+
+def position_width(data_frame, first_word_num, last_word_num):
+	return data_frame[data_frame['word_num'] == last_word_num].iloc[0]['left'] - data_frame[data_frame['word_num'] == first_word_num].iloc[0]['left'] + \
+		   data_frame[data_frame['word_num'] == last_word_num].iloc[0]['width']
+
+def position_height(data_frame, first_word_num, last_word_num):
+	return max(data_frame[data_frame['word_num'] == first_word_num].iloc[0]['height'],data_frame[data_frame['word_num'] == last_word_num].iloc[0]['height'])
+
+def position_block(data_frame, word_num):
+	return data_frame[data_frame['word_num'] == word_num].iloc[0]['block_num_adjusted']
 
 def cal_overlap_area(marked_region, diff_region):
 
