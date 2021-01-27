@@ -1,133 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91c8f46a-5302-4e35-9116-299e47a42f96" name="Default Changelist" comment="">
+    <list default="true" id="91c8f46a-5302-4e35-9116-299e47a42f96" name="Default Changelist" comment="Region Selection -Drag">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commonFNC.py" beforeDir="false" afterPath="$PROJECT_DIR$/commonFNC.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compare.py" beforeDir="false" afterPath="$PROJECT_DIR$/compare.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare_diff.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare_whole_text.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/flaskRoute.py" beforeDir="false" afterPath="$PROJECT_DIR$/flaskRoute.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ocr.py" beforeDir="false" afterPath="$PROJECT_DIR$/ocr.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/playground/playground.py" beforeDir="false" afterPath="$PROJECT_DIR$/playground/playground.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocess.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/upload/c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/upload/o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/js/pdf_view.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/js/pdf_view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pdf_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pdf_view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/build/pdf.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/build/pdf.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/build/pdf.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/build/pdf.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/build/pdf.worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/build/pdf.worker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/build/pdf.worker.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/build/pdf.worker.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/debugger.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/debugger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/images/shadow.png" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/images/shadow.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/ach/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/ach/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/af/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/af/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/an/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/an/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/ar/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/ar/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/ast/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/ast/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/az/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/az/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/be/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/be/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/bg/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/bg/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/bn/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/bn/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/bo/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/bo/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/br/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/br/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/brx/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/brx/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/bs/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/bs/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/ca/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/ca/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/cak/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/cak/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/cs/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/cs/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/cy/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/cy/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/da/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/da/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/de/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/de/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/dsb/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/dsb/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/el/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/el/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/en-CA/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/en-CA/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/en-GB/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/en-GB/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/en-US/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/en-US/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/eo/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/eo/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/es-AR/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/es-AR/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/es-CL/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/es-CL/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/es-ES/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/es-ES/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/es-MX/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/es-MX/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/et/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/et/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/eu/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/eu/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/fa/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/fa/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/ff/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/ff/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/fi/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/fi/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/fr/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/fr/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/fy-NL/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/fy-NL/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/ga-IE/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/ga-IE/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/gd/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/gd/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/gl/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/gl/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/gn/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/gn/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/gu-IN/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/gu-IN/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/he/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/he/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/hi-IN/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/hi-IN/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/hr/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/hr/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/hsb/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/hsb/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/hu/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/hu/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/hy-AM/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/hy-AM/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/ia/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/ia/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/id/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/id/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/is/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/is/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/it/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/it/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/ja/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/ja/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/ka/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/ka/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/kab/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/kab/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/kk/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/kk/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/km/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/km/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/kn/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/kn/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/ko/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/ko/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/lij/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/lij/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/lo/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/lo/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/locale.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/locale.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/lt/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/lt/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/ltg/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/ltg/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/lv/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/lv/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/mk/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/mk/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/mr/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/mr/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/ms/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/ms/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/my/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/my/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/nb-NO/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/nb-NO/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/ne-NP/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/ne-NP/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/nl/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/nl/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/nn-NO/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/nn-NO/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/oc/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/oc/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/pa-IN/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/pa-IN/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/pl/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/pl/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/pt-BR/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/pt-BR/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/pt-PT/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/pt-PT/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/rm/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/rm/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/ro/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/ro/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/ru/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/ru/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/scn/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/scn/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/si/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/si/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/sk/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/sk/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/sl/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/sl/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/son/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/son/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/sq/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/sq/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/sr/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/sr/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/sv-SE/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/sv-SE/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/ta/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/ta/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/te/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/te/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/th/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/th/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/tl/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/tl/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/tr/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/tr/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/trs/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/trs/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/uk/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/uk/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/ur/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/ur/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/uz/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/uz/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/vi/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/vi/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/wo/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/wo/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/xh/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/xh/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/zh-CN/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/zh-CN/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/locale/zh-TW/viewer.properties" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/locale/zh-TW/viewer.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/viewer.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/viewer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/viewer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/viewer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/viewer.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/viewer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/viewer.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/viewer.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/css/upload_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/css/upload_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/js/upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/js/upload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/upload.html" afterDir="false" />
     </list>
-    <list id="b3719226-631c-4385-95de-880d5d71d06f" name="Unhandled Problem" comment="" />
+    <list id="b3719226-631c-4385-95de-880d5d71d06f" name="Unhandled Problem" comment="Unhandled Problem" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,24 +21,21 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.py">
+        <entry file="file://$PROJECT_DIR$/flaskRoute.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-330">
-              <caret line="91" column="17" selection-start-line="91" selection-start-column="17" selection-end-line="92" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#17#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="77">
+              <caret line="23" column="71" selection-start-line="23" selection-start-column="71" selection-end-line="23" selection-end-column="71" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/compare.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="79" column="12" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="12" />
+            <state relative-caret-position="233">
+              <caret line="42" selection-start-line="42" selection-end-line="42" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -161,58 +44,21 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/upload.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-23">
+              <caret line="99" column="14" selection-start-line="99" selection-start-column="14" selection-end-line="99" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/pdf_annotate.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="57" column="88" selection-start-line="57" selection-start-column="88" selection-end-line="57" selection-end-column="88" />
+            <state relative-caret-position="128">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
               <folding>
                 <element signature="n#style#0;n#iframe#0;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/pdf_view.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="52" column="27" selection-start-line="52" selection-start-column="27" selection-end-line="52" selection-end-column="27" />
-              <folding>
-                <element signature="n#style#0;n#iframe#0;n#div#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#iframe#0;n#div#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PyPDF2Highlight.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="18" selection-start-line="18" selection-end-line="19" selection-end-column="70" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flaskRoute.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="250" column="83" selection-start-line="250" selection-start-column="83" selection-end-line="250" selection-end-column="83" />
-              <folding>
-                <element signature="e#0#72#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ocr.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="65" selection-start-line="65" selection-end-line="65" />
-              <folding>
-                <element signature="e#19#37#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -230,19 +76,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>var</find>
-      <find>createSearchablePDF</find>
-      <find>mergePDF</find>
-      <find>herR_label-e’</find>
-      <find>herR_label</find>
-      <find>herR</find>
-      <find>deeposited</find>
-      <find>Such</find>
-      <find>{Internal</find>
-      <find>Internal</find>
-      <find>ignore</find>
-      <find>unincorporated</find>
-      <find>this.setFlags</find>
       <find>hidden</find>
       <find>texture</find>
       <find>viewer_old</find>
@@ -254,12 +87,25 @@
       <find>zoomIn.svg</find>
       <find>menuArrow</find>
       <find>pageUp</find>
-      <find>print</find>
       <find>@2x.png</find>
       <find>viewLayers</find>
       <find>case</find>
-      <find>loading</find>
       <find>loading-small</find>
+      <find>first</find>
+      <find>inserted</find>
+      <find>text</find>
+      <find>in all cases</find>
+      <find>in</find>
+      <find>ori_data_frame</find>
+      <find>print</find>
+      <find>get_group_of_text</find>
+      <find>loading</find>
+      <find>background</find>
+      <find>annotate</find>
+      <find>finish</find>
+      <find>shdChange</find>
+      <find>shdNotChange</find>
+      <find>ignore</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -273,14 +119,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/uploaFile.html" />
-        <option value="$PROJECT_DIR$/templates/css/uploadFileCss" />
-        <option value="$PROJECT_DIR$/templates/css/uploadFileCss.css" />
-        <option value="$PROJECT_DIR$/templates/css/uploadFileCss.sass" />
-        <option value="$PROJECT_DIR$/Playground.py" />
-        <option value="$PROJECT_DIR$/playground/Playground.py" />
-        <option value="$PROJECT_DIR$/playground/test.py" />
-        <option value="$PROJECT_DIR$/playground/difflib.py" />
         <option value="$PROJECT_DIR$/playground/idex.html" />
         <option value="$PROJECT_DIR$/templates/viewer/web/viewer.js" />
         <option value="$PROJECT_DIR$/templates/viewer/build/pdf.js" />
@@ -305,25 +143,33 @@
         <option value="$PROJECT_DIR$/playground.py" />
         <option value="$PROJECT_DIR$/templates/css/pdf_view.css" />
         <option value="$PROJECT_DIR$/templates/js/upload.js" />
-        <option value="$PROJECT_DIR$/templates/upload.html" />
         <option value="$PROJECT_DIR$/templates/css/upload_style.css" />
         <option value="$PROJECT_DIR$/templates/loading.html" />
         <option value="$PROJECT_DIR$/templates/css/loading_style.css" />
-        <option value="$PROJECT_DIR$/templates/js/pdf_annotate.js" />
         <option value="$PROJECT_DIR$/commonFNC.py" />
-        <option value="$PROJECT_DIR$/preprocess.py" />
         <option value="$PROJECT_DIR$/playground/playground.py" />
         <option value="$PROJECT_DIR$/templates/js/pdf_view.js" />
         <option value="$PROJECT_DIR$/templates/viewer/web/annotate.js" />
         <option value="$PROJECT_DIR$/templates/viewer/web/annotate.html" />
         <option value="$PROJECT_DIR$/viewer_old/web/annotate.css" />
         <option value="$PROJECT_DIR$/templates/viewer/web/annotate.css" />
-        <option value="$PROJECT_DIR$/ocr.py" />
-        <option value="$PROJECT_DIR$/flaskRoute.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/PyPDF2Highlight.py" />
         <option value="$PROJECT_DIR$/templates/pdf_view.html" />
+        <option value="$PROJECT_DIR$/ocr.py" />
+        <option value="$PROJECT_DIR$/templates/pdf_annotate.html" />
+        <option value="$PROJECT_DIR$/templates/css/pdf_annotate.css" />
+        <option value="$PROJECT_DIR$/preprocess.py" />
+        <option value="$PROJECT_DIR$/templates/js/pdf_annotate.js" />
+        <option value="$PROJECT_DIR$/flaskRoute.py" />
+        <option value="$PROJECT_DIR$/templates/viewer/web/annotate_compare.html" />
+        <option value="$PROJECT_DIR$/templates/viewer/web/annotate_compare.js" />
+        <option value="$PROJECT_DIR$/templates/viewer/web/annotate_compare.css" />
+        <option value="$PROJECT_DIR$/templates/viewer/web/annotate_original.js" />
+        <option value="$PROJECT_DIR$/templates/viewer/web/annotate_original.html" />
+        <option value="$PROJECT_DIR$/templates/viewer/web/annotate_original.css" />
+        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/compare.py" />
+        <option value="$PROJECT_DIR$/templates/upload.html" />
       </list>
     </option>
   </component>
@@ -350,12 +196,13 @@
             <path>
               <item name="Capstone" type="b2602c69:ProjectViewProjectNode" />
               <item name="Capstone" type="462c0819:PsiDirectoryNode" />
-              <item name="diff" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Capstone" type="b2602c69:ProjectViewProjectNode" />
               <item name="Capstone" type="462c0819:PsiDirectoryNode" />
-              <item name="output" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="viewer" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -883,7 +730,21 @@
       <option name="project" value="LOCAL" />
       <updated>1611417933022</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Finished mark region">
+      <created>1611568041481</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1611568041481</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Line Highlight">
+      <created>1611591713026</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1611591713026</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TodoView">
@@ -896,14 +757,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1440" height="820" extended-state="6" />
+    <frame x="0" y="26" width="1440" height="820" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48642534" visible="true" weight="0.17336152" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48642534" visible="true" weight="0.17336152" />
       <window_info id="Structure" order="1" sideWeight="0.51357466" side_tool="true" weight="0.26145172" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49612403" weight="0.32686982" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4918957" visible="true" weight="0.30470914" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4918957" weight="0.3601108" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39473686" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -954,23 +816,12 @@
     <MESSAGE value="normal version 20210111" />
     <MESSAGE value="html update" />
     <MESSAGE value="working on user function to mark region on the pdf" />
-    <option name="LAST_COMMIT_MESSAGE" value="working on user function to mark region on the pdf" />
+    <MESSAGE value="Finished mark region" />
+    <MESSAGE value="Line Highlight" />
+    <MESSAGE value="Region Selection -Drag" />
+    <option name="LAST_COMMIT_MESSAGE" value="Region Selection -Drag" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/uploadFile.html" />
-    <entry file="file://$PROJECT_DIR$/images/comp_3.tiff" />
-    <entry file="file:///opt/anaconda3/lib/python3.7/site-packages/flask_cache/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="151" selection-start-line="151" selection-end-line="151" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/icons/upload.png" />
-    <entry file="file://$PROJECT_DIR$/compare/comp/images/ori_1.tiff" />
-    <entry file="file://$PROJECT_DIR$/compare/comp/images/comp_6.tiff" />
-    <entry file="file://$PROJECT_DIR$/compare/comp/images/comp_5.tiff" />
-    <entry file="file://$PROJECT_DIR$/compare/comp/images/comp_2.tiff" />
     <entry file="file://$PROJECT_DIR$/templates/viewer/web/viewer.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7226">
@@ -1002,16 +853,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/compare/comp/images/comp_1.tiff" />
-    <entry file="file://$PROJECT_DIR$/compare_whole_text.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3885">
-          <caret line="185" column="16" selection-start-line="185" selection-start-column="16" selection-end-line="185" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/compare_whole_text.py" />
     <entry file="file://$PROJECT_DIR$/templates/css/sample_style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="655">
@@ -1030,13 +872,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/css/pdf_view.css" />
-    <entry file="file://$PROJECT_DIR$/templates/upload.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2352">
-          <caret line="112" column="22" selection-start-line="112" selection-start-column="22" selection-end-line="112" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/loading.html" />
     <entry file="file://$PROJECT_DIR$/templates/js/upload.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -1045,16 +880,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/compare_diff.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/compare_diff.py" />
     <entry file="file://$PROJECT_DIR$/templates/css/upload_style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="631">
@@ -1094,16 +920,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/output/comp.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preprocess.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="19" selection-start-line="19" selection-end-line="20" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/playground/playground.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -1131,95 +947,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/js/pdf_annotate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate.js" />
+    <entry file="file://$PROJECT_DIR$/viewer_old/web/annotate.js" />
+    <entry file="file://$PROJECT_DIR$/viewer_old/web/annotate.html" />
+    <entry file="file://$PROJECT_DIR$/viewer_old/web/annotate.css" />
+    <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate.css" />
+    <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate.html" />
+    <entry file="file://$PROJECT_DIR$/output/comp.txt">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="14895" column="44" selection-start-line="14895" selection-start-column="44" selection-end-line="14895" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/viewer_old/web/annotate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4317">
-          <caret line="16375" column="77" selection-start-line="16179" selection-end-line="16375" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/viewer_old/web/annotate.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="37" selection-start-line="37" selection-end-line="38" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/viewer_old/web/annotate.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="2447" selection-start-line="2447" selection-end-line="2456" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="3843" selection-start-line="3843" selection-end-line="3843" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="227" column="40" selection-start-line="227" selection-start-column="28" selection-end-line="227" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-330">
-          <caret line="91" column="17" selection-start-line="91" selection-start-column="17" selection-end-line="92" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ocr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="65" selection-start-line="65" selection-end-line="65" />
-          <folding>
-            <element signature="e#19#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flaskRoute.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="250" column="83" selection-start-line="250" selection-start-column="83" selection-end-line="250" selection-end-column="83" />
-          <folding>
-            <element signature="e#0#72#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PyPDF2Highlight.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="18" selection-start-line="18" selection-end-line="19" selection-end-column="70" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/images/comp_2.tiff">
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/pdf_view.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
+        <state relative-caret-position="357">
           <caret line="52" column="27" selection-start-line="52" selection-start-column="27" selection-end-line="52" selection-end-column="27" />
           <folding>
             <element signature="n#style#0;n#iframe#0;n#div#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1228,22 +970,126 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/pdf_annotate.html">
+    <entry file="file://$PROJECT_DIR$/PyPDF2Highlight.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="57" column="88" selection-start-line="57" selection-start-column="88" selection-end-line="57" selection-end-column="88" />
+        <state relative-caret-position="371">
+          <caret line="18" selection-start-line="18" selection-end-line="19" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/css/pdf_annotate.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="903" column="21" selection-start-line="903" selection-start-column="21" selection-end-line="903" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocess.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/js/pdf_annotate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="32" lean-forward="true" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate_compare.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="14938" column="37" selection-start-line="14938" selection-start-column="37" selection-end-line="14938" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate_compare.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="3835" column="4" selection-start-line="3835" selection-start-column="4" selection-end-line="3835" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate_compare.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="225" column="54" selection-start-line="225" selection-start-column="54" selection-end-line="225" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate_original.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="225" column="60" selection-start-line="225" selection-start-column="60" selection-end-line="225" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate_original.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="3841" column="30" selection-start-line="3841" selection-start-column="30" selection-end-line="3841" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="193" column="30" selection-start-line="193" selection-start-column="30" selection-end-line="193" selection-end-column="30" />
           <folding>
-            <element signature="n#style#0;n#iframe#0;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#0#17#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate_original.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-520">
+          <caret line="14933" column="47" selection-start-line="14933" selection-start-column="47" selection-end-line="14933" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ocr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="57" column="45" selection-start-line="57" selection-start-column="45" selection-end-line="57" selection-end-column="45" />
+          <folding>
+            <element signature="e#19#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flaskRoute.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="23" column="71" selection-start-line="23" selection-start-column="71" selection-end-line="23" selection-end-column="71" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/compare.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="79" column="12" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="12" />
+        <state relative-caret-position="233">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/upload.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-23">
+          <caret line="99" column="14" selection-start-line="99" selection-start-column="14" selection-end-line="99" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/pdf_annotate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="n#style#0;n#iframe#0;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

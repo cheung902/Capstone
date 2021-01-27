@@ -22,7 +22,7 @@ compare_file = "contract_sample/ECsample_eng.pdf"
 original_file = "contract_sample/TemplateTenancyAgreement.pdf"
 
 contrast = 1.5
-size = 2
+size = 1
 dpiNum = 300
 
 
@@ -123,9 +123,6 @@ def annotate():
 			caseSensitive = session.get('caseSensitive')
 			extract_list = session.get('extract_list')
 
-			ignore_region = session.get('ignore_region')
-			shdChange_region = session.get('shdChange_region')
-			shdNotChange_region = session.get('shdNotChange_region')
 
 
 			insertion_num, deletion_num, case_diff_num, ori_max_page, comp_max_page = compare_f1_f2(extract_list, caseSensitive)
@@ -157,82 +154,65 @@ def annotate():
 
 @app.route('/sever',methods = ['GET', 'POST'])	
 def sever():
-	ignore, shdChange, shdNotChange = [], [], []
+	ignore_comp, shdChange_comp, shdNotChange_comp = [], [], []
+	ignore_ori, shdChange_ori, shdNotChange_ori = [], [], []
 	page = None
 
-	# print(request.form)
-	# print(request.form.to_dict(flat=False).keys())
-	# print(list(request.form.to_dict(flat=False).values())[0][0])
 	array_value = list(request.form.to_dict(flat=False).values())
 
-	if (array_value[0][0] == "ignore"):
+	if (array_value[0][0] == "ignore_comp"):
 		array_value.pop(0)
 		for item in array_value:
 			if len(item) == 1:
 				page = item[0]
 				continue
-			ignore.append([page, item])
-	elif (array_value[0][0] == "shdChange"):
+			ignore_comp.append([page, item])
+	elif (array_value[0][0] == "shdChange_comp"):
 		array_value.pop(0)
 		for item in array_value:
 			if len(item) == 1:
 				page = item[0]
 				continue
-			shdChange.append([page, item])
-	elif (array_value[0][0] == "shdNotChange"):
+			shdChange_comp.append([page, item])
+	elif (array_value[0][0] == "shdNotChange_comp"):
 		array_value.pop(0)
 		for item in array_value:
 			if len(item) == 1:
 				page = item[0]
 				continue
-			shdNotChange.append([page, item])
+			shdNotChange_comp.append([page, item])
+	elif (array_value[0][0] == "ignore_ori"):
+		array_value.pop(0)
+		for item in array_value:
+			if len(item) == 1:
+				page = item[0]
+				continue
+			ignore_ori.append([page, item])
+	elif (array_value[0][0] == "shdChange_ori"):
+		array_value.pop(0)
+		for item in array_value:
+			if len(item) == 1:
+				page = item[0]
+				continue
+			shdChange_ori.append([page, item])
+	elif (array_value[0][0] == "shdNotChange_ori"):
+		array_value.pop(0)
+		for item in array_value:
+			if len(item) == 1:
+				page = item[0]
+				continue
+			shdNotChange_ori.append([page, item])
 
-	session["ignore_region"] = ignore
-	session["shdChange_region"] = shdChange
-	session["shdNotChange_region"] = shdNotChange
-
-
-	pdfInput = PdfFileReader(open("contract_sample/comp_sample.pdf", "rb"))
-	numOfPages = pdfInput.getNumPages()
-	pdfOutput = PdfFileWriter()
-
-	for pageNum in range(0, numOfPages):
-		page = pdfInput.getPage(pageNum)
-		for item in ignore:
-			pageIndex = int(item[0][0])
-			if (pageIndex == pageNum):
-				print("pageIndex", pageIndex)
-				x_1 = float(item[1][0])
-				y_1 = float(item[1][1])
-				x_2 = float(item[1][2])
-				y_2 = float(item[1][3])
-				highlight = createHighlight(x1 = x_1, y1 = y_2, x2 = x_2, y2= y_1,
-											meta = {"author": "", "contents": "Bla-bla-bla"},
-											color = [1,1,1])
-				print("x_1", x_1, "y_1", y_1, "x_2", x_2, "y_2", y_2)
-				addHighlightToPage(highlight, page, pdfOutput)
-		print("create page", pageNum)
-		pdfOutput.addPage(page)
-
-	outputStream = open("output.pdf", "wb")
-	pdfOutput.write(outputStream)
-	# page1 = pdfInput.getPage(0)
-	#
-	# highlight = createHighlight(906.171875, 1976.7284375, 1110.3644561767578, 2011.7284375, {
-	# 	"author": "",
-	# 	"contents": "Bla-bla-bla"
-	# })
-	# addHighlightToPage(highlight, page1, pdfOutput)
-	#
-	# pdfOutput.addPage(page1)
-	#
-	# outputStream = open("output.pdf", "wb")
-	# pdfOutput.write(outputStream)
-
+	session["ignore_region_comp"] = ignore_comp
+	session["shdChange_region_comp"] = shdChange_comp
+	session["shdNotChange_region_comp"] = shdNotChange_comp
+	session["ignore_region_ori"] = ignore_ori
+	session["shdChange_region_ori"] = shdChange_ori
+	session["shdNotChange_region_ori"] = shdNotChange_ori
 
 	return ('', 204)
 	
-@app.route('/pdf_view',methods = ['GET', 'POST'])	
+@app.route('/pdf_view',methods = ['GET' 'POST'])	
 def pdf_view():
 
 	return ('', 204)

@@ -14,8 +14,8 @@ def pre_process(imgName, size, contrast, dpiNum):
 	enhancer = ImageEnhance.Contrast(img)
 	img = enhancer.enhance(contrast)
 
-	new_size = tuple(size * x for x in img.size)
-	img = img.resize(new_size, Image.ANTIALIAS)
+	# new_size = tuple(size * x for x in img.size)
+	# img = img.resize(new_size, Image.ANTIALIAS)
 
 	# new_size = (1920, 1080)
 	# img = img.resize(new_size, Image.ANTIALIAS)

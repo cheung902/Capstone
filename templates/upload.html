@@ -17,111 +17,145 @@
     <button class="help-button" ><i class="far fa-question-circle"></i></button>
 </div>
 
-<div class="class_main_view" id="main_view">
-    <div class="class_sideBar" id = "id_sideBar" style="width:0">
-        <!--<a href="javascript:void(0)" class="closeSideBar_btn" onclick="closeNav()">×</a>-->
-        <div class = "sideBar_tabs">
-            <button type="button" class ="tab_button"><i class="fas fa-cloud-upload-alt"></i> Upload Documents</button>
+<div id="upload_page" class = "upload_page">
+    <div class="class_main_view" id="main_view">
+        <div class="class_sideBar" id = "id_sideBar" style="width:0">
+            <!--<a href="javascript:void(0)" class="closeSideBar_btn" onclick="closeNav()">×</a>-->
+            <div class = "sideBar_tabs">
+                <button type="button" class ="tab_button"><i class="fas fa-cloud-upload-alt"></i> Upload Documents</button>
+            </div>
+            <div class = "sideBar_tabs">
+                <button type="button" class ="tab_button" id="process_tabs"><i class="fas fa-microchip"></i> Processor</button>
+            </div>
         </div>
-        <div class = "sideBar_tabs">
-            <button type="button" class ="tab_button" id="process_tabs"><i class="fas fa-microchip"></i> Processor</button>
+
+        <div id = "full_view">
+            <a href = "sample.html" class = "sample_comparison">See a sample comparison</a>
+            <div>
+                <form method="post" enctype=multipart/form-data id="form_upload">
+                        <div id="upload_block">
+                            <div class="column" id="column_left">
+                                <input type="file" id="upload_compare" name=comp_file onchange="comp_uploaded(this);" hidden>
+                                <div id="comp_before_upload">
+                                    <label class="comp_label" for="upload_compare">
+                                        <span class="upload_icon"><i class="fas fa-cloud-upload-alt"></i></span>
+                                        <span class="column_describe_text">
+                                            <p>1. Upload document to be compared</p>
+                                            <p>(word, docx, pdf, jpeg)</p>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div id="comp_after_upload" class="class_comp_after_upload">
+                                    <label class="comp_label" for="upload_compare">
+                                        <div class="column_describe">
+                                            <span class="upload_icon"><i class="far fa-file-pdf"></i></span>
+                                            <div class="column_describe_text">
+                                                <div><p id="comp_filename">Filename</p></div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="column" id="column_right">
+                                <input type="file" id="upload_ori" name=ori_file onchange="ori_uploaded(this);" hidden>
+                                <div id="ori_before_upload">
+                                    <label class="ori_label" for="upload_ori">
+                                        <span class="upload_icon"><i class="fas fa-cloud-upload-alt"></i></span>
+                                        <span class="column_describe_text">
+                                            <p>2. Upload original document</p>
+                                            <p>(word, docx, pdf, jpeg)</p>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div id="ori_after_upload">
+                                    <label class="ori_label" for="upload_ori">
+                                        <div class="column_describe">
+                                            <span class="upload_icon"><i class="far fa-file-pdf"></i></span>
+                                            <div class="column_describe_text">
+                                                <div><p id="ori_filename">Filename</p></div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    <div id="submit_div">
+                        <button type=submit name=upload value=submit class="submit_button" id="id-submit-btn">3. COMPARE</button>
+                    </div>
+                </form>
+            </div>
+            <div class="previous">
+                <p>Previously Uploaded</p>
+            </div>
         </div>
     </div>
+    <div id="id-functions" class="class-functions">
 
-    <div id = "full_view">
-        <a href = "sample.html" class = "sample_comparison">See a sample comparison</a>
-        <div>
-            <form method="post" enctype=multipart/form-data id="form_upload">
-                    <div id="upload_block">
-                        <div class="column" id="column_left">
-                            <input type="file" id="upload_compare" name=comp_file onchange="comp_uploaded(this);" hidden>
-                            <div id="comp_before_upload">
-                                <label class="comp_label" for="upload_compare">
-                                    <span class="upload_icon"><i class="fas fa-cloud-upload-alt"></i></span>
-                                    <span class="column_describe_text">
-                                        <p>1. Upload document to be compared</p>
-                                        <p>(word, docx, pdf, jpeg)</p>
-                                    </span>
-                                </label>
-                            </div>
-                            <div id="comp_after_upload" class="class_comp_after_upload">
-                                <label class="comp_label" for="upload_compare">
-                                    <div class="column_describe">
-                                        <span class="upload_icon"><i class="far fa-file-pdf"></i></span>
-                                        <div class="column_describe_text">
-                                            <div><p id="comp_filename">Filename</p></div>
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="column" id="column_right">
-                            <input type="file" id="upload_ori" name=ori_file onchange="ori_uploaded(this);" hidden>
-                            <div id="ori_before_upload">
-                                <label class="ori_label" for="upload_ori">
-                                    <span class="upload_icon"><i class="fas fa-cloud-upload-alt"></i></span>
-                                    <span class="column_describe_text">
-                                        <p>2. Upload original document</p>
-                                        <p>(word, docx, pdf, jpeg)</p>
-                                    </span>
-                                </label>
-                            </div>
-                            <div id="ori_after_upload">
-                                <label class="ori_label" for="upload_ori">
-                                    <div class="column_describe">
-                                        <span class="upload_icon"><i class="far fa-file-pdf"></i></span>
-                                        <div class="column_describe_text">
-                                            <div><p id="ori_filename">Filename</p></div>
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                <div id="submit_div">
-                    <button type=submit name=upload value=submit class="submit_button" id="id-submit-btn">3. COMPARE</button>
+        <div class="functions-content">
+            <div class="functions-header">
+                    <p class="functions-header-text">Comparing Options</p>
+                    <span class="functions-close" id="id-functions-close">&times;</span>
+            </div>
+            <form method="post" enctype=multipart/form-data class="functions_form">
+                <div class="options">
+                    <input type="checkbox" id="id_case_diff" name="name_case_diff" value="True">
+                    <label for="id_case_diff">Case Sensitive:</label><br>
+                </div>
+                <div class="options">
+                    <label>Languages:</label><br>
+                    <select class="js-example-basic-multiple" name="states[]" multiple="multiple" style="width: 50%">
+                        <option value="eng">English</option>
+                        <option value="chi_tra">Traditional Chinese</option>
+                        <option value="chi_sim">Simplified Chinese</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="extract">Extract:</label>
+                    <input type="text" id="extract" name="extract"><br><br>
+                </div>
+                <div class="filter_div">
+                    <input type="submit" id="filter_button" name=upload onclick="start_ocr()" value="filter" >
+                    <label class="filter_label" for="filter_button">
+                        Send
+                        <i class="far fa-paper-plane"></i>
+                    </label>
                 </div>
             </form>
         </div>
-        <div class="previous">
-            <p>Previously Uploaded</p>
-        </div>
     </div>
 </div>
-<div id="id-functions" class="class-functions">
-
-    <div class="functions-content">
-        <div class="functions-header">
-                <p class="functions-header-text">Comparing Options</p>
-                <span class="functions-close" id="id-functions-close">&times;</span>
-        </div>
-        <form method="post" enctype=multipart/form-data class="functions_form">
-            <div class="options">
-                <input type="checkbox" id="id_case_diff" name="name_case_diff" value="True">
-                <label for="id_case_diff">Case Sensitive:</label><br>
-            </div>
-            <div class="options">
-                <label for="language">Languages:</label><br>
-                <select class="js-example-basic-multiple" name="states[]" multiple="multiple" style="width: 50%">
-                    <option value="eng">English</option>
-                    <option value="chi_tra">Traditional Chinese</option>
-                    <option value="chi_sim">Simplified Chinese</option>
-                </select>
-            </div>
-            <div>
-                <label for="extract">Extract:</label>
-                <input type="text" id="extract" name="extract"><br><br>
-            </div>
-            <div class="filter_div">
-                <input type="submit" id="filter_button" name=upload value="filter">
-                <label class="filter_label" for="filter_button">
-                    Send
-                    <i class="far fa-paper-plane"></i>
-                </label>
-            </div>
-        </form>
+<div id="loading_page">
+    <div class="loader">
+      <div class="box box0">
+        <div></div>
+      </div>
+      <div class="box box1">
+        <div></div>
+      </div>
+      <div class="box box2">
+        <div></div>
+      </div>
+      <div class="box box3">
+        <div></div>
+      </div>
+      <div class="box box4">
+        <div></div>
+      </div>
+      <div class="box box5">
+        <div></div>
+      </div>
+      <div class="box box6">
+        <div></div>
+      </div>
+      <div class="box box7">
+        <div></div>
+      </div>
+      <div class="ground">
+        <div></div>
+      </div>
     </div>
-</div>
+  <!-- <small>Weird Google Chrome Bug, you'll need to hover the body to make sure all is rendered - anyone knows a solution?</small> -->
+  </div>
 
 
 <!-- <div id="loading_page">

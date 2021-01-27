@@ -79,3 +79,10 @@ form.addEventListener('submit', handleForm);
 $(document).ready(function() {
   $('.js-example-basic-multiple').select2();
 });
+
+function start_ocr()
+{
+
+document.getElementById('upload_page').style.display = "none";
+document.getElementById('loading_page').style.display = "flex";
+}
