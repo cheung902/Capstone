@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF Result</title>
+    <link rel="stylesheet" href="css/pdf_annotate.css">
+    <script src="https://kit.fontawesome.com/1602f398c5.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/annotate.js"></script>
+    <script src="viewer/web/viewer.js"></script>
+</head>
+<body>
+
+<div class="topnav" id="id_topnav">
+    <button class="openSideBar_btn" onclick="openNav()"><i class="fas fa-bars"></i></button>
+    <a class="active" href="/">OCR Solution</a>
+    <button class="help-button" id="id-help-button">
+        <i class="far fa-question-circle"></i>
+    </button>
+</div>
+
+
+<div id="upload_page" class="upload_page">
+    <div class="class_main_view" id="main_view">
+
+        <div class="class_sideBar" id = "id_sideBar" style="width:0">
+            <!--<a href="javascript:void(0)" class="closeSideBar_btn" onclick="closeNav()">×</a>-->
+            <div class = "sideBar_tabs">
+                <button type="button" class ="tab_button"><i class="fas fa-cloud-upload-alt"></i> Upload Documents</button>
+            </div>
+            <div class = "sideBar_tabs">
+                <button type="button" class ="tab_button" id="process_tabs"><i class="fas fa-microchip"></i> Processor</button>
+                <div class="process_subTabs">
+                    <button type="button" class ="tab_button" id="full_view_tab"><i class="far fa-eye"></i> Full View Comparison</button>
+                    <button type="button" class ="tab_button" id="comparison_report_tab"><i class="fas fa-book-open"></i> Comparison Report</button>
+                </div>
+            </div>
+            <div class = "sideBar_tabs">
+                <button type="button" class ="tab_button" id="trial_tab">Trial</button>
+            </div>
+        </div>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <div class="modal-header">
+            </div>
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Insertion Difference: Highlighted In Green</p>
+                <p>Deletion Difference: Highlighted In Red</p>
+                <p>Case Difference: Highlighted In Blue</p>
+            </div>
+        </div>
+
+        <div class="full_view">
+          <form id="previous_form">
+              <button id="previous_button" class="previous" formaction="/">‹</button>
+          </form>
+            <iframe class="pdf_editor" id="ori" width="50%" height="750" style="border: none;"></iframe>
+            <iframe class="pdf_editor" id="comp" width="50%" height="750" style="border: none;"></iframe>
+          <form id="next_form" method="post">
+              <button id = "next_button" class="next" type="submit" form="next_form" name="name_next" onclick="start_ocr()" value="submit">›</button>
+          </form>
+        </div>
+    </div>
+</div>
+
+<div id="loading_page">
+    <div class="loader">
+      <div class="box box0">
+        <div></div>
+      </div>
+      <div class="box box1">
+        <div></div>
+      </div>
+      <div class="box box2">
+        <div></div>
+      </div>
+      <div class="box box3">
+        <div></div>
+      </div>
+      <div class="box box4">
+        <div></div>
+      </div>
+      <div class="box box5">
+        <div></div>
+      </div>
+      <div class="box box6">
+        <div></div>
+      </div>
+      <div class="box box7">
+        <div></div>
+      </div>
+      <div class="ground">
+        <div></div>
+      </div>
+    </div>
+  <!-- <small>Weird Google Chrome Bug, you'll need to hover the body to make sure all is rendered - anyone knows a solution?</small> -->
+  </div>
+    <script>
+
+    </script>
+
+<script src="js/pdf_annotate.js"></script>
+
+
+
+</body>
+</html>

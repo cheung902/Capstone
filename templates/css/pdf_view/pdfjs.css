@@ -1,0 +1,9 @@
+#viewerContainer{
+    overflow:hidden;
+}
+
+.minimap_comp{
+    width: 25%;
+    font-size: 0.28em; /* Ratio = 70/25 = 0.28 */
+    opacity: 0.5;
+  }
