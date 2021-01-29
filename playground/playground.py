@@ -1,20 +1,8 @@
-from PyPDF2 import PdfFileWriter, PdfFileReader
-from PyPDF2Highlight import createHighlight, addHighlightToPage
+from itertools import groupby
+from operator import itemgetter
 
-pdfInput = PdfFileReader(open("../contract_sample/comp_sample.pdf", "rb"))
-pdfOutput = PdfFileWriter()
-
-page1 = pdfInput.getPage(0)
-
-highlight = createHighlight(524,1449.83, 709, 1477.83, {
-    "author": "",
-    "contents": "Bla-bla-bla"
-})
-
-addHighlightToPage(highlight, page1, pdfOutput)
-
-
-pdfOutput.addPage(page1)
-
-outputStream = open("output.pdf", "wb")
-pdfOutput.write(outputStream)
+tmp = [1,2,3,4,6,7,9,10]
+tmp = [list(map(itemgetter(1), g)) for k, g in groupby(enumerate(tmp), lambda x: x[0]-x[1])]
+print(enumerate(tmp))
+print(groupby(enumerate(tmp), lambda x: x[0]-x[1]))
+print(tmp)

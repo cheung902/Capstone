@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91c8f46a-5302-4e35-9116-299e47a42f96" name="Default Changelist" comment="Region Selection -Drag">
+    <list default="true" id="91c8f46a-5302-4e35-9116-299e47a42f96" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compare.py" beforeDir="false" afterPath="$PROJECT_DIR$/compare.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compare_diff.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/compare_whole_text.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flaskRoute.py" beforeDir="false" afterPath="$PROJECT_DIR$/flaskRoute.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocess.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/css/upload_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/css/upload_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/js/upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/js/upload.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/upload.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ocr.py" beforeDir="false" afterPath="$PROJECT_DIR$/ocr.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playground/playground.py" beforeDir="false" afterPath="$PROJECT_DIR$/playground/playground.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pdf_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pdf_view.html" afterDir="false" />
     </list>
     <list id="b3719226-631c-4385-95de-880d5d71d06f" name="Unhandled Problem" comment="Unhandled Problem" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,11 +17,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flaskRoute.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="77">
+            <state relative-caret-position="153">
               <caret line="23" column="71" selection-start-line="23" selection-start-column="71" selection-end-line="23" selection-end-column="71" />
             </state>
           </provider>
@@ -34,8 +30,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/compare.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="42" selection-start-line="42" selection-end-line="42" />
+            <state relative-caret-position="336">
+              <caret line="599" column="36" selection-start-line="599" selection-start-column="36" selection-end-line="599" selection-end-column="36" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -43,23 +39,44 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/upload.html">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-23">
-              <caret line="99" column="14" selection-start-line="99" selection-start-column="14" selection-end-line="99" selection-end-column="14" />
+            <state relative-caret-position="264">
+              <caret line="249" column="37" selection-start-line="249" selection-start-column="37" selection-end-line="249" selection-end-column="37" />
+              <folding>
+                <element signature="e#0#17#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/pdf_annotate.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ocr.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="672">
+              <caret line="73" column="37" selection-start-line="73" selection-start-column="37" selection-end-line="73" selection-end-column="37" />
               <folding>
-                <element signature="n#style#0;n#iframe#0;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#19#37#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate_original.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="676">
+              <caret line="15064" selection-start-line="15064" selection-end-line="15065" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate_compare.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="15069" column="32" selection-start-line="15069" selection-start-column="32" selection-end-line="15069" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -76,15 +93,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>hidden</find>
-      <find>texture</find>
-      <find>viewer_old</find>
-      <find>viewThumbnailviewThumbnail</find>
-      <find>zoomOut</find>
-      <find>toolbarButton_viewOutline</find>
-      <find>viewOutline</find>
-      <find>search</find>
-      <find>zoomIn.svg</find>
       <find>menuArrow</find>
       <find>pageUp</find>
       <find>@2x.png</find>
@@ -97,7 +105,6 @@
       <find>in all cases</find>
       <find>in</find>
       <find>ori_data_frame</find>
-      <find>print</find>
       <find>get_group_of_text</find>
       <find>loading</find>
       <find>background</find>
@@ -105,7 +112,17 @@
       <find>finish</find>
       <find>shdChange</find>
       <find>shdNotChange</find>
+      <find>ignore_region</find>
       <find>ignore</find>
+      <find>numOfPages</find>
+      <find>ignore_ori</find>
+      <find>final</find>
+      <find>markedRegion</find>
+      <find>ignore_region_ori</find>
+      <find>compare</find>
+      <find>enter</find>
+      <find>s</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -147,36 +164,36 @@
         <option value="$PROJECT_DIR$/templates/loading.html" />
         <option value="$PROJECT_DIR$/templates/css/loading_style.css" />
         <option value="$PROJECT_DIR$/commonFNC.py" />
-        <option value="$PROJECT_DIR$/playground/playground.py" />
         <option value="$PROJECT_DIR$/templates/js/pdf_view.js" />
         <option value="$PROJECT_DIR$/templates/viewer/web/annotate.js" />
         <option value="$PROJECT_DIR$/templates/viewer/web/annotate.html" />
         <option value="$PROJECT_DIR$/viewer_old/web/annotate.css" />
         <option value="$PROJECT_DIR$/templates/viewer/web/annotate.css" />
         <option value="$PROJECT_DIR$/PyPDF2Highlight.py" />
-        <option value="$PROJECT_DIR$/templates/pdf_view.html" />
-        <option value="$PROJECT_DIR$/ocr.py" />
         <option value="$PROJECT_DIR$/templates/pdf_annotate.html" />
         <option value="$PROJECT_DIR$/templates/css/pdf_annotate.css" />
         <option value="$PROJECT_DIR$/preprocess.py" />
         <option value="$PROJECT_DIR$/templates/js/pdf_annotate.js" />
         <option value="$PROJECT_DIR$/flaskRoute.py" />
         <option value="$PROJECT_DIR$/templates/viewer/web/annotate_compare.html" />
-        <option value="$PROJECT_DIR$/templates/viewer/web/annotate_compare.js" />
         <option value="$PROJECT_DIR$/templates/viewer/web/annotate_compare.css" />
-        <option value="$PROJECT_DIR$/templates/viewer/web/annotate_original.js" />
         <option value="$PROJECT_DIR$/templates/viewer/web/annotate_original.html" />
         <option value="$PROJECT_DIR$/templates/viewer/web/annotate_original.css" />
-        <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/compare.py" />
         <option value="$PROJECT_DIR$/templates/upload.html" />
+        <option value="$PROJECT_DIR$/templates/pdf_view.html" />
+        <option value="$PROJECT_DIR$/ocr.py" />
+        <option value="$PROJECT_DIR$/playground/playground.py" />
+        <option value="$PROJECT_DIR$/templates/viewer/web/annotate_original.js" />
+        <option value="$PROJECT_DIR$/templates/viewer/web/annotate_compare.js" />
+        <option value="$PROJECT_DIR$/compare.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1" />
-    <option name="y" value="124" />
-    <option name="width" value="1440" />
+    <option name="x" value="1100" />
+    <option name="y" value="25" />
+    <option name="width" value="340" />
     <option name="height" value="820" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -185,13 +202,17 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="Capstone" type="b2602c69:ProjectViewProjectNode" />
               <item name="Capstone" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Capstone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Capstone" type="462c0819:PsiDirectoryNode" />
+              <item name="playground" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Capstone" type="b2602c69:ProjectViewProjectNode" />
@@ -204,10 +225,18 @@
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="viewer" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Capstone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Capstone" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="viewer" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -226,18 +255,18 @@
     </option>
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/contract_sample" />
-      <recent name="$PROJECT_DIR$/compare/comp/images" />
-      <recent name="$PROJECT_DIR$/playground" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/playground" />
       <recent name="$PROJECT_DIR$/templates/icons" />
       <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$/output" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/contract_sample" />
+      <recent name="$PROJECT_DIR$/compare/comp/images" />
+      <recent name="$PROJECT_DIR$/playground" />
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -744,7 +773,21 @@
       <option name="project" value="LOCAL" />
       <updated>1611591713026</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Region Selection -Drag">
+      <created>1611756868453</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1611756868453</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Region Selection -Drag">
+      <created>1611756939167</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1611756939167</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TodoView">
@@ -757,22 +800,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="26" width="1440" height="820" extended-state="6" />
+    <frame x="0" y="25" width="1440" height="820" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48642534" visible="true" weight="0.17336152" />
-      <window_info id="Structure" order="1" sideWeight="0.51357466" side_tool="true" weight="0.26145172" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48314607" visible="true" weight="0.17336152" />
+      <window_info id="Structure" order="1" sideWeight="0.5168539" side_tool="true" weight="0.17336152" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49612403" weight="0.32686982" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4918957" weight="0.3601108" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49119097" visible="true" weight="0.3836565" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39473686" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3283582" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49541932" weight="0.32700136" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3264177" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5081043" side_tool="true" weight="0.38781163" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50880903" side_tool="true" weight="0.3601108" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32700136" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49964765" weight="0.32970026" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -920,16 +963,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/playground/playground.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/viewer/web/viewer.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -959,17 +992,6 @@
     <entry file="file://$PROJECT_DIR$/images/comp_2.tiff">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/pdf_view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="52" column="27" selection-start-line="52" selection-start-column="27" selection-end-line="52" selection-end-column="27" />
-          <folding>
-            <element signature="n#style#0;n#iframe#0;n#div#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#iframe#0;n#div#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PyPDF2Highlight.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="371">
@@ -995,13 +1017,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="9" column="32" lean-forward="true" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate_compare.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="14938" column="37" selection-start-line="14938" selection-start-column="37" selection-end-line="14938" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -1033,63 +1048,91 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/templates/upload.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="193" column="30" selection-start-line="193" selection-start-column="30" selection-end-line="193" selection-end-column="30" />
+        <state relative-caret-position="243">
+          <caret line="105" column="91" selection-start-line="105" selection-start-column="91" selection-end-line="105" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/pdf_annotate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-74">
+          <caret line="47" column="51" selection-start-line="47" selection-start-column="51" selection-end-line="47" selection-end-column="51" />
           <folding>
-            <element signature="e#0#17#0" expanded="true" />
+            <element signature="n#style#0;n#iframe#0;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate_original.js">
+    <entry file="file://$PROJECT_DIR$/templates/pdf_view.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-520">
-          <caret line="14933" column="47" selection-start-line="14933" selection-start-column="47" selection-end-line="14933" selection-end-column="47" />
+        <state relative-caret-position="171">
+          <caret line="48" column="55" selection-start-line="48" selection-start-column="55" selection-end-line="48" selection-end-column="55" />
+          <folding>
+            <element signature="n#style#0;n#iframe#0;n#div#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#iframe#0;n#div#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playground/playground.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ocr.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="57" column="45" selection-start-line="57" selection-start-column="45" selection-end-line="57" selection-end-column="45" />
+        <state relative-caret-position="672">
+          <caret line="73" column="37" selection-start-line="73" selection-start-column="37" selection-end-line="73" selection-end-column="37" />
           <folding>
             <element signature="e#19#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate_compare.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="15069" column="32" selection-start-line="15069" selection-start-column="32" selection-end-line="15069" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate_original.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="676">
+          <caret line="15064" selection-start-line="15064" selection-end-line="15065" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/flaskRoute.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
+        <state relative-caret-position="153">
           <caret line="23" column="71" selection-start-line="23" selection-start-column="71" selection-end-line="23" selection-end-column="71" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/compare.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        <state relative-caret-position="336">
+          <caret line="599" column="36" selection-start-line="599" selection-start-column="36" selection-end-line="599" selection-end-column="36" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/upload.html">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-23">
-          <caret line="99" column="14" selection-start-line="99" selection-start-column="14" selection-end-line="99" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/pdf_annotate.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="264">
+          <caret line="249" column="37" selection-start-line="249" selection-start-column="37" selection-end-line="249" selection-end-column="37" />
           <folding>
-            <element signature="n#style#0;n#iframe#0;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#0#17#0" expanded="true" />
           </folding>
         </state>
       </provider>

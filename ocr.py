@@ -68,7 +68,7 @@ def ocr(inputFile, size, contrast, dpiNum, compOrori, lang):
 		file.write(json.dumps(data))
 
 	pdf_paths = []
-	for i in range(1, fileLimt):
+	for i in range(1, fileLimt+1):
 		input_path = "images/" + compOrori	+ "_" + str(i) + ".tiff"
 		output_path = "compare/" + compOrori + "/pdfs/" + compOrori + "_" + str(i) + ".pdf"
 		pdf_paths.append(output_path)
