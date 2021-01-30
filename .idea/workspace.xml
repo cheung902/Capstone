@@ -3,7 +3,38 @@
   <component name="ChangeListManager">
     <list default="true" id="91c8f46a-5302-4e35-9116-299e47a42f96" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare.py" beforeDir="false" afterPath="$PROJECT_DIR$/compare.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/comp/pdfs/comp_1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/comp/pdfs/comp_1.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/comp/pdfs/comp_10.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/comp/pdfs/comp_10.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/comp/pdfs/comp_11.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/comp/pdfs/comp_11.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/comp/pdfs/comp_2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/comp/pdfs/comp_2.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/comp/pdfs/comp_3.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/comp/pdfs/comp_3.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/comp/pdfs/comp_4.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/comp/pdfs/comp_4.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/comp/pdfs/comp_5.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/comp/pdfs/comp_5.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/comp/pdfs/comp_6.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/comp/pdfs/comp_6.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/comp/pdfs/comp_7.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/comp/pdfs/comp_7.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/comp/pdfs/comp_8.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/comp/pdfs/comp_8.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/comp/pdfs/comp_9.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/comp/pdfs/comp_9.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/ori/pdfs/ori_1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/ori/pdfs/ori_1.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/ori/pdfs/ori_10.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/ori/pdfs/ori_10.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/ori/pdfs/ori_11.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/ori/pdfs/ori_11.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/ori/pdfs/ori_2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/ori/pdfs/ori_2.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/ori/pdfs/ori_3.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/ori/pdfs/ori_3.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/ori/pdfs/ori_4.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/ori/pdfs/ori_4.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/ori/pdfs/ori_5.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/ori/pdfs/ori_5.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/ori/pdfs/ori_6.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/ori/pdfs/ori_6.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/ori/pdfs/ori_7.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/ori/pdfs/ori_7.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/ori/pdfs/ori_8.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/ori/pdfs/ori_8.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/ori/pdfs/ori_9.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/ori/pdfs/ori_9.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/comp_final.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/output/comp_final.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ori_final.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/output/ori_final.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playground/playground.py" beforeDir="false" afterPath="$PROJECT_DIR$/playground/playground.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/css/pdf_view/pdf_view.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/css/pdf_view/pdf_view.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/js/pdf_view.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/js/pdf_view.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/pdf_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pdf_view.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/upload.html" afterDir="false" />
     </list>
     <list id="b3719226-631c-4385-95de-880d5d71d06f" name="Unhandled Problem" comment="Unhandled Problem" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,71 +46,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flaskRoute.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="23" column="71" selection-start-line="23" selection-start-column="71" selection-end-line="23" selection-end-column="71" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/compare.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/pdf_view.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="119" selection-start-line="119" selection-end-line="119" />
-              <folding>
-                <element signature="n#style#0;n#iframe#0;n#div#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#iframe#0;n#div#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/js/pdf_view.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/css/pdf_annotate.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="904" column="3" lean-forward="true" selection-start-line="904" selection-start-column="3" selection-end-line="904" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/css/pdf_view/pdf_view.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="191" selection-start-line="191" selection-end-line="191" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4528">
-              <caret line="249" column="37" selection-start-line="249" selection-start-column="37" selection-end-line="249" selection-end-column="37" />
+            <state relative-caret-position="435">
+              <caret line="139" column="62" selection-start-line="139" selection-start-column="62" selection-end-line="139" selection-end-column="62" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -88,31 +58,49 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ocr.py">
+        <entry file="file://$PROJECT_DIR$/compare.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="672">
-              <caret line="73" column="37" selection-start-line="73" selection-start-column="37" selection-end-line="73" selection-end-column="37" />
+            <state relative-caret-position="656">
+              <caret line="87" column="20" selection-start-line="87" selection-start-column="20" selection-end-line="87" selection-end-column="20" />
               <folding>
-                <element signature="e#19#37#0" expanded="true" />
+                <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate_original.js">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/pdf_view.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="676">
-              <caret line="15064" selection-start-line="15064" selection-end-line="15065" selection-end-column="26" />
+            <state relative-caret-position="99">
+              <caret line="161" column="42" lean-forward="true" selection-start-line="161" selection-start-column="42" selection-end-line="161" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate_compare.js">
+        <entry file="file://$PROJECT_DIR$/templates/js/pdf_view.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="15069" column="32" selection-start-line="15069" selection-start-column="32" selection-end-line="15069" selection-end-column="32" />
+            <state relative-caret-position="154">
+              <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/playground/playground.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/css/pdf_view/pdf_view.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="326">
+              <caret line="248" column="1" lean-forward="true" selection-start-line="248" selection-start-column="1" selection-end-line="248" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -129,15 +117,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>viewLayers</find>
-      <find>case</find>
-      <find>loading-small</find>
-      <find>first</find>
-      <find>inserted</find>
-      <find>text</find>
-      <find>in all cases</find>
-      <find>in</find>
-      <find>ori_data_frame</find>
       <find>get_group_of_text</find>
       <find>loading</find>
       <find>background</find>
@@ -159,6 +138,15 @@
       <find>caseSensitive</find>
       <find>trial</find>
       <find>extract_list</find>
+      <find>background-color</find>
+      <find>extract</find>
+      <find>options</find>
+      <find>languages</find>
+      <find>js-example-basic-multiple</find>
+      <find>option</find>
+      <find>ground</find>
+      <find>overflow</find>
+      <find>tab</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -195,18 +183,15 @@
         <option value="$PROJECT_DIR$/playground.py" />
         <option value="$PROJECT_DIR$/templates/css/pdf_view.css" />
         <option value="$PROJECT_DIR$/templates/js/upload.js" />
-        <option value="$PROJECT_DIR$/templates/css/upload_style.css" />
         <option value="$PROJECT_DIR$/templates/loading.html" />
         <option value="$PROJECT_DIR$/templates/css/loading_style.css" />
         <option value="$PROJECT_DIR$/commonFNC.py" />
-        <option value="$PROJECT_DIR$/templates/js/pdf_view.js" />
         <option value="$PROJECT_DIR$/templates/viewer/web/annotate.js" />
         <option value="$PROJECT_DIR$/templates/viewer/web/annotate.html" />
         <option value="$PROJECT_DIR$/viewer_old/web/annotate.css" />
         <option value="$PROJECT_DIR$/templates/viewer/web/annotate.css" />
         <option value="$PROJECT_DIR$/PyPDF2Highlight.py" />
         <option value="$PROJECT_DIR$/templates/pdf_annotate.html" />
-        <option value="$PROJECT_DIR$/templates/css/pdf_annotate.css" />
         <option value="$PROJECT_DIR$/preprocess.py" />
         <option value="$PROJECT_DIR$/templates/js/pdf_annotate.js" />
         <option value="$PROJECT_DIR$/flaskRoute.py" />
@@ -214,13 +199,16 @@
         <option value="$PROJECT_DIR$/templates/viewer/web/annotate_compare.css" />
         <option value="$PROJECT_DIR$/templates/viewer/web/annotate_original.html" />
         <option value="$PROJECT_DIR$/templates/viewer/web/annotate_original.css" />
-        <option value="$PROJECT_DIR$/templates/upload.html" />
         <option value="$PROJECT_DIR$/ocr.py" />
-        <option value="$PROJECT_DIR$/playground/playground.py" />
         <option value="$PROJECT_DIR$/templates/viewer/web/annotate_original.js" />
         <option value="$PROJECT_DIR$/templates/viewer/web/annotate_compare.js" />
-        <option value="$PROJECT_DIR$/compare.py" />
+        <option value="$PROJECT_DIR$/templates/css/pdf_annotate.css" />
+        <option value="$PROJECT_DIR$/templates/upload.html" />
+        <option value="$PROJECT_DIR$/templates/css/upload_style.css" />
+        <option value="$PROJECT_DIR$/playground/playground.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/templates/js/pdf_view.js" />
+        <option value="$PROJECT_DIR$/compare.py" />
         <option value="$PROJECT_DIR$/templates/css/pdf_view/pdf_view.css" />
         <option value="$PROJECT_DIR$/templates/pdf_view.html" />
       </list>
@@ -272,14 +260,13 @@
               <item name="Capstone" type="b2602c69:ProjectViewProjectNode" />
               <item name="Capstone" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="viewer" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Capstone" type="b2602c69:ProjectViewProjectNode" />
               <item name="Capstone" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="viewer" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -330,7 +317,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.compare">
+  <component name="RunManager" selected="Python.main">
     <configuration name="commonFNC" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Capstone" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -856,21 +843,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1440" height="820" extended-state="6" />
+    <frame x="0" y="25" width="1440" height="821" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48314607" visible="true" weight="0.17336152" />
       <window_info id="Structure" order="1" sideWeight="0.5168539" side_tool="true" weight="0.17336152" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49612403" weight="0.32686982" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49119097" weight="0.3836565" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49119097" visible="true" weight="0.3692946" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39473686" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3283582" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="7" sideWeight="0.49541932" visible="true" weight="0.32686982" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49541932" weight="0.32686982" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3264177" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50880903" side_tool="true" weight="0.3601108" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50880903" side_tool="true" weight="0.3836565" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32700136" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49964765" weight="0.32970026" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -889,6 +877,22 @@
         <option value="3" />
         <option value="1" />
       </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
@@ -946,23 +950,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/compare/comp/images/comp_1.tiff" />
     <entry file="file://$PROJECT_DIR$/compare_whole_text.py" />
-    <entry file="file://$PROJECT_DIR$/templates/css/sample_style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="655">
-          <caret line="85" column="21" selection-start-line="85" selection-start-column="21" selection-end-line="85" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/label.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="37" column="57" selection-start-line="37" selection-start-column="54" selection-end-line="37" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/css/pdf_view.css" />
     <entry file="file://$PROJECT_DIR$/templates/loading.html" />
     <entry file="file://$PROJECT_DIR$/templates/js/upload.js">
@@ -973,13 +960,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/compare_diff.py" />
-    <entry file="file://$PROJECT_DIR$/templates/css/upload_style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="970" column="1" selection-start-line="970" selection-start-column="1" selection-end-line="970" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/css/loading_style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="631">
@@ -1083,13 +1063,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/upload.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="105" column="91" selection-start-line="105" selection-start-column="91" selection-end-line="105" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/pdf_annotate.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-74">
@@ -1100,23 +1073,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/playground/playground.py">
+    <entry file="file://$PROJECT_DIR$/flaskRoute.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+        <state relative-caret-position="-15">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/label.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="45" column="20" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
           <folding>
-            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ocr.py">
+    <entry file="file://$PROJECT_DIR$/templates/upload.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="73" column="37" selection-start-line="73" selection-start-column="37" selection-end-line="73" selection-end-column="37" />
+        <state relative-caret-position="133">
+          <caret line="105" column="119" lean-forward="true" selection-start-line="105" selection-start-column="119" selection-end-line="105" selection-end-column="129" />
           <folding>
-            <element signature="e#19#37#0" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#div#1;n#form#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/css/sample_style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="85" column="21" selection-start-line="85" selection-start-column="21" selection-end-line="85" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -1127,69 +1114,82 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ocr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-402">
+          <caret line="73" column="37" selection-start-line="73" selection-start-column="37" selection-end-line="73" selection-end-column="37" />
+          <folding>
+            <element signature="e#19#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate_original.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="676">
+        <state relative-caret-position="313">
           <caret line="15064" selection-start-line="15064" selection-end-line="15065" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flaskRoute.py">
+    <entry file="file://$PROJECT_DIR$/templates/css/upload_style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="23" column="71" selection-start-line="23" selection-start-column="71" selection-end-line="23" selection-end-column="71" />
+        <state relative-caret-position="143">
+          <caret line="271" column="14" selection-start-line="271" selection-start-column="14" selection-end-line="271" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/css/pdf_annotate.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="320" column="8" selection-start-line="320" selection-start-column="8" selection-end-line="320" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playground/playground.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4528">
-          <caret line="249" column="37" selection-start-line="249" selection-start-column="37" selection-end-line="249" selection-end-column="37" />
+        <state relative-caret-position="435">
+          <caret line="139" column="62" selection-start-line="139" selection-start-column="62" selection-end-line="139" selection-end-column="62" />
           <folding>
             <element signature="e#0#17#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/css/pdf_annotate.css">
+    <entry file="file://$PROJECT_DIR$/compare.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="904" column="3" lean-forward="true" selection-start-line="904" selection-start-column="3" selection-end-line="904" selection-end-column="3" />
+        <state relative-caret-position="656">
+          <caret line="87" column="20" selection-start-line="87" selection-start-column="20" selection-end-line="87" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/css/pdf_view/pdf_view.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="191" selection-start-line="191" selection-end-line="191" />
+        <state relative-caret-position="326">
+          <caret line="248" column="1" lean-forward="true" selection-start-line="248" selection-start-column="1" selection-end-line="248" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/js/pdf_view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
+        <state relative-caret-position="154">
+          <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/pdf_view.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="119" selection-start-line="119" selection-end-line="119" />
-          <folding>
-            <element signature="n#style#0;n#iframe#0;n#div#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#iframe#0;n#div#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/compare.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="99">
+          <caret line="161" column="42" lean-forward="true" selection-start-line="161" selection-start-column="42" selection-end-line="161" selection-end-column="42" />
         </state>
       </provider>
     </entry>

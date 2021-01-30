@@ -2,16 +2,11 @@ var d = new Date().getTime();
         console.log(d);
         document.getElementById("comp").src = "viewer/web/viewer.html?file=comp_final.pdf?rnd=" + d;
         document.getElementById("ori").src = "viewer/web/viewer.html?file=ori_final.pdf?rnd=" + d;
-        // document.getElementById("comp").src = "viewer/web/viewer.html?file=comp_sample.pdf?rnd=" + d;
-        // document.getElementById("ori").src = "viewer/web/viewer.html?file=ori_sample.pdf?rnd=" + d;
-        document.getElementById("trial_comp").src = "viewer/web/viewer.html?file=comp.pdf?rnd=" + d;
-        document.getElementById("trial_ori").src = "viewer/web/viewer.html?file=ori.pdf?rnd=" + d;
-        console.log(document.getElementById("ori").src);
 
         $(document).ready(function(){
 
         $(".comparison_report").hide();
-        $(".trial_view").hide();
+        $(".extraction_view").hide();
 
         $("#process_tabs").click(function(){
         $(".process_subTabs").toggle();
@@ -24,15 +19,15 @@ var d = new Date().getTime();
 
         $("#comparison_report_tab").click(function(){
         $(".full_view").hide();
-        $(".trial_view").hide();
+        $(".extraction_view").hide();
         $(".comparison_report").show();
         });
 
 
-        $("#trial_tab").click(function(){
+        $("#extract_tab").click(function(){
         $(".full_view").hide();
         $(".comparison_report").hide();
-        $(".trial_view").show();
+        $(".extraction_view").show();
         });
 
         $(window.frames[0]).on('scroll', function() {
@@ -42,7 +37,9 @@ var d = new Date().getTime();
         $(window.frames[1]).on('scroll', function() {
         $(window.frames[0]).scrollTop($(window.frames[1]).scrollTop());
         });
-
+        
+        $('.js-example-basic-multiple').select2();
+        $('.extract_table').DataTable();
         });
 
 function openNav() {

@@ -228,3 +228,24 @@ display: flex;
   text-decoration: none;
   cursor: pointer;
 }
+
+.table-wrapper{
+  margin-left: auto;
+  margin-right:auto;
+}
+
+
+.select2{
+  text-align: right;
+  width: 50%;
+}
+
+.row{
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+} 
+
+.table-body{
+  text-align: center;
+}

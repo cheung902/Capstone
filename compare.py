@@ -28,22 +28,24 @@ def compare_f1_f2(extract_list=""):
 	case_diff_num = 0
 	
 	#extract
-	extract_list = ["Name"]
+	extract_list = ["Name", "Address"]
 	# try:
-	ignore_comp = session.get('ignore_region_comp')
-	shdChange_comp = session.get('shdChange_region_comp')
-	shdNotChange_comp = session.get('shdNotChange_region_comp')
-	ignore_ori = session.get('ignore_region_ori')
-	shdChange_ori = session.get('shdChange_region_ori')
-	shdNotChange_ori = session.get('shdNotChange_region_ori')
-	caseSensitive = session.get('caseSensitive')
+	# ignore_comp = session.get('ignore_region_comp')
+	# shdChange_comp = session.get('shdChange_region_comp')
+	# shdNotChange_comp = session.get('shdNotChange_region_comp')
+	# ignore_ori = session.get('ignore_region_ori')
+	# shdChange_ori = session.get('shdChange_region_ori')
+	# shdNotChange_ori = session.get('shdNotChange_region_ori')
+	# caseSensitive = session.get('caseSensitive')
 
-	print("ignore_comp", session.get('ignore_region_comp'))
-	print("shdChange_comp", session.get('shdChange_region_comp'))
-	print("shdNotChange_comp", session.get('shdNotChange_region_comp'))
-	print("ignore_ori", session.get('ignore_region_ori'))
-	print("shdChange_ori", session.get('shdChange_region_ori'))
-	print("shdNotChange_ori", session.get('shdNotChange_region_ori'))
+	ignore_comp = []
+	shdChange_comp = []
+	shdNotChange_comp = []
+	ignore_ori = []
+	shdChange_ori = []
+	shdNotChange_ori = []
+	caseSensitive = []
+
 	# except:
 	# 	ignore_comp = ""
 	# 	shdChange_comp = ""
@@ -68,11 +70,11 @@ def compare_f1_f2(extract_list=""):
 																				 case_label, caseSensitive)
 
 	if (comp_diff != None):
-		ori_word_position, pos_num_list_ori = get_position(data_frame=ori_data_frame, diff_list=ori_diff,
+		ori_word_position, pos_num_list_ori = get_position(diff_list=ori_diff,
 										 insert_label=insert_label, delete_label=delete_label,
 										 case_label = case_label)
 
-		comp_word_position, pos_num_list_comp = get_position(data_frame=comp_data_frame, diff_list=comp_diff,
+		comp_word_position, pos_num_list_comp = get_position(diff_list=comp_diff,
 										  insert_label=insert_label, delete_label=delete_label,
 										  case_label = case_label)
 
@@ -80,14 +82,13 @@ def compare_f1_f2(extract_list=""):
 		word_list_comp = removeOverlap(comp_data_frame, pos_num_list_comp, comp_overlap)
 		highlight(ori_data_frame, word_list_ori, "ori")
 		highlight(comp_data_frame, word_list_comp, "comp")
-		# label_word(ignore_ori, shdChange_ori, shdNotChange_ori, ori_word_position, ori_max_page, "ori")
-		# label_word(ignore_comp, shdChange_comp, shdNotChange_comp, comp_word_position, comp_max_page, "comp")
 
-	extract_info(comp_data_frame, extract_list)
+	extractResult = extract_info(comp_data_frame, extract_list)
+	for item in extractResult:
+		print(item[0])
+	return insertion_num, deletion_num, case_diff_num, ori_max_page, comp_max_page, extractResult
 
-	return insertion_num, deletion_num, case_diff_num, ori_max_page, comp_max_page
-
-def get_position(data_frame, diff_list, insert_label, delete_label, case_label):
+def get_position( diff_list, insert_label, delete_label, case_label):
 	print("---------------Getting Word Number and Line Number-------------")
 	position_list = []
 	position_list_num = []
@@ -110,8 +111,6 @@ def get_position(data_frame, diff_list, insert_label, delete_label, case_label):
 				num += 1
 			if (insert_label_end in diff_list_split[num]):
 				word_end_num = num
-			append_position_list_sentence(data_frame=data_frame, position_list=position_list, word_start_num=word_start_num,
-									  word_end_num=word_end_num, insert_or_delete="1")
 			position_list_num.append([["1"],[word_start_num+1, word_end_num+1]])
 			continue
 		elif delete_label_start in element:
@@ -122,8 +121,6 @@ def get_position(data_frame, diff_list, insert_label, delete_label, case_label):
 				num += 1
 			if delete_label_end in diff_list_split[num]:
 				word_end_num = num
-			append_position_list_sentence(data_frame=data_frame, position_list=position_list,word_start_num=word_start_num,
-											  word_end_num=word_end_num, insert_or_delete="1")
 			position_list_num.append([["-1"],[word_start_num+1, word_end_num+1]])
 			continue
 
@@ -135,92 +132,18 @@ def get_position(data_frame, diff_list, insert_label, delete_label, case_label):
 				num += 1
 			if case_label_end in diff_list_split[num]:
 				word_end_num = num
-			append_position_list_sentence(data_frame=data_frame, position_list=position_list,word_start_num=word_start_num,
-											  word_end_num=word_end_num, insert_or_delete="2")
 			position_list_num.append([["2"], [word_start_num+1, word_end_num+1]])
 			continue
 
 		elif delete_label in element:
-			word = element.replace(delete_label, "")
-			append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="-1")
 			position_list_num.append(["1", [num+1]])
 
 		elif insert_label in element:
-			word = element.replace(insert_label, "")
-			append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="1")
 			position_list_num.append(["1", [num+1]])
 		elif case_label in element:
 
-			word = element.replace(case_label, "")
-			append_position_list(data_frame=data_frame, position_list=position_list, num=num, word=word, insert_or_delete="2")
 			position_list_num.append(["2", [num+1]])
 	return position_list, position_list_num
-
-
-def label_word(ignore_region, shdChange_region, shdNotChange_region, diff_list, max_page, compOrori):
-	print("Creating ", compOrori, ".pdf")
-
-	pdfInput = PdfFileReader(open("output/" + compOrori + ".pdf", "rb"))
-
-	numOfPages = pdfInput.getNumPages()
-	pdfOutput = PdfFileWriter()
-
-	for diff_pageIndex in range(0, numOfPages):
-		page = pdfInput.getPage(diff_pageIndex)
-		pypdf2_height = page.mediaBox.getHeight()
-		pypdf2_width = page.mediaBox.getWidth()
-
-		#top left and bottom right
-		img = cv2.imread('images/' + compOrori + '_' + str(diff_pageIndex + 1) + ".tiff")
-		cv2_height, cv2_width, _ = img.shape
-
-		nh = pypdf2_height/cv2_height
-		nw = pypdf2_width/cv2_width
-		for index, item in enumerate(diff_list):
-			if item[0] - 1 == diff_pageIndex:
-				overlap = False
-				(x, y, w, h) = (item[1][0], item[1][1], item[1][2], item[1][3])
-				#transform to pypdf2 region
-				(x_1, y_1, x_2, y_2) = (x*nw, (cv2_height - y - h)*nh, (x + w) *nw, (cv2_height - y)*nh)
-				diff_region = [x_1, y_1, x_2, y_2]
-				if (ignore_region is not None):
-					for marked_region in ignore_region:
-						marked_pageIndex = int(marked_region[0][0])
-						if (marked_pageIndex == diff_pageIndex):
-							print(item[3])
-							overlap = cal_overlap_area(marked_region, diff_region)
-							if (overlap == True):
-								break
-				if overlap == True:
-					continue
-
-
-				if item[2] == "-1":
-					print("Deleted: ", item[3], [x_1, y_1, x_2, y_2])
-					highlight = createHighlight(x1=x_1, y1=y_1, x2=x_2, y2=y_2,
-												meta={"author": "", "contents": "Bla-bla-bla"},
-												color=[1, 0.5, 0])
-					addHighlightToPage(highlight, page, pdfOutput)
-				elif item[2] == "1":
-					print("Inserted: ", item[3], [x_1, y_1, x_2, y_2])
-					highlight = createHighlight(x1=x_1, y1=y_1, x2=x_2, y2=y_2,
-												meta={"author": "", "contents": "Bla-bla-bla"},
-												color=[0, 1, 0])
-					addHighlightToPage(highlight, page, pdfOutput)
-				elif item[2] == "2":
-					print("Case Difference: ", item[3], [x_1, y_1, x_2, y_2])
-					highlight = createHighlight(x1=x_1, y1=y_1, x2=x_2, y2=y_2,
-												meta={"author": "", "contents": "Bla-bla-bla"},
-												color=[0, 0.5, 1])
-					addHighlightToPage(highlight, page, pdfOutput)
-		print("create page", diff_pageIndex)
-		pdfOutput.addPage(page)
-	outputStream = open("output/" +compOrori + "_final.pdf", "wb")
-	pdfOutput.write(outputStream)
-	# outputStream.close()
-	# os.rename("output/" + compOrori + "_final.pdf", "output/" + compOrori + ".pdf")
-	# removeFiles(pdf_paths)
-
 
 def diff_match(line1, line2, insertion_num, deletion_num, case_diff_num, insert_label, delete_label, case_label, caseSensitive):
 
@@ -407,87 +330,6 @@ def addTextLabel(text, label):
 
 	return sentence
 
-
-def append_position_list(data_frame, position_list, num, word, insert_or_delete):
-
-	word_num = num + 1
-	word_position = data_frame[(data_frame['text'] == word) & (data_frame['word_num'] == word_num)]
-	word_page_num = word_position.iloc[0]['page_num']
-
-	position_list.append([word_page_num,
-				[word_position.iloc[0]['left'], word_position.iloc[0]['top'],
-				word_position.iloc[0]['width'], word_position.iloc[0]['height']],
-				insert_or_delete, word_position.iloc[0]['text']])
-
-def append_position_list_sentence(data_frame, position_list, word_start_num, word_end_num, insert_or_delete):
-	word_start_num += 1
-	word_end_num +=1
-	first_word_line_num = data_frame[data_frame['word_num'] == word_start_num].iloc[0]['line_num']
-
-	this_block_num = position_block(data_frame, word_start_num)
-	last_block_num = position_block(data_frame, word_end_num)
-	block_diff = last_block_num - this_block_num
-
-	# if exist more than one blocks
-	# first determine the last word is in the next block, if yes -- start_num = next block's first word
-	# if not -- highlight the whole next block and keep loop to the other block
-	if (block_diff != 0):
-		for i in range(this_block_num + 1, last_block_num + 1):
-			if word_end_num in data_frame[data_frame['block_num_adjusted'] == i].word_num.values:
-				start_num = min(data_frame[(data_frame['block_num_adjusted'] == i) & (data_frame['word_num'] != 0)]['word_num'])
-				append_position_list_sentence(data_frame, position_list, start_num, word_end_num-1, insert_or_delete)
-				break
-			else:
-				start_num = min(data_frame[(data_frame['block_num_adjusted']==i) & (data_frame['word_num'] != 0)]['word_num'])
-				end_num = max(data_frame[data_frame['block_num_adjusted'] == i]['word_num'])
-				append_position_list_sentence(data_frame, position_list, start_num, end_num, insert_or_delete)
-
-		# if exist more than one block, last line equal to the last line in current block
-		# last word equal to the last word in current block
-		last_word_line_num = max(data_frame[data_frame['block_num_adjusted'] == this_block_num]['line_num'])
-		word_end_num = max(data_frame[(data_frame['block_num_adjusted']==this_block_num) & (data_frame['line_num'] == last_word_line_num)]['word_num'])
-	else:
-		# if only one block, last line equal to last word's line
-		last_word_line_num = data_frame[data_frame['word_num'] == word_end_num].iloc[0]['line_num']
-
-	# Start appending to position list
-	#if there is only one line
-	if first_word_line_num == last_word_line_num:
-		pageIndex = word_num_get_page_num(data_frame, word_start_num)
-		line_position = get_line_position(data_frame, word_start_num, word_end_num)
-		text = get_line_text(data_frame, word_start_num, word_end_num)
-		position_list.append([pageIndex, line_position, insert_or_delete, text, [word_start_num, word_end_num]])
-		return
-
-	#if there is more than one line
-	for i in range(1, last_word_line_num+1):
-		if i == first_word_line_num:
-			end_num = max(data_frame[(data_frame['block_num_adjusted'] == this_block_num) & (data_frame['line_num'] == i)]['word_num'])
-			pageIndex = word_num_get_page_num(data_frame, word_start_num)
-			line_position = get_line_position(data_frame, word_start_num, end_num)
-			position_list.append([pageIndex, line_position, insert_or_delete, "text", [word_start_num, end_num]])
-			continue
-
-		#if line is the last line, highlight the whole line until the last word.
-		if i == last_word_line_num:
-			start_num = min(data_frame[
-									 (data_frame['block_num_adjusted'] == this_block_num) & (data_frame['line_num'] == i) & (
-												 data_frame['word_num'] != 0)]['word_num'])
-			pageIndex = word_num_get_page_num(data_frame, start_num)
-			line_position = get_line_position(data_frame, start_num, word_end_num)
-			text = get_line_text(data_frame, start_num, word_end_num)
-			position_list.append([pageIndex, line_position, insert_or_delete, text, [start_num, word_end_num]])
-			return
-		else:
-			# if the line is neither fist nor last line, highlight the whole line.
-			start_num = min(data_frame[(data_frame['block_num_adjusted'] == this_block_num) & (data_frame['line_num'] == i) & (data_frame['word_num'] != 0)]['word_num'])
-			end_num = max(data_frame[(data_frame['block_num_adjusted'] == this_block_num) & (data_frame['line_num'] == i) & (data_frame['word_num'] != 0)]['word_num'])
-			pageIndex = word_num_get_page_num(data_frame, start_num)
-			line_position = get_line_position(data_frame, start_num, end_num)
-			text = get_line_text(data_frame, start_num, end_num)
-
-			position_list.append([pageIndex, line_position, insert_or_delete, text, [start_num, end_num]])
-	return
 def word_num_get_block_num(data_frame, word_num):
 	return data_frame[data_frame['word_num'] == word_num].iloc[0]['block_num_adjusted']
 
@@ -496,38 +338,6 @@ def word_num_get_line_num(data_frame, word_num):
 
 def word_num_get_page_num(data_frame, word_num):
 	return data_frame[data_frame['word_num'] == word_num].iloc[0]['page_num']
-
-def position_left(data_frame, first_word_num):
-	return data_frame[data_frame['word_num'] == first_word_num].iloc[0]['left']
-
-def position_top(data_frame, first_word_num, last_word_num):
-	return min(data_frame[data_frame['word_num'] == first_word_num].iloc[0]['top'], data_frame[data_frame['word_num'] == last_word_num].iloc[0]['top'])
-
-def position_width(data_frame, first_word_num, last_word_num):
-	return data_frame[data_frame['word_num'] == last_word_num].iloc[0]['left'] - data_frame[data_frame['word_num'] == first_word_num].iloc[0]['left'] + \
-		   data_frame[data_frame['word_num'] == last_word_num].iloc[0]['width']
-
-def position_height(data_frame, first_word_num, last_word_num):
-	return max(data_frame[data_frame['word_num'] == first_word_num].iloc[0]['height'],data_frame[data_frame['word_num'] == last_word_num].iloc[0]['height'])
-
-def position_block(data_frame, word_num):
-	return data_frame[data_frame['word_num'] == word_num].iloc[0]['block_num_adjusted']
-
-def get_line_text(data_frame, start_word_num, last_word_num):
-	start_index = data_frame.loc[data_frame['word_num'] == start_word_num].index[0]
-	last_index = data_frame.loc[data_frame['word_num'] == last_word_num].index[0]
-	text = data_frame.iloc[start_index - 1:last_index + 1]['text'].values.tolist()
-	text = " ".join(text)
-	return text
-
-def get_line_position(data_frame, start_word_num, last_word_num):
-
-	left = position_left(data_frame, start_word_num)
-	top = position_top(data_frame, start_word_num, last_word_num)
-	width = position_width(data_frame, start_word_num, last_word_num)
-	height = position_height(data_frame, start_word_num, last_word_num)
-
-	return [left, top, width, height]
 
 def cal_overlap_area(marked_region, diff_region):
 	for i in range(1, len(marked_region)):
@@ -550,15 +360,40 @@ def cal_overlap_area(marked_region, diff_region):
 	return False
 
 def extract_info(data_frame, list):
-	extracted_list = []
+	final_list = []
+
 	print("Start extraction")
 	for word in list:
-		block_word_num = data_frame[data_frame['text'].str.contains(word)][['block_num_adjusted','word_num','page_num']]
-		block_word_num =  block_word_num.drop_duplicates(subset = ["block_num_adjusted"]).values.tolist()
+		extracted_list = []
+		block = data_frame[data_frame['text'].str.contains(word)][['block_num_adjusted','word_num','page_num']]
+		# block_word_num = block.drop_duplicates(subset=["block_num_adjusted"]).values.tolist()
+		# print(block)
+		# print(block_word_num)
+		block_word_num =  block.drop_duplicates(subset = ["block_num_adjusted"]).values.tolist()
 		block_text = get_block_text(data_frame, word, block_word_num)
-		extracted_list.append(block_text)
-		print(extracted_list)
-	return
+		print(block_text)
+		for text in block_text:
+			text_list = text[0].split(" ")
+			extractSplit(word, text_list, extracted_list, text[1])
+		final_list.append([word, extracted_list])
+		# print("final", extracted_list)
+	return final_list
+
+def extractSplit(word, text, extracted_list, page_num):
+	tmp_1 = []
+	for index, str in enumerate(text):
+		if len(text) == 1:
+			extracted_list.append([text, page_num])
+			return
+		elif (index == len(text) - 1):
+			extracted_list.append([text, page_num])
+			return
+		tmp_1.append(str)
+		if word in text[index + 1]:
+			extracted_list.append([tmp_1, page_num])
+			tmp_2 = text[index+1:]
+			extractSplit(word, tmp_2, extracted_list, page_num)
+			break
 
 def get_block_text(data_frame, word, block_num_list):
 	text_list = []
@@ -568,7 +403,7 @@ def get_block_text(data_frame, word, block_num_list):
 		page_num = index[2]
 		text = data_frame[(data_frame['block_num_adjusted'] == block_num) & (data_frame['word_num']>= word_num)]['text'].values.tolist()
 		text = " ".join(text)
-		text_list.append([word, [page_num, text]])
+		text_list.append([text, page_num])
 	return text_list
 
 def pypdf2_cv2_coordinates(dataFrame, compOrori):

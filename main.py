@@ -125,8 +125,7 @@ def annotate():
 			extract_list = session.get('extract_list')
 
 			insertion_num, deletion_num,\
-			case_diff_num, ori_max_page, comp_max_page = compare_f1_f2(extract_list)
-
+			case_diff_num, ori_max_page, comp_max_page, extractResult = compare_f1_f2(extract_list)
 			# Comparison Metrics
 			ori_size = os.path.getsize(ori_path)/1000
 			comp_size = os.path.getsize(comp_path)/1000
@@ -148,7 +147,8 @@ def annotate():
 								insertion_num = insertion_num,
 								deletion_num = deletion_num,
 								insertion_radius = str(insertion_radius) + ",880" ,
-								deletion_radius = str(deletion_radius) + ",880")
+								deletion_radius = str(deletion_radius) + ",880",
+								extractResult = extractResult)
 
 	return render_template('pdf_annotate.html')
 
@@ -176,74 +176,6 @@ def annotate_ori():
 	session['ignore_region_ori'] = ignore_ori
 	session['shdChange_region_ori'] = shdChange_ori
 	session['shdNotChange_region_ori'] = shdChange_ori
-
-	# if (array_value[0][0] == "ignore_comp"):
-	# 	print("enter ignore_comp")
-	# 	ignore_comp = []
-	# 	page = None
-	# 	array_value.pop(0)
-	# 	for item in array_value:
-	# 		if len(item) == 2:
-	# 			page = item[0]
-	# 			continue
-	# 		ignore_comp.append([page, item])
-	# 	session["ignore_region_comp"] = ignore_comp
-	# elif (array_value[0][0] == "shdChange_comp"):
-	# 	print("enter shdChange_comp")
-	# 	shdChange_comp = []
-	# 	page = None
-	# 	array_value.pop(0)
-	# 	for item in array_value:
-	# 		if len(item) == 2:
-	# 			page = item[0]
-	# 			continue
-	# 		shdChange_comp.append([page, item])
-	# 	session["shdChange_region_comp"] = shdChange_comp
-	# elif (array_value[0][0] == "shdNotChange_comp"):
-	# 	print("enter shdNotChange_comp")
-	# 	shdNotChange_comp = []
-	# 	page = None
-	# 	array_value.pop(0)
-	# 	for item in array_value:
-	# 		if len(item) == 2:
-	# 			page = item[0]
-	# 			continue
-	# 		shdNotChange_comp.append([page, item])
-	# 	session["shdNotChange_region_comp"] = shdNotChange_comp
-	# elif (array_value[0][0] == "ignore_ori"):
-	# 	print("enter ignore_ori")
-	# 	ignore_ori = []
-	# 	page = None
-	# 	array_value.pop(0)
-	# 	for item in array_value:
-	# 		if len(item) == 2:
-	# 			page = item[0]
-	# 			continue
-	# 		ignore_ori.append([page, item])
-	# 	session["ignore_region_ori"] = ignore_ori
-	# elif (array_value[0][0] == "shdChange_ori"):
-	# 	print("enter shdChange_ori")
-	# 	shdChange_ori = []
-	# 	page = None
-	# 	array_value.pop(0)
-	# 	for item in array_value:
-	# 		if len(item) == 2:
-	# 			page = item[0]
-	# 			continue
-	# 		shdChange_ori.append([page, item])
-	# 	session["shdChange_region_ori"] = shdChange_ori
-	# elif (array_value[0][0] == "shdNotChange_ori"):
-	# 	print("enter shdNotChange_ori")
-	# 	shdNotChange_ori = []
-	# 	page = None
-	# 	array_value.pop(0)
-	# 	for item in array_value:
-	# 		shdNotChange_ori = []
-	# 		if len(item) == 2:
-	# 			page = item[0]
-	# 			continue
-	# 		shdNotChange_ori.append([page, item])
-	# 	session["shdNotChange_region_ori"] = shdNotChange_ori
 
 	return ('', 204)
 
