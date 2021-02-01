@@ -3,33 +3,9 @@ var d = new Date().getTime();
         // document.getElementById("comp").src = "viewer/web/viewer.html?file=comp.pdf?rnd=" + d;
         document.getElementById("ori").src = "viewer/web/annotate_original.html?file=ori.pdf?rnd=" + d;
         document.getElementById("comp").src = "viewer/web/annotate_compare.html?file=comp.pdf?rnd=" + d;
-
+      
         $(document).ready(function(){
 
-        $(".comparison_report").hide();
-        $(".trial_view").hide();
-
-        $("#process_tabs").click(function(){
-        $(".process_subTabs").toggle();
-        });
-
-        $("#full_view_tab").click(function(){
-        $(".comparison_report").hide();
-        $(".full_view").show();
-        });
-
-        $("#comparison_report_tab").click(function(){
-        $(".full_view").hide();
-        $(".trial_view").hide();
-        $(".comparison_report").show();
-        });
-
-
-        $("#trial_tab").click(function(){
-        $(".full_view").hide();
-        $(".comparison_report").hide();
-        $(".trial_view").show();
-        });
 
         $(window.frames[0]).on('scroll', function() {
         $(window.frames[1]).scrollTop($(window.frames[0]).scrollTop());
@@ -104,7 +80,7 @@ document.getElementById('loading_page').style.display = "flex";
 }
 
 $("#comp").on('load', function(){
-
+  document.getElementById('comp').contentWindow.PDFViewerApplication.pdfViewer.currentPageNumber = 1;
   $("#comp").contents().find("#viewerContainer").on('scroll', function(){ 
     $("#ori").contents().find("#viewerContainer").scrollTop($(this).scrollTop());
   });

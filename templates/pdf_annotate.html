@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="css/pdf_annotate.css">
     <script src="https://kit.fontawesome.com/1602f398c5.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/annotate.js"></script>
     <script src="viewer/web/viewer.js"></script>
 </head>
 <body>
@@ -25,17 +24,13 @@
         <div class="class_sideBar" id = "id_sideBar" style="width:0">
             <!--<a href="javascript:void(0)" class="closeSideBar_btn" onclick="closeNav()">×</a>-->
             <div class = "sideBar_tabs">
-                <button type="button" class ="tab_button"><i class="fas fa-cloud-upload-alt"></i> Upload Documents</button>
+                <button type="button" class ="tab_button" id="upload_tab"><i class="fas fa-cloud-upload-alt"></i> Upload Documents</button>
             </div>
             <div class = "sideBar_tabs">
-                <button type="button" class ="tab_button" id="process_tabs"><i class="fas fa-microchip"></i> Processor</button>
-                <div class="process_subTabs">
-                    <button type="button" class ="tab_button" id="full_view_tab"><i class="far fa-eye"></i> Full View Comparison</button>
-                    <button type="button" class ="tab_button" id="comparison_report_tab"><i class="fas fa-book-open"></i> Comparison Report</button>
-                </div>
+                <button type="button" class ="tab_button" id="annotate_tab"><i class="fas fa-edit"></i> Annotator</button>
             </div>
             <div class = "sideBar_tabs">
-                <button type="button" class ="tab_button" id="trial_tab">Trial</button>
+              <button type="button" class ="tab_button" id="report_tab"><i class="fas fa-book-open"></i> Report</button>
             </div>
         </div>
 
@@ -96,13 +91,8 @@
     </div>
   <!-- <small>Weird Google Chrome Bug, you'll need to hover the body to make sure all is rendered - anyone knows a solution?</small> -->
   </div>
-    <script>
 
-    </script>
-
-<script src="js/pdf_annotate.js"></script>
-
-
+  <script src="js/pdf_annotate.js"></script>
 
 </body>
 </html>

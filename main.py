@@ -11,7 +11,6 @@ from datetime import timedelta
 import time
 from PyPDF2 import PdfFileWriter, PdfFileReader
 from PyPDF2Highlight import createHighlight, addHighlightToPage
-
 import json
 import time
 import itertools
@@ -67,8 +66,8 @@ def upload_page():
 			session['ori_filename'] = ori_file.filename
 
 			if (comp_file.filename == '' or ori_file.filename == ''):
-				return redirect('/pdf_annotate')
-				#return render_template('upload.html', error = "no_file")
+				# return redirect('/pdf_annotate')
+				return render_template('upload.html', error = "no_file")
 			if (not allowed_file(comp_file.filename) or not allowed_file(ori_file.filename)):
 				return render_template('upload.html', error = "file_format")
 

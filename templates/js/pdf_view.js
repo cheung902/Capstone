@@ -1,46 +1,66 @@
 var d = new Date().getTime();
-        console.log(d);
-        document.getElementById("comp").src = "viewer/web/viewer.html?file=comp_final.pdf?rnd=" + d;
-        document.getElementById("ori").src = "viewer/web/viewer.html?file=ori_final.pdf?rnd=" + d;
+console.log(d);
+document.getElementById("comp").src = "viewer/web/viewer.html?file=comp_final.pdf?rnd=" + d;
+document.getElementById("ori").src = "viewer/web/viewer.html?file=ori_final.pdf?rnd=" + d;
+$('#upload_tab').attr('disabled','disabled');
+$('#annotate_tab').attr('disabled','disabled');
 
-        $(document).ready(function(){
+$(window).on('load', function(){
+  $(".comparison_report").hide();
+  $(".extraction_view").hide();
+  $(".report_subTab").hide();
 
-        $(".comparison_report").hide();
-        $(".extraction_view").hide();
+  $("#report_tab").click(function(){
+    $(".report_subTab").toggle();
+  });
 
-        $("#process_tabs").click(function(){
-        $(".process_subTabs").toggle();
+  $("#full_view_tab").click(function(){
+    $(".comparison_report").hide();
+    $(".full_view").show();
+  });
+
+  $("#comparison_report_tab").click(function(){
+    $(".full_view").hide();
+    $(".extraction_view").hide();
+    $(".comparison_report").show();
+  });
+
+
+  $("#extract_tab").click(function(){
+    $(".full_view").hide();
+    $(".comparison_report").hide();
+    $(".extraction_view").show();
+  });
+
+  $(window.frames[0]).on('scroll', function() {
+    $(window.frames[1]).scrollTop($(window.frames[0]).scrollTop());
+  });
+
+  $(window.frames[1]).on('scroll', function() {
+    $(window.frames[0]).scrollTop($(window.frames[1]).scrollTop());
+  });
+  
+  $('.js-example-basic-multiple').select2();
+  $('.extract_table').DataTable();  
+
+  $(".page").click(function(){
+    var page = Number($(this).find('a').attr('class'));
+    document.getElementById('comp').contentWindow.PDFViewerApplication.pdfViewer.currentPageNumber = page;
+    $("#full_view_tab").click();
+  
+  })
+
+  $( "<div>Extraction Result</div>" ).insertBefore( "#DataTables_Table_0_wrapper" );
+  $('#DataTables_Table_0_wrapper').prev('div').addClass('table-title');
+  $('#extract_table tbody').on( 'mouseenter', 'td', function () {
+      var colIdx = table.cell(this).index().column;
+
+      $( table.cells().nodes() ).removeClass( 'highlight' );
+      $( table.column( colIdx ).nodes() ).addClass( 'highlight' );
+  });
         });
+    
 
-        $("#full_view_tab").click(function(){
-        $(".comparison_report").hide();
-        $(".full_view").show();
-        });
-
-        $("#comparison_report_tab").click(function(){
-        $(".full_view").hide();
-        $(".extraction_view").hide();
-        $(".comparison_report").show();
-        });
-
-
-        $("#extract_tab").click(function(){
-        $(".full_view").hide();
-        $(".comparison_report").hide();
-        $(".extraction_view").show();
-        });
-
-        $(window.frames[0]).on('scroll', function() {
-        $(window.frames[1]).scrollTop($(window.frames[0]).scrollTop());
-        });
-
-        $(window.frames[1]).on('scroll', function() {
-        $(window.frames[0]).scrollTop($(window.frames[1]).scrollTop());
-        });
-        
-        $('.js-example-basic-multiple').select2();
-        $('.extract_table').DataTable();
-        });
 
 function openNav() {
 

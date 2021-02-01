@@ -101,6 +101,10 @@ font-size: 20px;
     color: DodgerBlue
 }
 
+#upload_tab, #report_tab{
+  color:grey;
+}
+
 .process_subTabs{
     padding-left: 15px;
     padding-top: 5px;

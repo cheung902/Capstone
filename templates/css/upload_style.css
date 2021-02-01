@@ -239,9 +239,9 @@ padding:0.5em;
 /* Modal Content/Box */
 .functions-content {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  width: 30%; /* Could be more or less, depending on screen size */
-  height: 50%; 
+  margin: 5% auto; /* 15% from the top and centered */
+  width: 30%; /* Could be more or less, depending on screen size */ 
+  height: max-content;
   display: block;
 }
 
@@ -274,6 +274,7 @@ padding-top: 1em;
 
 .filter_div{
   margin-top: 3em;
+  margin-bottom: 3em;
   text-align:center;
 }
 
@@ -282,6 +283,18 @@ padding-top: 1em;
   background-color: DodgerBlue;
   color: white;
   padding: 0.5em 1em;
+}
+
+#extract{
+background-color: white;
+border: 1px solid #aaa;
+border-radius: 4px;
+cursor: text;
+padding-bottom: 5px;
+padding-right: 5px;
+min-height: 32px;
+width:75%;
+height:3em;
 }
 
 

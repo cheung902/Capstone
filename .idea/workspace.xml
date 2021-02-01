@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91c8f46a-5302-4e35-9116-299e47a42f96" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compare.py" beforeDir="false" afterPath="$PROJECT_DIR$/compare.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compare/comp/pdfs/comp_1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/comp/pdfs/comp_1.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compare/comp/pdfs/comp_10.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/comp/pdfs/comp_10.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compare/comp/pdfs/comp_11.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/comp/pdfs/comp_11.pdf" afterDir="false" />
@@ -26,15 +24,8 @@
       <change beforePath="$PROJECT_DIR$/compare/ori/pdfs/ori_7.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/ori/pdfs/ori_7.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compare/ori/pdfs/ori_8.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/ori/pdfs/ori_8.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compare/ori/pdfs/ori_9.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/compare/ori/pdfs/ori_9.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/comp_final.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/output/comp_final.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/ori_final.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/output/ori_final.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/playground/playground.py" beforeDir="false" afterPath="$PROJECT_DIR$/playground/playground.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/css/pdf_view/pdf_view.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/css/pdf_view/pdf_view.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/js/pdf_view.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/js/pdf_view.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/pdf_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pdf_view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/upload.html" afterDir="false" />
     </list>
     <list id="b3719226-631c-4385-95de-880d5d71d06f" name="Unhandled Problem" comment="Unhandled Problem" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -69,20 +60,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/pdf_view.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="161" column="42" lean-forward="true" selection-start-line="161" selection-start-column="42" selection-end-line="161" selection-end-column="42" />
+            <state relative-caret-position="308">
+              <caret line="169" column="50" lean-forward="true" selection-start-line="169" selection-start-column="50" selection-end-line="169" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate_compare.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="125">
+              <caret line="5427" column="29" selection-start-line="5427" selection-start-column="12" selection-end-line="5427" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/js/pdf_view.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
+            <state relative-caret-position="228">
+              <caret line="43" column="38" lean-forward="true" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -100,7 +100,7 @@
         <entry file="file://$PROJECT_DIR$/templates/css/pdf_view/pdf_view.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="326">
-              <caret line="248" column="1" lean-forward="true" selection-start-line="248" selection-start-column="1" selection-end-line="248" selection-end-column="11" />
+              <caret line="248" column="1" selection-start-line="248" selection-start-column="1" selection-end-line="248" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -117,8 +117,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>get_group_of_text</find>
-      <find>loading</find>
       <find>background</find>
       <find>annotate</find>
       <find>finish</find>
@@ -147,6 +145,8 @@
       <find>ground</find>
       <find>overflow</find>
       <find>tab</find>
+      <find>currentPage</find>
+      <find>currentPagenumber</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -207,10 +207,10 @@
         <option value="$PROJECT_DIR$/templates/css/upload_style.css" />
         <option value="$PROJECT_DIR$/playground/playground.py" />
         <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/templates/js/pdf_view.js" />
         <option value="$PROJECT_DIR$/compare.py" />
         <option value="$PROJECT_DIR$/templates/css/pdf_view/pdf_view.css" />
         <option value="$PROJECT_DIR$/templates/pdf_view.html" />
+        <option value="$PROJECT_DIR$/templates/js/pdf_view.js" />
       </list>
     </option>
   </component>
@@ -267,6 +267,13 @@
               <item name="Capstone" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="viewer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Capstone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Capstone" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="viewer" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -830,7 +837,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611899622848</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Changed session method">
+      <created>1612011209421</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1612011209421</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TodoView">
@@ -843,7 +857,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1440" height="821" extended-state="6" />
+    <frame x="-1" y="26" width="1440" height="821" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48314607" visible="true" weight="0.17336152" />
@@ -851,7 +865,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49612403" weight="0.32686982" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49119097" visible="true" weight="0.3692946" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49119097" weight="0.3692946" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39473686" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1107,13 +1121,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate_compare.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="15069" column="32" selection-start-line="15069" selection-start-column="32" selection-end-line="15069" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ocr.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-402">
@@ -1175,21 +1182,28 @@
     <entry file="file://$PROJECT_DIR$/templates/css/pdf_view/pdf_view.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
-          <caret line="248" column="1" lean-forward="true" selection-start-line="248" selection-start-column="1" selection-end-line="248" selection-end-column="11" />
+          <caret line="248" column="1" selection-start-line="248" selection-start-column="1" selection-end-line="248" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/js/pdf_view.js">
+    <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate_compare.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
+        <state relative-caret-position="125">
+          <caret line="5427" column="29" selection-start-line="5427" selection-start-column="12" selection-end-line="5427" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/pdf_view.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="161" column="42" lean-forward="true" selection-start-line="161" selection-start-column="42" selection-end-line="161" selection-end-column="42" />
+        <state relative-caret-position="308">
+          <caret line="169" column="50" lean-forward="true" selection-start-line="169" selection-start-column="50" selection-end-line="169" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/js/pdf_view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="43" column="38" lean-forward="true" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
         </state>
       </provider>
     </entry>

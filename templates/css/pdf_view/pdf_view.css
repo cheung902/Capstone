@@ -101,7 +101,11 @@ font-size: 20px;
     color: DodgerBlue
 }
 
-.process_subTabs{
+#upload_tab, #annotate_tab{
+  color:grey;
+}
+
+.report_subTab{
     padding-left: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -186,7 +190,7 @@ color: red;
 }
 
 .extraction_view{
-margin-top: 100px;
+margin-top: 25px;
 display: flex;
 }
 
@@ -248,4 +252,34 @@ display: flex;
 
 .table-body{
   text-align: center;
+}
+
+.page{
+  cursor:pointer;
+}
+
+.keyWord{
+  color: #485d7a;
+  font-weight: bold;
+}
+
+.dataTables_wrapper{
+  padding-left:1em;
+  padding-right:1em;
+  background: #FBFBFE;
+}
+
+.table-title{
+  background: #485d7a;
+  color: white;
+  font-size: 1.5em;
+  padding: 0.5em;
+}
+
+#DataTables_Table_0_filter, #DataTables_Table_0_length{
+  padding-top:1.5em;
+}
+
+td.highlight {
+  background-color: whitesmoke !important;
 }
