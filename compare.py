@@ -12,7 +12,7 @@ from operator import itemgetter
 from itertools import groupby
 
 
-def compare_f1_f2(extract_list=""):
+def compare_f1_f2():
 	print("-----------------------------------")
 	print("Comparing files ")
 	print("-----------------------------------")
@@ -28,23 +28,25 @@ def compare_f1_f2(extract_list=""):
 	case_diff_num = 0
 	
 	#extract
-	extract_list = ["Name", "Address"]
+	# extract_list = "Name, Address"
 	# try:
-	# ignore_comp = session.get('ignore_region_comp')
-	# shdChange_comp = session.get('shdChange_region_comp')
-	# shdNotChange_comp = session.get('shdNotChange_region_comp')
-	# ignore_ori = session.get('ignore_region_ori')
-	# shdChange_ori = session.get('shdChange_region_ori')
-	# shdNotChange_ori = session.get('shdNotChange_region_ori')
-	# caseSensitive = session.get('caseSensitive')
+	ignore_comp = session.get('ignore_region_comp')
+	shdChange_comp = session.get('shdChange_region_comp')
+	shdNotChange_comp = session.get('shdNotChange_region_comp')
+	ignore_ori = session.get('ignore_region_ori')
+	shdChange_ori = session.get('shdChange_region_ori')
+	shdNotChange_ori = session.get('shdNotChange_region_ori')
+	caseSensitive = session.get('caseSensitive')
 
-	ignore_comp = []
-	shdChange_comp = []
-	shdNotChange_comp = []
-	ignore_ori = []
-	shdChange_ori = []
-	shdNotChange_ori = []
-	caseSensitive = []
+	extract_list = session.get('extract_list')
+	extract_list = extract_list.split(",")
+	# ignore_comp = []
+	# shdChange_comp = []
+	# shdNotChange_comp = []
+	# ignore_ori = []
+	# shdChange_ori = []
+	# shdNotChange_ori = []
+	# caseSensitive = []
 
 	# except:
 	# 	ignore_comp = ""
@@ -361,18 +363,21 @@ def cal_overlap_area(marked_region, diff_region):
 	return False
 
 def extract_info(data_frame, list):
+	if len(list) ==0 :
+		return
 	final_list = []
 
 	print("Start extraction")
 	for word in list:
+		stripped_word = word.strip()
 		extracted_list = []
-		block = data_frame[data_frame['text'].str.contains(word)][['block_num_adjusted','word_num','page_num']]
+		block = data_frame[data_frame['text'].str.contains(stripped_word, case= False)][['block_num_adjusted','word_num','page_num']]
 		block_word_num =  block.drop_duplicates(subset = ["block_num_adjusted"]).values.tolist()
-		block_text = get_block_text(data_frame, word, block_word_num)
+		block_text = get_block_text(data_frame, stripped_word, block_word_num)
 		for text in block_text:
 			text_list = text[0].split(" ")
-			extractSplit(word, text_list, extracted_list, text[1])
-		final_list.append([word, extracted_list])
+			extractSplit(stripped_word, text_list, extracted_list, text[1])
+		final_list.append([stripped_word, extracted_list])
 	return final_list
 
 def extractSplit(word, text, extracted_list, page_num):
@@ -570,12 +575,10 @@ def lowConfidenceWordNum(dataFrame, threshold):
 	dataFrame['conf'] = dataFrame['conf'].astype(int)
 	output = dataFrame[(dataFrame['conf'] < 90) & (dataFrame['conf'] != -1)]
 	output = output[['word_num']].values.tolist()
-	print(output)
 	return output
 
 def matchInList(wordNum, numList):
 	for i in numList:
-		print("num", wordNum,"num in list", i[0])
 		if wordNum == i[0]:
 			return True
 	return False

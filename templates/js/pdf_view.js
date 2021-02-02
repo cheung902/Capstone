@@ -49,7 +49,8 @@ $(window).on('load', function(){
   $('.js-example-basic-multiple').select2();
   $('.extract_table').DataTable();  
 
-  $(".page").click(function(){
+  $(".extract_table tbody").on('click', 'td:last-child span', function(){
+    console.log("page clicked")
     var page = Number($(this).find('a').attr('class'));
     document.getElementById('comp').contentWindow.PDFViewerApplication.pdfViewer.currentPageNumber = page;
     $("#full_view_tab").click();
@@ -95,6 +96,15 @@ $(window).on('load', function(){
 
     });
 
+// function pageClicked(){
+//   console.log("page clicked")
+//   var page = Number($(this).find('a').attr('class'));
+//   var page = Number(this.getElementsByTagName('a').className)
+//   console.log(page);
+//   document.getElementById('comp').contentWindow.PDFViewerApplication.pdfViewer.currentPageNumber = page;
+//   $("#full_view_tab").click();
+
+// }
 
 function openNav() {
 

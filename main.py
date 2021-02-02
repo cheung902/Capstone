@@ -115,16 +115,13 @@ def upload_page():
 def annotate():
 	if (request.method == 'POST'):
 		if (request.form["name_next"] == "submit"):
-			time.sleep(3)
 			comp_path = session.get('comp')
 			ori_path = session.get('ori')
 			comp_filename = session.get('comp_filename')
 			ori_filename = session.get('ori_filename')
-			caseSensitive = session.get('caseSensitive')
-			extract_list = session.get('extract_list')
 
 			insertion_num, deletion_num,\
-			case_diff_num, ori_max_page, comp_max_page, extractResult, oriLowConf, compLowConf = compare_f1_f2(extract_list)
+			case_diff_num, ori_max_page, comp_max_page, extractResult, oriLowConf, compLowConf = compare_f1_f2()
 			# Comparison Metrics
 			ori_size = os.path.getsize(ori_path)/1000
 			comp_size = os.path.getsize(comp_path)/1000
@@ -152,8 +149,6 @@ def annotate_ori():
 	print("submitted", "\n")
 
 	array_value = list(request.form.to_dict(flat=False).values())
-	print(array_value)
-	print(array_value[0][0])
 
 	ignore_ori, shdChange_ori, shdNotChange_ori = [],[],[]
 	for index, item in enumerate(array_value):
@@ -176,14 +171,10 @@ def annotate_ori():
 @app.route('/annotate_comp',methods = ['GET', 'POST'])
 def annotate_comp():
 	session.permanent = True
-	print("submitted", "\n")
 
 	array_value = list(request.form.to_dict(flat=False).values())
-	print(array_value)
-	print(array_value[0][0])
 	ignore_comp, shdChange_comp, shdNotChange_comp = [],[],[]
 	for index, item in enumerate(array_value):
-		print(item)
 		if item[1] == "ignore":
 			pageNum = item[0]
 			ignore_comp.append([pageNum, array_value[index+1]])

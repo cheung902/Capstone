@@ -3,16 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="91c8f46a-5302-4e35-9116-299e47a42f96" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyPDF2Highlight.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyPDF2Highlight.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compare.py" beforeDir="false" afterPath="$PROJECT_DIR$/compare.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/css/pdf_annotate.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/css/pdf_annotate.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/css/pdf_view/pdf_view.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/css/pdf_view/pdf_view.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/css/upload_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/css/upload_style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/js/pdf_view.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/js/pdf_view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pdf_annotate.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pdf_annotate.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pdf_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pdf_view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/upload.html" afterDir="false" />
     </list>
     <list id="b3719226-631c-4385-95de-880d5d71d06f" name="Unhandled Problem" comment="Unhandled Problem" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,11 +16,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/compare.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-5999">
+              <caret line="41" column="21" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="211" lean-forward="true" selection-start-line="211" selection-end-line="211" />
+            <state relative-caret-position="67">
+              <caret line="137" column="20" lean-forward="true" selection-start-line="137" selection-start-column="20" selection-end-line="137" selection-end-column="20" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -36,13 +41,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/compare.py">
+        <entry file="file://$PROJECT_DIR$/templates/js/pdf_view.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="574" selection-start-line="574" selection-end-line="574" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="92">
+              <caret line="50" selection-start-line="50" selection-end-line="50" />
             </state>
           </provider>
         </entry>
@@ -50,8 +52,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PyPDF2Highlight.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="65" />
+            <state relative-caret-position="138">
+              <caret line="38" column="15" lean-forward="true" selection-start-line="38" selection-start-column="15" selection-end-line="38" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -68,7 +70,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>finish</find>
       <find>shdChange</find>
       <find>shdNotChange</find>
       <find>ignore_region</find>
@@ -98,6 +99,7 @@
       <find>full_view</find>
       <find>gg</find>
       <find>print</find>
+      <find>word</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -155,13 +157,13 @@
         <option value="$PROJECT_DIR$/playground/playground.py" />
         <option value="$PROJECT_DIR$/templates/css/pdf_view/pdf_view.css" />
         <option value="$PROJECT_DIR$/templates/pdf_view.html" />
-        <option value="$PROJECT_DIR$/templates/js/pdf_view.js" />
         <option value="$PROJECT_DIR$/templates/upload.html" />
         <option value="$PROJECT_DIR$/templates/js/upload.js" />
         <option value="$PROJECT_DIR$/templates/css/upload_style.css" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/PyPDF2Highlight.py" />
+        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/compare.py" />
+        <option value="$PROJECT_DIR$/templates/js/pdf_view.js" />
       </list>
     </option>
   </component>
@@ -177,6 +179,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -187,13 +190,18 @@
             <path>
               <item name="Capstone" type="b2602c69:ProjectViewProjectNode" />
               <item name="Capstone" type="462c0819:PsiDirectoryNode" />
-              <item name="output" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Capstone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Capstone" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -765,7 +773,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612174510211</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Show message for low confidence word and checkList">
+      <created>1612248410771</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1612248410771</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TodoView">
@@ -781,7 +796,7 @@
     <frame x="0" y="25" width="1440" height="820" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48314607" visible="true" weight="0.17336152" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48314607" visible="true" weight="0.17336152" />
       <window_info id="Structure" order="1" sideWeight="0.5168539" side_tool="true" weight="0.17336152" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -832,7 +847,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Add 1" />
     <MESSAGE value="romove 1" />
     <MESSAGE value="delete all file in images" />
     <MESSAGE value="Run Job Parallel" />
@@ -857,7 +871,8 @@
     <MESSAGE value="Region Selection -Drag" />
     <MESSAGE value="Changed session method" />
     <MESSAGE value="CSS style" />
-    <option name="LAST_COMMIT_MESSAGE" value="CSS style" />
+    <MESSAGE value="Show message for low confidence word and checkList" />
+    <option name="LAST_COMMIT_MESSAGE" value="Show message for low confidence word and checkList" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/templates/js/sample.js">
@@ -1065,13 +1080,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/js/pdf_view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1134">
-          <caret line="54" column="32" lean-forward="true" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/playground/playground.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -1093,27 +1101,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PyPDF2Highlight.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/compare.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="574" selection-start-line="574" selection-end-line="574" />
+        <state relative-caret-position="-5999">
+          <caret line="41" column="21" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/js/pdf_view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PyPDF2Highlight.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="38" column="15" lean-forward="true" selection-start-line="38" selection-start-column="15" selection-end-line="38" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="211" lean-forward="true" selection-start-line="211" selection-end-line="211" />
+        <state relative-caret-position="67">
+          <caret line="137" column="20" lean-forward="true" selection-start-line="137" selection-start-column="20" selection-end-line="137" selection-end-column="20" />
           <folding>
             <element signature="e#0#17#0" expanded="true" />
           </folding>
