@@ -25,13 +25,16 @@
                 <button type="button" class ="tab_button"><i class="fas fa-cloud-upload-alt"></i> Upload Documents</button>
             </div>
             <div class = "sideBar_tabs">
-                <button type="button" class ="tab_button" id="process_tabs"><i class="fas fa-microchip"></i> Processor</button>
+                <button type="button" class ="tab_button" id="annotate_tab"><i class="fas fa-edit"></i> Annotator</button>
+            </div>
+            <div class = "sideBar_tabs">
+              <button type="button" class ="tab_button" id="report_tab"><i class="fas fa-book-open"></i> Report</button>
             </div>
         </div>
 
         <div id = "full_view">
-            <a href = "sample.html" class = "sample_comparison">See a sample comparison</a>
             <div>
+                <a href = "sample.html" class = "sample_comparison">See a sample comparison</a>
                 <form method="post" enctype=multipart/form-data id="form_upload">
                         <div id="upload_block">
                             <div class="column" id="column_left">
@@ -112,7 +115,6 @@
                 <div class="options">
                     <div><label for="extract">Extract:</label></div>
                     <div><input type="text" id="extract" name="extract" placeholder="Key Word"></div>
-
                 </div>
                 <div class="filter_div">
                     <input type="submit" id="filter_button" name=upload onclick="start_ocr()" value="filter" >

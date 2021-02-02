@@ -3,6 +3,12 @@ body {
     margin: 0;
 }
 
+html{
+  background: #fff !important;
+}
+
+
+
 #main_view #comparison_report{
 margin: 10px 10px 10px 10px;
 }
@@ -40,9 +46,14 @@ margin: 10px 10px 10px 10px;
 position: fixed;
 top: 0;
 width: 100%;
+z-index: 2;
 }
 
 .sticky + .class_main_view{
+padding-top: 51px;
+}
+
+.sticky + .class_checkList{
 padding-top: 51px;
 }
 
@@ -57,7 +68,7 @@ padding-top: 51px;
   cursor: pointer; /* Mouse pointer on hover */
 }
 
-.help-button{
+#help-button, #right-menu-button{
 float: right;
 font-size: 20px;
 }
@@ -78,6 +89,36 @@ font-size: 20px;
   height:100%;
 }
 
+#checkList-div{
+  top:51px;
+  width: 0;
+  right: 0;
+  position: fixed;
+  padding-top: 20px;
+  text-align: left;
+  height:100%;
+}
+
+.checkList-item{
+  padding: 10px;
+}
+
+.checkList_download_div{
+  margin-top: 3em;
+  margin-bottom: 3em;
+  text-align:center;
+}
+
+.checkList-download-label{
+  cursor: pointer;
+  background-color: DodgerBlue;
+  color: white;
+  padding: 0.5em 1em;
+}
+
+#checkList-download{
+  display:none;
+}
 /* The navigation menu links */
 
 .sideBar_tabs {

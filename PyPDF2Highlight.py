@@ -8,35 +8,63 @@ from PyPDF2.generic import (
 )
 
 # x1, y1 starts in bottom left corner
-def createHighlight(x1, y1, x2, y2, meta, color = [1, 0, 0]):
+def createHighlight(x1, y1, x2, y2, meta= None, color = [1, 0, 0]):
     newHighlight = DictionaryObject()
 
-    newHighlight.update({
-        NameObject("/F"): NumberObject(4),
-        NameObject("/Type"): NameObject("/Annot"),
-        NameObject("/Subtype"): NameObject("/Highlight"),
+    if meta is not None:
+        newHighlight.update({
+            NameObject("/F"): NumberObject(4),
+            NameObject("/Type"): NameObject("/Annot"),
+            NameObject("/Subtype"): NameObject("/Highlight"),
 
-        # NameObject("/T"): TextStringObject(meta["author"]),
-        # NameObject("/Contents"): TextStringObject(meta["contents"]),
+            # NameObject("/T"): TextStringObject(meta["author"]),
+            NameObject("/Contents"): TextStringObject(meta["contents"]),
 
-        NameObject("/C"): ArrayObject([FloatObject(c) for c in color]),
-        NameObject("/Rect"): ArrayObject([
-            FloatObject(x1),
-            FloatObject(y1),
-            FloatObject(x2),
-            FloatObject(y2)
-        ]),
-        NameObject("/QuadPoints"): ArrayObject([
-            FloatObject(x1),
-            FloatObject(y2),
-            FloatObject(x2),
-            FloatObject(y2),
-            FloatObject(x1),
-            FloatObject(y1),
-            FloatObject(x2),
-            FloatObject(y1)
-        ]),
-    })
+            NameObject("/C"): ArrayObject([FloatObject(c) for c in color]),
+            NameObject("/Rect"): ArrayObject([
+                FloatObject(x1),
+                FloatObject(y1),
+                FloatObject(x2),
+                FloatObject(y2)
+            ]),
+            NameObject("/QuadPoints"): ArrayObject([
+                FloatObject(x1),
+                FloatObject(y2),
+                FloatObject(x2),
+                FloatObject(y2),
+                FloatObject(x1),
+                FloatObject(y1),
+                FloatObject(x2),
+                FloatObject(y1)
+            ]),
+        })
+    else:
+        newHighlight.update({
+            NameObject("/F"): NumberObject(4),
+            NameObject("/Type"): NameObject("/Annot"),
+            NameObject("/Subtype"): NameObject("/Highlight"),
+
+            # NameObject("/T"): TextStringObject(meta["author"]),
+            # NameObject("/Contents"): TextStringObject(meta["contents"]),
+
+            NameObject("/C"): ArrayObject([FloatObject(c) for c in color]),
+            NameObject("/Rect"): ArrayObject([
+                FloatObject(x1),
+                FloatObject(y1),
+                FloatObject(x2),
+                FloatObject(y2)
+            ]),
+            NameObject("/QuadPoints"): ArrayObject([
+                FloatObject(x1),
+                FloatObject(y2),
+                FloatObject(x2),
+                FloatObject(y2),
+                FloatObject(x1),
+                FloatObject(y1),
+                FloatObject(x2),
+                FloatObject(y1)
+            ]),
+        })
 
     return newHighlight
 

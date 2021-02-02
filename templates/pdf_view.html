@@ -10,6 +10,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+    
+   
 
 </head>
 <body>
@@ -17,7 +21,8 @@
 <div class="topnav" id="id_topnav">
     <button class="openSideBar_btn" onclick="openNav()"><i class="fas fa-bars"></i></button>
     <a class="active" href="/">OCR Solution</a>
-    <button class="help-button" id="id-help-button">
+    <button class="openSideBar_btn" id="right-menu-button" onclick="openCheckList()"><i class="fas fa-list"></i></button>
+    <button class="help-button" id="help-button">
         <i class="far fa-question-circle"></i>
     </button>
 </div>
@@ -56,136 +61,120 @@
         </div>
     </div>
 
-    <div class="full_view">
-        <div>
-            <iframe class="comp" id="ori" width="50%" height="750px" style="border: none;" align="left"></iframe>
+    <div class="middle_view">
+        <div class="full_view">
+            <div>
+                <iframe class="comp" id="ori" width="50%" height="750px" style="border: none;" align="left"></iframe>
 
-        </div>
-        <div>
-            <iframe class="comp" id="comp" width="50%" height="750px" style="border: none; overflow:hidden;" ></iframe>
-        </div>
-    </div>
-
-    <div class="comparison_report">
-        <div class="comparison_report_header">
-            <p>{{process_datetime}}</p>
-            <h1>Comparison Report</h1>
-        </div>
-        <div class="general_info">
-            <div class="general_info_column" id="ori_file">
-                <b>Original File:</b>
-                <p>{{ori_filename}}</p>
-                <p>{{ori_max_page}} pages ({{ori_size}} KB)</p>
-                <p>8/5/2016 3:31:55 PM</p>
             </div>
-
-            <div class="general_info_column" id="compare_file">
-                <b>Compare File:</b>
-                <p>{{comp_filename}}</p>
-                <p>{{comp_max_page}} pages ({{comp_size}} KB)</p>
-                <p>8/5/2016 3:27:37 PM</p>
+            <div>
+                <iframe class="comp" id="comp" width="50%" height="750px" style="border: none; overflow:hidden;" ></iframe>
             </div>
         </div>
-        <div class="metrics">
-            <div class="metrics_column" id="metrics_total_changes">
-                <div><b>Total Changes</b></div>
-                <div class="metrics_circle">
-                    <svg id="circle">
-                        <circle id="deletion_pct" r="140" cx="50%" cy="50%" stroke="red" fill="none" stroke-width="10" stroke-linecap="round" stroke-dasharray="880,880">
-                        </circle>
-                        <circle id="insertion_pct" r="140" cx="50%" cy="50%" stroke="green" fill="none" stroke-width="10" stroke-linecap="round" stroke-dasharray={{insertion_radius}}>
-                        </circle>
-                    </svg>
-                    <div style="position: relative;">
-                        <div id="total_changes_num">{{total_changes}}</div>
+
+        <div class="comparison_report">
+            <div class="comparison_report_header">
+                <p>{{process_datetime}}</p>
+                <h1>Comparison Report</h1>
+            </div>
+            <div class="general_info">
+                <div class="general_info_column" id="ori_file">
+                    <b>Original File:</b>
+                    <p>{{ori_filename}}</p>
+                    <p>{{ori_max_page}} pages ({{ori_size}} KB)</p>
+                    <p>8/5/2016 3:31:55 PM</p>
+                </div>
+
+                <div class="general_info_column" id="compare_file">
+                    <b>Compare File:</b>
+                    <p>{{comp_filename}}</p>
+                    <p>{{comp_max_page}} pages ({{comp_size}} KB)</p>
+                    <p>8/5/2016 3:27:37 PM</p>
+                </div>
+            </div>
+            <div class="metrics">
+                <div class="metrics_column" id="metrics_total_changes">
+                    <div><b>Total Changes</b></div>
+                    <div class="metrics_circle">
+                        <svg id="circle">
+                            <circle id="deletion_pct" r="140" cx="50%" cy="50%" stroke="red" fill="none" stroke-width="10" stroke-linecap="round" stroke-dasharray="880,880">
+                            </circle>
+                            <circle id="insertion_pct" r="140" cx="50%" cy="50%" stroke="green" fill="none" stroke-width="10" stroke-linecap="round" stroke-dasharray={{insertion_radius}}>
+                            </circle>
+                        </svg>
+                        <div style="position: relative;">
+                            <div id="total_changes_num">{{total_changes}}</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="metrics_column" id="metrics_Content">
+                    <div class="metrics_Content_title">
+                        <b>Content</b>
+                    </div>
+                    <div class="metrics_Content_block">
+                        <span class="metrics_Content_num" id="insert_num">{{insertion_num}}</span>
+                        <span>Insertions</span>
+                    </div>
+                    <div class="metrics_Content_block">
+                        <span class="metrics_Content_num" id="delete_num">{{deletion_num}}</span>
+                        <span>Deletions</span>
                     </div>
                 </div>
-
-            </div>
-            <div class="metrics_column" id="metrics_Content">
-                <div class="metrics_Content_title">
-                    <b>Content</b>
-                </div>
-                <div class="metrics_Content_block">
-                    <span class="metrics_Content_num" id="insert_num">{{insertion_num}}</span>
-                    <span>Insertions</span>
-                </div>
-                <div class="metrics_Content_block">
-                    <span class="metrics_Content_num" id="delete_num">{{deletion_num}}</span>
-                    <span>Deletions</span>
-                </div>
             </div>
         </div>
-    </div>
-    <div class="extraction_view">
-        <!-- <div class="table-wrapper">
-            <div class="table-title-wrapper">
-                <div class="table-title">Extraction Result</div>
-                <div class="select2">
-                    <select id="keyword" class="js-example-basic-multiple" name="states[]" multiple="multiple" style="width: 50%">
-                        {% for item in extractResult %}
-                            <option value={{item[0]}}>{{item[0]}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            </div>
-        <div class="table-filter">
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="show-entries">
-                        <span>Show</span>
-                        <select class="form-control">
-                            <option>5</option>
-                            <option>10</option>
-                        </select>
-                        <span>entries</span>
-                    </div>
-                </div>
-                <div class="col-sm-9">
-                    <div class="filter-group">
-                        <label>Status</label>
-                        <select class="form-control">
-                            <option>Any</option>
-                            <option>Completed</option>
-                            <option>In Progress</option>
-                            <option>To Run</option>
-                        </select>
-                    </div>
-                <span class="filter-icon"><i class="fa fa-filter"></i></span>
-                </div>
-            </div>
-        </div> -->
-        <div class="table-wrapper">
-            <table class="extract_table hover order-column row-border stripe">
-                <thead>
-                    <tr>
-                        <th>Key Word</th>
-                        <th>Page Number</th>
-                        <th>Result</th>
-                        <th>Switch To</th>
-                    </tr>
-                </thead>
-                <tbody class="table-body">
-                    {% for item in extractResult %}
-                        {% for text in item[1] %}
-                        <tr class="extracted_row">
-                            <td class="keyWord">{{ item[0] }}</td>
-                            <td>{{ text[1] }}</td>
-                            <td>{{ " ".join(text[0]) }}</td>
-                            <td>
-                                <span class="page"> 
-                                    <a class={{text[1]}}>
-                                        <i class="far fa-file-pdf"></i>
-                                    </a>
-                                </span>
-                            </td>
+
+        <div class="extraction_view">
+            <div class="table-wrapper">
+                <table class="extract_table hover order-column row-border stripe">
+                    <thead>
+                        <tr>
+                            <th>Key Word</th>
+                            <th>Page Number</th>
+                            <th>Result</th>
+                            <th>Switch To</th>
                         </tr>
+                    </thead>
+                    <tbody class="table-body">
+                        {% for item in extractResult %}
+                            {% for text in item[1] %}
+                            <tr class="extracted_row">
+                                <td class="keyWord">{{ item[0] }}</td>
+                                <td>{{ text[1] }}</td>
+                                <td>{{ " ".join(text[0]) }}</td>
+                                <td>
+                                    <span class="page"> 
+                                        <a class={{text[1]}}>
+                                            <i class="far fa-file-pdf"></i>
+                                        </a>
+                                    </span>
+                                </td>
+                            </tr>
+                            {% endfor %}
                         {% endfor %}
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+    <div class="class_checkList" id="checkList-div">
+        <div class="checkList-items" id="checkList-items">
+            {% for item in extractResult %}
+                <div class="checkList-item" id="checkList-item">
+                    <input type="checkbox" id={{loop.index}} name={{loop.index}}>
+                    <label for={{loop.index}} > {{ item[0] }}</label><br>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="checkList_download_div">
+            <input type="submit" id="checkList-download" name=download>
+            <label class="checkList-download-label" for="checkList-download">
+                Download
+                <i class="fas fa-file-download" id="checkList-download"></i>
+            </label>
+        </div>
+    </div>
+
 </div>
 
 

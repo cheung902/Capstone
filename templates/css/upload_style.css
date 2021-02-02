@@ -34,9 +34,9 @@ body {
 }
 
 .sticky {
-  position: fixed;
   top: 0;
   width: 100%;
+  z-index: 2;
 }
 
 .sticky + .class_main_view {
@@ -88,6 +88,10 @@ vertical-align: left;
 font-size: 20px;
 }
 
+
+#annotate_tab, #report_tab{
+  color: grey;
+}
 
 .tab_button{
     color: black;

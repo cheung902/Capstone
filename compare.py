@@ -70,27 +70,30 @@ def compare_f1_f2(extract_list=""):
 																				 case_label, caseSensitive)
 
 	if (comp_diff != None):
-		ori_word_position, pos_num_list_ori = get_position(diff_list=ori_diff,
+		pos_num_list_ori = get_position(diff_list=ori_diff,
 										 insert_label=insert_label, delete_label=delete_label,
 										 case_label = case_label)
 
-		comp_word_position, pos_num_list_comp = get_position(diff_list=comp_diff,
+		pos_num_list_comp = get_position(diff_list=comp_diff,
 										  insert_label=insert_label, delete_label=delete_label,
 										  case_label = case_label)
-
 		word_list_ori = removeOverlap(ori_data_frame, pos_num_list_ori, ori_overlap)
 		word_list_comp = removeOverlap(comp_data_frame, pos_num_list_comp, comp_overlap)
-		highlight(ori_data_frame, word_list_ori, "ori")
-		highlight(comp_data_frame, word_list_comp, "comp")
+
+		oriLowConfWordNum = lowConfidenceWordNum(ori_data_frame, 0.8)
+		print("aa",oriLowConfWordNum)
+		compLowConfWordNum = lowConfidenceWordNum(ori_data_frame, 0.8)
+		highlight(ori_data_frame, word_list_ori, "ori", oriLowConfWordNum)
+		highlight(comp_data_frame, word_list_comp, "comp", compLowConfWordNum)
 
 	extractResult = extract_info(comp_data_frame, extract_list)
-	for item in extractResult:
-		print(item[0])
-	return insertion_num, deletion_num, case_diff_num, ori_max_page, comp_max_page, extractResult
+	oriLowConf = lowConfidence(ori_data_frame, 0.8)
+	compLowConf = lowConfidence(ori_data_frame, 0.8)
+
+	return insertion_num, deletion_num, case_diff_num, ori_max_page, comp_max_page, extractResult, oriLowConf, compLowConf
 
 def get_position( diff_list, insert_label, delete_label, case_label):
 	print("---------------Getting Word Number and Line Number-------------")
-	position_list = []
 	position_list_num = []
 	diff_list_split = diff_list.split()
 	insert_label_start = insert_label + "S-"
@@ -136,14 +139,13 @@ def get_position( diff_list, insert_label, delete_label, case_label):
 			continue
 
 		elif delete_label in element:
-			position_list_num.append(["1", [num+1]])
-
+			position_list_num.append(["-1", [num+1]])
 		elif insert_label in element:
 			position_list_num.append(["1", [num+1]])
 		elif case_label in element:
-
 			position_list_num.append(["2", [num+1]])
-	return position_list, position_list_num
+
+	return position_list_num
 
 def diff_match(line1, line2, insertion_num, deletion_num, case_diff_num, insert_label, delete_label, case_label, caseSensitive):
 
@@ -280,7 +282,6 @@ def get_data_frame():
 
 	ori_data_frame = adjustWordNum(ori_data_frame)
 	comp_data_frame = adjustWordNum(comp_data_frame)
-
 	return ori_data_frame, comp_data_frame
 
 
@@ -366,17 +367,12 @@ def extract_info(data_frame, list):
 	for word in list:
 		extracted_list = []
 		block = data_frame[data_frame['text'].str.contains(word)][['block_num_adjusted','word_num','page_num']]
-		# block_word_num = block.drop_duplicates(subset=["block_num_adjusted"]).values.tolist()
-		# print(block)
-		# print(block_word_num)
 		block_word_num =  block.drop_duplicates(subset = ["block_num_adjusted"]).values.tolist()
 		block_text = get_block_text(data_frame, word, block_word_num)
-		print(block_text)
 		for text in block_text:
 			text_list = text[0].split(" ")
 			extractSplit(word, text_list, extracted_list, text[1])
 		final_list.append([word, extracted_list])
-		# print("final", extracted_list)
 	return final_list
 
 def extractSplit(word, text, extracted_list, page_num):
@@ -460,25 +456,20 @@ def removeOverlap(dataFrame, word_list, overlapWord_num):
 			if len(tmp) != 0:
 				tmp = [diff[0][0], tmp]
 				output_list.append(tmp)
-	print(output_list)
 	return output_list
 
-def highlight(dataFrame, word_list, compOrori):
+def highlight(dataFrame, word_list, compOrori, lowConfWordNum):
 	for position in (item for item in word_list):
 		new_list = []
 		for index, num_list in enumerate(position[1]):
-			print("gg",num_list)
 			if len(num_list) == 1:
 				continue
 			split_list(dataFrame, num_list, new_list)
 			position[1] = new_list
-		print("new", new_list)
-	print(word_list)
 
-	highlight_byType(dataFrame, word_list, compOrori)
+	highlight_byType(dataFrame, word_list, compOrori, lowConfWordNum)
 
 def split_list(dataFrame, num_list, new_list):
-	print("start",num_list )
 	for index, num in enumerate(num_list):
 		if len(num_list) == 1:
 			new_list.append(num_list)
@@ -493,16 +484,12 @@ def split_list(dataFrame, num_list, new_list):
 			tmp_2.extend(range(num_list[0], num_list[index+1]))
 			tmp_3.extend(range(num_list[index+1], num_list[-1] + 1))
 			# tmp.append(split_list(dataFrame, tmp_3, new_list))
-			print(tmp_2, "append", tmp_3)
-			print("newlist append ", tmp_2)
-			print("newlist recursive ", tmp_3)
 			new_list.append(tmp_2)
 			split_list(dataFrame, tmp_3, new_list)
 			break
 
-def highlight_byType(dataFrame, word_list, compOrori):
+def highlight_byType(dataFrame, word_list, compOrori, lowConfWordNum):
 	print("Creating ", compOrori, ".pdf")
-	print(word_list)
 	pdfInput = PdfFileReader(open("output/" + compOrori + ".pdf", "rb"))
 	numOfPages = pdfInput.getNumPages()
 	pdfOutput = PdfFileWriter()
@@ -514,29 +501,44 @@ def highlight_byType(dataFrame, word_list, compOrori):
 			for bounding in chunk[1]:
 				getPage_num = word_num_get_page_num(dataFrame, bounding[0]) - 1
 				if getPage_num == pageNum:
+					lowConf = False
 					if len(bounding) == 1:
 						word_num = bounding[0]
 						position = genBoundingWord(dataFrame, word_num)
+						lowConf = matchInList(word_num, lowConfWordNum)
 					else:
 						startNum = bounding[0]
 						endNum = bounding[-1]
 						position = genBoundingSentence(dataFrame, startNum, endNum)
-						print(startNum, endNum, position)
+						for num in range(startNum, endNum+1):
+							if (matchInList(num, lowConfWordNum)):
+								lowConf = True
 					if type == "1":
-
-						highlight = createHighlight(x1=position[0], y1=position[1], x2=position[2], y2=position[3],
-															meta={"author": "", "contents": "Bla-bla-bla"},
-															color=[0, 1, 0])
+						if lowConf == True:
+							highlight = createHighlight(x1=position[0], y1=position[1], x2=position[2], y2=position[3],
+														meta = {"contents": "The confidence is lower than 90"},
+														color=[0, 1, 0])
+						else:
+							highlight = createHighlight(x1=position[0], y1=position[1], x2=position[2], y2=position[3],
+														color=[0, 1, 0])
 						addHighlightToPage(highlight, page, pdfOutput)
 					elif type == "-1":
-						highlight = createHighlight(x1=position[0], y1=position[1], x2=position[2], y2=position[3],
-													meta={"author": "", "contents": "Bla-bla-bla"},
-													color=[1, 0.5, 0])
+						if lowConf == True:
+							highlight = createHighlight(x1=position[0], y1=position[1], x2=position[2], y2=position[3],
+														meta={"contents": "The confidence is lower than 90"},
+														color=[1, 0.5, 0])
+						else:
+							highlight = createHighlight(x1=position[0], y1=position[1], x2=position[2], y2=position[3],
+														color=[1, 0.5, 0])
 						addHighlightToPage(highlight, page, pdfOutput)
 					elif type == "2":
-						highlight = createHighlight(x1=position[0], y1=position[1], x2=position[2], y2=position[3],
-													meta={"author": "", "contents": "Bla-bla-bla"},
-													color=[0, 0.5, 1])
+						if lowConf == True:
+							highlight = createHighlight(x1=position[0], y1=position[1], x2=position[2], y2=position[3],
+														meta={"contents": "The confidence is lower than 90"},
+														color=[0, 0.5, 1])
+						else:
+							highlight = createHighlight(x1=position[0], y1=position[1], x2=position[2], y2=position[3],
+														color=[0, 0.5, 1])
 						addHighlightToPage(highlight, page, pdfOutput)
 
 		print("create page", pageNum)
@@ -558,7 +560,25 @@ def genBoundingSentence(dataFrame , startNum, endNum ):
 	y_2 = max(dataFrame[dataFrame["word_num"] == startNum].iloc[0]['y_2'], dataFrame[dataFrame["word_num"] == endNum].iloc[0]['y_2'])
 	return [x_1, y_1, x_2, y_2]
 
+def lowConfidence(dataFrame, threshold):
+	dataFrame['conf'] = dataFrame['conf'].astype(int)
+	output = dataFrame[(dataFrame['conf'] < 90) & (dataFrame['conf'] != -1)]
+	output = output[['page_num', 'line_num', 'text', 'conf']].values.tolist()
+	return output
 
+def lowConfidenceWordNum(dataFrame, threshold):
+	dataFrame['conf'] = dataFrame['conf'].astype(int)
+	output = dataFrame[(dataFrame['conf'] < 90) & (dataFrame['conf'] != -1)]
+	output = output[['word_num']].values.tolist()
+	print(output)
+	return output
+
+def matchInList(wordNum, numList):
+	for i in numList:
+		print("num", wordNum,"num in list", i[0])
+		if wordNum == i[0]:
+			return True
+	return False
 
 if __name__ == '__main__':
 	compare_f1_f2()

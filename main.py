@@ -124,7 +124,7 @@ def annotate():
 			extract_list = session.get('extract_list')
 
 			insertion_num, deletion_num,\
-			case_diff_num, ori_max_page, comp_max_page, extractResult = compare_f1_f2(extract_list)
+			case_diff_num, ori_max_page, comp_max_page, extractResult, oriLowConf, compLowConf = compare_f1_f2(extract_list)
 			# Comparison Metrics
 			ori_size = os.path.getsize(ori_path)/1000
 			comp_size = os.path.getsize(comp_path)/1000
@@ -136,18 +136,13 @@ def annotate():
 			print('Finished')
 			return render_template('pdf_view.html',
 								process_datetime = process_datetime,
-								comp_max_page = comp_max_page,
-								ori_max_page = ori_max_page,
-								comp_size = comp_size,
-								ori_size = ori_size,
-								comp_filename = comp_filename,
-								ori_filename = ori_filename,
+								comp_max_page = comp_max_page, ori_max_page = ori_max_page,
+								comp_size = comp_size, ori_size = ori_size,
+								comp_filename = comp_filename, ori_filename = ori_filename,
 								total_changes = total_changes,
-								insertion_num = insertion_num,
-								deletion_num = deletion_num,
-								insertion_radius = str(insertion_radius) + ",880" ,
-								deletion_radius = str(deletion_radius) + ",880",
-								extractResult = extractResult)
+								insertion_num = insertion_num, deletion_num = deletion_num,
+								insertion_radius = str(insertion_radius) + ",880" , deletion_radius = str(deletion_radius) + ",880",
+								extractResult = extractResult, oriLowConf = oriLowConf, compLowConf = compLowConf)
 
 	return render_template('pdf_annotate.html')
 
