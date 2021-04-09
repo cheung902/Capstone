@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>PDF Result</title>
+    <meta id="dataToPass" data-oripagelist="{{oriExtraPage}}" data-comppagelist="{{compExtraPage}}" data-compTotalPage="{{comp_max_page}}" data-oriTotalPage="{{ori_max_page}}">
     <link rel="stylesheet" href="css/pdf_view/pdf_view.css">
     <link rel="stylesheet" href="css/pdf_view/pdfjs.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
@@ -13,8 +14,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
     
-   
-
 </head>
 <body>
 
@@ -129,28 +128,26 @@
                 <table class="extract_table hover order-column row-border stripe">
                     <thead>
                         <tr>
-                            <th>Key Word</th>
                             <th>Page Number</th>
+                            <th>Original</th>
                             <th>Result</th>
                             <th>Switch To</th>
                         </tr>
                     </thead>
                     <tbody class="table-body">
                         {% for item in extractResult %}
-                            {% for text in item[1] %}
                             <tr class="extracted_row">
                                 <td class="keyWord">{{ item[0] }}</td>
-                                <td>{{ text[1] }}</td>
-                                <td>{{ " ".join(text[0]) }}</td>
+                                <td>{{ item[1] }}</td>
+                                <td>{{ item[2] }}</td>
                                 <td>
                                     <span class="page"> 
-                                        <a class={{text[1]}}>
+                                        <a class={{item[0]}}>
                                             <i class="far fa-file-pdf"></i>
                                         </a>
                                     </span>
                                 </td>
                             </tr>
-                            {% endfor %}
                         {% endfor %}
                     </tbody>
                 </table>
@@ -170,7 +167,7 @@
             <input type="submit" id="checkList-download" name=download>
             <label class="checkList-download-label" for="checkList-download">
                 Download
-                <i class="fas fa-file-download" id="checkList-download"></i>
+                <i class="fas fa-file-download"></i>
             </label>
         </div>
     </div>

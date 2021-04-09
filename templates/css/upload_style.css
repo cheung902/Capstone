@@ -304,10 +304,12 @@ height:3em;
 
 #loading_page{
   display: none;
+  /*background: #8b8c8f;*/
 }
 
 :root {
-  --background: #8b8c8f;
+  /*--background: #8b8c8f;*/
+  --background: white;
 }
 
 .loader {

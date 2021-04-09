@@ -75,6 +75,18 @@ window.onclick = function(event) {
 function start_ocr()
 {
 
+var saveTemplate = confirm("Do you want to save the current marked regions as template");
+
+if (saveTemplate == true){
+  var tmpName = prompt("Please enter the template name");
+  if (tmpName!= null){
+    $.post("/saveTmp",{'tmpName': tmpName}).done(function(data){
+    }).fail(function(){});
+  }
+}
+
+
+
 document.getElementById('upload_page').style.display = "none";
 document.getElementById('loading_page').style.display = "flex";
 }
@@ -86,7 +98,6 @@ $("#comp").on('load', function(){
   });
   
   });
-  
   
   $("#ori").on('load', function(){
   $("#ori").contents().find("#viewerContainer").on('scroll', function(){ 

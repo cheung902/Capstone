@@ -178,17 +178,125 @@ window.onclick = function(event) {
   }
 }
 
-$("#comp").on('load', function(){
 
-  $("#comp").contents().find("#viewerContainer").on('scroll', function(){ 
-    $("#ori").contents().find("#viewerContainer").scrollTop($(this).scrollTop());
+oriPageList = $('#dataToPass').data("oripagelist");
+compPageList = $('#dataToPass').data("comppagelist");
+console.log("oriPageList", oriPageList)
+console.log("compPageList", compPageList)
+oriTotalPage = $('#dataToPass').data("oritotalpage");
+compTotalPage = $('#dataToPass').data("comptotalpage");
+oriLastScrollTop = 0;
+compLastScrollTop = 0;
+
+$("#comp").on('load', function(){
+//   $("#comp").contents().find("#viewerContainer").bind('DOMMouseScroll', function() {
+    
+//     compScrollByUser=true;
+//   });
+
+//   $("#comp").contents().find("#viewerContainer").on('scroll', function(event){ 
+//     if (compScrollByUser){
+//       let comp_scrollHeight =  event.target.scrollHeight;
+//       let comp_scrollTop = $(this).scrollTop();
+//       let comp_heightPerPage = comp_scrollHeight/compTotalPage
+//       let currentPage = Math.floor(comp_scrollTop/comp_heightPerPage) + 1
+//       for (i = 0; i < page.length; i++) {
+//         if(currentPage != page[i]){
+//           console.log("currentPage" + currentPage)
+//           console.log("page[i]" + page[i])
+//           ori_scroll = false
+//           console.log("ori_delta" + ori_scroll)
+//         }
+//         else{
+//           ori_scroll = true
+//           console.log("ori_delta" + ori_scroll)
+//           break;
+//         };
+//       };
+
+//       if(ori_scroll){
+//         $("#ori").contents().find("#viewerContainer").scrollTop(comp_scrollTop);
+//       }
+      
+//       compScrollByUser = false;
+//     }
+//     else if(oriScrollByUser){
+//       for (i = 0; i < page.length; i++) {
+//         if(currentPage != page[i]){
+//           console.log("currentPage" + currentPage)
+//           console.log("page[i]" + page[i])
+//           ori_scroll = false
+//           console.log("ori_delta" + ori_scroll)
+//         }
+//         else{
+//           ori_scroll = true
+//           console.log("ori_delta" + ori_scroll)
+//           break;
+//         };
+//       };
+//     }
+
+//   });
+// });
+
+//   $("#ori").on('load', function(){
+//   $("#ori").contents().find("#viewerContainer").on('scroll', function(){ 
+//     $("#ori").contents().find("#viewerContainer").bind('DOMMouseScroll', function() {
+      
+//       oriScrollByUser=true;
+//     });
+//     if (oriScrollByUser){
+//     // let ori_scrollHeight =  event.target.scrollHeight;
+//     let ori_scrollTop = $(this).scrollTop();
+//     // let ori_heightPerPage = ori_scrollHeight/oriTotalPage 
+//     // console.log("ori_scrollHeight" + ori_scrollHeight);  
+//     $("#comp").contents().find("#viewerContainer").scrollTop(ori_scrollTop);
+//     oriScrollByUser = false;
+//     }
+//     });
+oriScrollByUser = false;
+$("#comp").contents().find("#viewerContainer").on('scroll', function(event){
+  let comp_scrollHeight =  event.target.scrollHeight;
+  let comp_scrollTop = $(this).scrollTop();
+  let comp_heightPerPage = comp_scrollHeight/compTotalPage
+  compCurrentPage = Math.floor(comp_scrollTop/comp_heightPerPage) + 1
+  $("#comp").contents().find("#viewerContainer").bind('DOMMouseScroll', function() { 
+        isSamePage = samePage(compCurrentPage, oriPageList);
+        if(isSamePage){
+          $("#ori").contents().find("#viewerContainer").scrollTop(comp_scrollTop);
+        }
+    }); 
+    isSamePage = samePage(compCurrentPage, oriPageList);
+  console.log(isSamePage, oriScrollByUser)
+  console.log("comp current Page", compCurrentPage)
+  if(!isSamePage && oriScrollByUser){ 
+  console.log("enter")
+    $('#ori').contents().find("#viewerContainer").scrollTop(oriScrollTop - oriScrollDistance);
+    oriScrollByUser = false;
+    }
   });
-  
+
+  $("#ori").contents().find("#viewerContainer").on('scroll', function(event){ 
+    oriScrollTop = $(this).scrollTop();
+    let oriScrollHeight =  event.target.scrollHeight;
+    let oriHeightPerPage = oriScrollHeight/oriTotalPage
+    oriCurrentPage = Math.floor(oriScrollTop/oriHeightPerPage) + 1
+    oriScrollDistance = oriScrollTop - oriLastScrollTop;
+    oriLastScrollTop = oriScrollTop;
+    oriScrollByUser = true
+    $("#ori").contents().find("#viewerContainer").bind('DOMMouseScroll', function() {
+
+    console.log("oriScrollDistance", oriScrollDistance)
+    $("#comp").contents().find("#viewerContainer").scrollTop(oriScrollTop);
+    });
   });
-  
-  
-  $("#ori").on('load', function(){
-  $("#ori").contents().find("#viewerContainer").on('scroll', function(){ 
-   $("#comp").contents().find("#viewerContainer").scrollTop($(this).scrollTop());
-   });
-  });
+});
+
+function samePage(currentPage, pageList){
+  for (i = 0; i < pageList.length; i++) {
+    if(currentPage == pageList[i]){
+      return true
+    }
+  };
+  return false;
+};

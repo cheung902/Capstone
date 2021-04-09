@@ -4,16 +4,11 @@ from datetime import datetime
 from flaskRoute import ref_page
 from multiprocessing import Process
 import os
-from flask import Flask, render_template, request, flash, session, redirect, jsonify
+from flask import Flask, render_template, request, flash, session, redirect, jsonify, make_response
 from werkzeug.utils import secure_filename
 from flask_cache import Cache
 from datetime import timedelta
-import time
-from PyPDF2 import PdfFileWriter, PdfFileReader
-from PyPDF2Highlight import createHighlight, addHighlightToPage
-import json
-import time
-import itertools
+
 
 
 UPLOAD_FOLDER = 'static/upload'
@@ -39,9 +34,10 @@ def allowed_file(filename):
 
 @app.route('/',methods = ['GET', 'POST'])
 def upload_page():
+	session.permanent = True
 	if (request.method == 'POST'):
 		if (request.form['upload'] == "submit"):
-			session.clear()
+			# session.clear()
 			[os.unlink(file.path) for file in os.scandir('output')]
 			[os.unlink(file.path) for file in os.scandir('images')]
 			[os.unlink(file.path) for file in os.scandir('static/upload')]
@@ -76,9 +72,12 @@ def upload_page():
 
 			lang_list = request.form.getlist('name_language')
 			caseSensitive = request.form.get('name_case_diff')
+			selectedTmp = request.form.get('name_template')
 			extract_list = request.form.get('extract')
+
 			session['caseSensitive'] = caseSensitive
 			session['extract_list'] = extract_list
+			session['selectedTmp'] = selectedTmp
 
 			comp_path = session.get('comp')
 			ori_path = session.get('ori')
@@ -108,7 +107,9 @@ def upload_page():
 			return redirect('/pdf_annotate')
 
 	elif (request.method == 'GET'):
-		return render_template('upload.html')
+		tmp = session.get('tmpName')
+		print("tmp", tmp)
+		return render_template('upload.html', tmp = tmp)
 	return ('', 204)
 
 @app.route('/pdf_annotate',methods = ['GET', 'POST'])	
@@ -121,8 +122,12 @@ def annotate():
 			ori_filename = session.get('ori_filename')
 
 			insertion_num, deletion_num,\
-			case_diff_num, ori_max_page, comp_max_page, extractResult, oriLowConf, compLowConf = compare_f1_f2()
+			case_diff_num, ori_max_page, comp_max_page, extractResult, oriLowConf, compLowConf, oriExtraPage, compExtraPage = compare_f1_f2()
 			# Comparison Metrics
+			for item in extractResult:
+				print(item[0])
+				print(item[1])
+				print(item[2])
 			ori_size = os.path.getsize(ori_path)/1000
 			comp_size = os.path.getsize(comp_path)/1000
 			process_datetime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
@@ -131,6 +136,7 @@ def annotate():
 			deletion_radius = deletion_num/total_changes * 880
 
 			print('Finished')
+
 			return render_template('pdf_view.html',
 								process_datetime = process_datetime,
 								comp_max_page = comp_max_page, ori_max_page = ori_max_page,
@@ -139,20 +145,61 @@ def annotate():
 								total_changes = total_changes,
 								insertion_num = insertion_num, deletion_num = deletion_num,
 								insertion_radius = str(insertion_radius) + ",880" , deletion_radius = str(deletion_radius) + ",880",
-								extractResult = extractResult, oriLowConf = oriLowConf, compLowConf = compLowConf)
+								extractResult = extractResult, oriLowConf = oriLowConf, 
+								compLowConf = compLowConf,
+								oriExtraPage= oriExtraPage, compExtraPage = compExtraPage)
+	#if user selected template
+	selectedTmp = session.get('selectedTmp')
+	templates = session.get('tmpName')
+	if selectedTmp is not None:
+		for template in templates:
+			if (templates[0][0]) == selectedTmp:
+				session['ignore_region_ori'] = templates[1][0]
+				session['shdChange_region_ori'] = templates[1][1]
+				session['shdNotChange_region_ori'] = templates[1][2]
+				session['ignore_region_comp'] = templates[1][3]
+				session['shdChange_region_comp'] = templates[1][4]
+				session['shdNotChange_region_comp'] = templates[1][5]
 
+		comp_path = session.get('comp')
+		ori_path = session.get('ori')
+		comp_filename = session.get('comp_filename')
+		ori_filename = session.get('ori_filename')
+
+		insertion_num, deletion_num, \
+		case_diff_num, ori_max_page, comp_max_page, extractResult, oriLowConf, compLowConf, oriExtraPage, compExtraPage = compare_f1_f2()
+		# Comparison Metrics
+		ori_size = os.path.getsize(ori_path) / 1000
+		comp_size = os.path.getsize(comp_path) / 1000
+		process_datetime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+		total_changes = insertion_num + deletion_num + case_diff_num
+		insertion_radius = insertion_num / total_changes * 880
+		deletion_radius = deletion_num / total_changes * 880
+
+		print('Finished')
+
+		return render_template('pdf_view.html',
+							   process_datetime=process_datetime,
+							   comp_max_page=comp_max_page, ori_max_page=ori_max_page,
+							   comp_size=comp_size, ori_size=ori_size,
+							   comp_filename=comp_filename, ori_filename=ori_filename,
+							   total_changes=total_changes,
+							   insertion_num=insertion_num, deletion_num=deletion_num,
+							   insertion_radius=str(insertion_radius) + ",880",
+							   deletion_radius=str(deletion_radius) + ",880",
+							   extractResult=extractResult, oriLowConf=oriLowConf,
+							   compLowConf=compLowConf,
+							   oriExtraPage= oriExtraPage, compExtraPage = compExtraPage)
 	return render_template('pdf_annotate.html')
 
 @app.route('/annotate_ori',methods = ['GET', 'POST'])
 def annotate_ori():
-	session.permanent = True
 	print("submitted", "\n")
 
 	array_value = list(request.form.to_dict(flat=False).values())
 
-	ignore_ori, shdChange_ori, shdNotChange_ori = [],[],[]
+	ignore_ori, shdChange_ori, shdNotChange_ori, extract_ori = [],[],[], []
 	for index, item in enumerate(array_value):
-		print(item)
 		if item[1] == "ignore":
 			pageNum = item[0]
 			ignore_ori.append([pageNum, array_value[index+1]])
@@ -162,10 +209,14 @@ def annotate_ori():
 		elif item[1] == "shdNotChange":
 			pageNum = item[0]
 			shdNotChange_ori.append([pageNum, array_value[index + 1]])
+		elif item[1] == "extract":
+			pageNum = item[0]
+			extract_ori.append([pageNum, array_value[index + 1]])
+
 	session['ignore_region_ori'] = ignore_ori
 	session['shdChange_region_ori'] = shdChange_ori
 	session['shdNotChange_region_ori'] = shdChange_ori
-
+	session['extract_region_ori'] = extract_ori
 	return ('', 204)
 
 @app.route('/annotate_comp',methods = ['GET', 'POST'])
@@ -173,7 +224,7 @@ def annotate_comp():
 	session.permanent = True
 
 	array_value = list(request.form.to_dict(flat=False).values())
-	ignore_comp, shdChange_comp, shdNotChange_comp = [],[],[]
+	ignore_comp, shdChange_comp, shdNotChange_comp, extract_comp = [],[],[], []
 	for index, item in enumerate(array_value):
 		if item[1] == "ignore":
 			pageNum = item[0]
@@ -184,13 +235,46 @@ def annotate_comp():
 		elif item[1] == "shdNotChange":
 			pageNum = item[0]
 			shdNotChange_comp.append([pageNum, array_value[index + 1]])
+		elif item[1] == "extract":
+			pageNum = item[0]
+			extract_comp.append([pageNum, array_value[index + 1]])
 	session['ignore_region_comp'] = ignore_comp
 	session['shdChange_region_comp'] = shdChange_comp
 	session['shdNotChange_region_comp'] = shdChange_comp
+	session['extract_region_comp'] = extract_comp
+
+@app.route('/saveTmp',methods = ['GET', 'POST'])
+def saveTmp():
+	name = list(request.form.to_dict(flat=False).values())[0][0]
+
+
+	ignore_comp = session.get('ignore_region_comp')
+	shdChange_comp = session.get('shdChange_region_comp')
+	shdNotChange_comp = session.get('shdNotChange_region_comp')
+	ignore_ori = session.get('ignore_region_ori')
+	shdChange_ori = session.get('shdChange_region_ori')
+	shdNotChange_ori = session.get('shdNotChange_region_ori')
+
+	value = [ignore_ori, shdChange_ori, shdNotChange_ori, ignore_comp, shdChange_comp, shdNotChange_comp]
+
+	if 'tmpName' not in session:
+		session['tmpName'] = []
+	tmpList = session.get('tmpName')
+	tmpList.append([name, value])
+	session['tmpName'] = tmpList
+	
+
+	return ('', 204)
+
+@app.route('/tmpDelete',methods = ['GET' 'POST'])	
+def tmpDelete():
+	print(request)
+	name = list(request.form.to_dict(flat=False).values())
+	print(name)
+	return ('', 204)
 
 @app.route('/pdf_view',methods = ['GET' 'POST'])	
 def pdf_view():
-
 	return ('', 204)
 
 @app.after_request

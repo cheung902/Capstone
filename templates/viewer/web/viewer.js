@@ -13345,7 +13345,7 @@ class ViewHistory {
 
   async _writeToStorage() {
     const databaseStr = JSON.stringify(this.database);
-    localStorage.setItem("pdfjs.history", databaseStr);
+    // localStorage.setItem("pdfjs.history", databaseStr);
   }
 
   async _readFromStorage() {

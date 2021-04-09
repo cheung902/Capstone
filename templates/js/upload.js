@@ -78,11 +78,18 @@ form.addEventListener('submit', handleForm);
 
 $(document).ready(function() {
   $('.language_select2').select2();
+  $('.template_select2').select2();
+});
+
+$('#templateDelete').on('click', function(){
+  selected = $(".template_select2").val();
+  console.log(selected);
+  $.post("/tmpDelete", {'templateName': selected} ).done(function(data){
+  }).fail(function(){});
 });
 
 function start_ocr()
 {
-
 document.getElementById('upload_page').style.display = "none";
 document.getElementById('loading_page').style.display = "flex";
 }

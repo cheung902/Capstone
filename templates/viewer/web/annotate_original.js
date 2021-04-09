@@ -14926,6 +14926,7 @@ window.onload=function(){
   var ignore_btn = document.getElementById('ignore_ori');
   var shdChange_btn = document.getElementById('shdChange_ori');
   var shdNotChange_btn = document.getElementById('shdNotChange_ori');
+  var extract_btn = document.getElementById('extract_ori');
   var finish_btn = document.getElementById('finish_ori');
   var undo_btn = document.getElementById('undo_ori')
   var redo_btn = document.getElementById('redo_ori')
@@ -14934,6 +14935,7 @@ window.onload=function(){
   var ignore_clickState = "unclicked";
   var shdChange_clickState = "unclicked";
   var shdNotChange_clickState = "unclicked";
+  var extract_clickState = "unclicked";
   var mouseDrag_clickState = "unclicked";
   var highlightMethod = "select";
 
@@ -14941,21 +14943,28 @@ window.onload=function(){
   ignore_btn.addEventListener('click', function(){
     ignore_clickState = buttonClicked(ignore_clickState, ignore_btn)
     region_type = "ignore"
-    shdChange_clickState, shdNotChange_clickState = uncheckButton(shdChange_clickState, shdNotChange_clickState, shdChange_btn, shdNotChange_btn)
+    shdChange_clickState, shdNotChange_clickState, extract_clickState = uncheckButton(shdChange_clickState, shdNotChange_clickState, extract_clickState, shdChange_btn, shdNotChange_btn, extract_btn)
     console.log(ignore_clickState)
   })
 
   shdChange_btn.addEventListener('click', function(){
     shdChange_clickState = buttonClicked(shdChange_clickState, shdChange_btn)
     region_type = "shdChange"
-    ignore_clickState, shdNotChange_clickState = uncheckButton(ignore_clickState, shdNotChange_clickState, ignore_btn, shdNotChange_btn)
+    ignore_clickState, shdNotChange_clickState, extract_clickState = uncheckButton(ignore_clickState, shdNotChange_clickState, extract_clickState, ignore_btn, shdNotChange_btn, extract_btn)
   })
   
   shdNotChange_btn.addEventListener('click', function(){
     shdNotChange_clickState = buttonClicked(shdNotChange_clickState, shdNotChange_btn)
     region_type = "shdNotChange"
-    ignore_clickState, shdChange_clickState = uncheckButton(ignore_clickState, shdChange_clickState, ignore_btn, shdChange_btn)
+    ignore_clickState, shdChange_clickState, extract_clickState = uncheckButton(ignore_clickState, shdChange_clickState, extract_clickState, ignore_btn, shdChange_btn, extract_btn)
   })
+
+  extract_btn.addEventListener('click', function(){
+    extract_clickState = buttonClicked(extract_clickState, extract_btn)
+    region_type = "extract"
+    ignore_clickState, shdChange_clickState ,shdNotChange_clickState= uncheckButton(ignore_clickState, shdChange_clickState, shdNotChange_clickState,  ignore_btn, shdChange_btn, shdNotChange_btn)
+  })
+  
 
   undo_btn.addEventListener('click', function(){
     highlight_undo();
@@ -15000,7 +15009,7 @@ window.onload=function(){
   }
 
   function mouseUp(){
-    if (ignore_clickState == "unclicked" && shdChange_clickState == "unclicked" && shdNotChange_clickState == "unclicked"){
+    if (ignore_clickState == "unclicked" && shdChange_clickState == "unclicked" && shdNotChange_clickState == "unclicked", extract_clickState == "unclicked"){
       return;
     }
 
@@ -15032,13 +15041,12 @@ window.onload=function(){
 
   }
 
-
-
   finish_btn.addEventListener('mousedown', function(){
 
     let region_ignore_ori = [];
     let region_shdChange_ori = [];
     let region_shdNotChange_ori = [];
+    let region_extract_ori = [];
     
     for (i=0; i< region_array.length; i++){
       let region_type = region_array[i][2];
@@ -15056,13 +15064,18 @@ window.onload=function(){
           console.log("shdNotChange")
           region_shdNotChange_ori.push(region_array[i])
           break;
+        case "extract":
+          console.log("extract")
+          region_extract_ori.push(region_array[i])
+          break;
       }
     }
 
     console.log("region_ignore_ori", region_ignore_ori)
     console.log("region_shdChange_ori", region_shdChange_ori)
     console.log("region_shdNotChange_ori", region_shdNotChange_ori)
-    $.post("/annotate_ori",{'ignore': region_ignore_ori, 'shdChange': region_shdChange_ori, "shdNotChange": region_shdNotChange_ori}).done(function(data){
+    console.log("region_extract_ori", region_extract_ori)
+    $.post("/annotate_ori",{'ignore': region_ignore_ori, 'shdChange': region_shdChange_ori, "shdNotChange": region_shdNotChange_ori, "extract": region_extract_ori}).done(function(data){
     }).fail(function(){});
 //    $.post("/sever",{ 'name': "ignore_ori", 'array': region_ignore_ori }).done(function(data){
 //    }).fail(function(){});
@@ -15130,6 +15143,8 @@ window.onload=function(){
         return 'rgb(255, 255, 0, 0.5)'
       case 'shdNotChange':
         return 'rgb(0, 255, 0, 0.5)'
+      case 'extract':
+        return 'rgb(154, 18, 179, 0.5)'
     }
   }
 
@@ -15146,9 +15161,10 @@ function buttonClicked(state_1, btn){
   return state_1;
 }
 
-function uncheckButton(state_1, state_2, btn_1, btn_2){
-  state_1, state_2 = "unclicked", "unclicked"
+function uncheckButton(state_1, state_2, state_3, btn_1, btn_2, btn_3){
+  state_1, state_2, state_3 = "unclicked", "unclicked", "unclicked"
   btn_1.style.background = "none"
   btn_2.style.background = "none"
-  return state_1, state_2
+  btn_3.style.background = "none"
+  return state_1, state_2, state_3
 }

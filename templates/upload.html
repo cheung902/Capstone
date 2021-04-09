@@ -106,15 +106,22 @@
                 </div>
                 <div class="options">
                     <label for="language">Languages:</label><br>
-                    <select id="language" class="language_select2" name="states[]" multiple="multiple" style="width: 75%">
+                    <select id="language" class="language_select2" name="name_language" multiple="multiple" style="width: 75%">
                         <option value="eng">English</option>
                         <option value="chi_tra">Traditional Chinese</option>
                         <option value="chi_sim">Simplified Chinese</option>
                     </select>
                 </div>
+                
                 <div class="options">
-                    <div><label for="extract">Extract:</label></div>
-                    <div><input type="text" id="extract" name="extract" placeholder="Key Word"></div>
+                    <label for="template">Template:</label><br>
+                    <select id="template" class="template_select2" name="name_template" multiple="multiple" style="width: 75%">
+                        {% if tmp is not none %}
+                            {% for item in tmp %}
+                                <option value={{item[0]}}> {{item[0]}}</option>
+                            {% endfor %}
+                        {% endif %}
+                    </select>
                 </div>
                 <div class="filter_div">
                     <input type="submit" id="filter_button" name=upload onclick="start_ocr()" value="filter" >

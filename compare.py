@@ -2,6 +2,7 @@ import json
 import pandas as pd
 from commonFNC import *
 import diff_match_patch as dmp_module
+from difflib import SequenceMatcher
 import numpy as np
 import cv2
 from PyPDF2 import PdfFileWriter, PdfFileReader
@@ -28,44 +29,50 @@ def compare_f1_f2():
 	case_diff_num = 0
 	
 	#extract
-	# extract_list = "Name, Address"
-	# try:
-	ignore_comp = session.get('ignore_region_comp')
-	shdChange_comp = session.get('shdChange_region_comp')
-	shdNotChange_comp = session.get('shdNotChange_region_comp')
-	ignore_ori = session.get('ignore_region_ori')
-	shdChange_ori = session.get('shdChange_region_ori')
-	shdNotChange_ori = session.get('shdNotChange_region_ori')
-	caseSensitive = session.get('caseSensitive')
 
-	extract_list = session.get('extract_list')
-	extract_list = extract_list.split(",")
-	# ignore_comp = []
-	# shdChange_comp = []
-	# shdNotChange_comp = []
-	# ignore_ori = []
-	# shdChange_ori = []
-	# shdNotChange_ori = []
-	# caseSensitive = []
+	# ignore_comp = session.get('ignore_region_comp')
+	# shdChange_comp = session.get('shdChange_region_comp')
+	# shdNotChange_comp = session.get('shdNotChange_region_comp')
+	# extract_comp = session.get('extract_region_comp')
+	# ignore_ori = session.get('ignore_region_ori')
+	# shdChange_ori = session.get('shdChange_region_ori')
+	# shdNotChange_ori = session.get('shdNotChange_region_ori')
+	# # extract_ori = session.get('extract_region_ori')
+	# caseSensitive = session.get('caseSensitive')
+	extract_ori = [['0', ['534.1475667189952', '2029.2559654631084', '1159.1002197802197', '1970.4997331240188']],
+	 ['0', ['779.855447409733', '1959.816781789639', '1169.7831711145996', '1901.0605494505494']],
+	 ['0', ['624.9526530612244', '1903.7312872841446', '1081.6488226059653', '1828.950627943485']]]
 
-	# except:
-	# 	ignore_comp = ""
-	# 	shdChange_comp = ""
-	# 	shdNotChange_comp = ""
-	# 	# ignore_region_ori = [['0', ['268.7658306188925', '1660.489706840391', '471.0328990228013', '1599.5325081433225']], ['0', ['268.7658306188925', '1242.1016612377848', '440.5542996742671', '1161.7489902280129']]]
-	# 	# ignore_ori = [['0', ['274.30739413680783', '1649.4065798045604', '465.491335504886', '1596.7617263843647']], ['0', ['529.2193159609121', '1466.5349837133551', '734.2571661237786', '1419.4316938110749']], ['0', ['271.53661237785013', '1236.5600977198696', '437.78351791530946', '1164.5197719869705']]]
-	# 	ignore_ori = [['0', ['410.0757003257329', '236.30788273615613', '626.19667752443', '172.57990228013037']]]
-	# 	shdChange_ori = ""
-	# 	shdNotChange_ori = ""
-
-
+	ignore_comp = []
+	shdChange_comp = []
+	shdNotChange_comp = []
+	ignore_ori = []
+	shdChange_ori = []
+	shdNotChange_ori = []
+	caseSensitive = []
+	extract_comp = []
 	ori_data_frame, comp_data_frame = get_data_frame()
 	ori_max_page = ori_data_frame["page_num"].max()
 	comp_max_page = comp_data_frame["page_num"].max()
-	ori_text = get_group_of_text(ori_data_frame)
-	comp_text = get_group_of_text(comp_data_frame)
+	ori_text = getAllText(ori_data_frame)
+	comp_text = getAllText(comp_data_frame)
+
+	text_file = open("output/ori_text.txt", "w")
+	text_file.write(ori_text)
+	text_file.close()
+	text_file = open("output/comp_text.txt", "w")
+	text_file.write(comp_text)
+	text_file.close()
+
+	extractOverlapOri = overlapWithMarkedRegion(ori_data_frame, extract_ori, "ori")
+	extractOverlapComp = overlapWithMarkedRegion(comp_data_frame, extract_ori, "comp")
 	ori_overlap = overlapWithMarkedRegion(ori_data_frame, ignore_ori, "ori")
 	comp_overlap = overlapWithMarkedRegion(comp_data_frame, ignore_comp, "comp")
+	ori_overlap = ori_overlap + extractOverlapOri
+	comp_overlap = comp_overlap + extractOverlapComp
+	# ori_diff, comp_diff, insertion_num, deletion_num, case_diff_num = diff_match_blcok(ori_data_frame, comp_data_frame,
+	# 																			  insertion_num, deletion_num, case_diff_num,
+	# 																			  insert_label, delete_label, case_label, caseSensitive)
 	ori_diff, comp_diff, insertion_num, deletion_num, case_diff_num = diff_match(ori_text, comp_text, insertion_num,
 																				 deletion_num, case_diff_num,
 																				 insert_label, delete_label,
@@ -79,20 +86,25 @@ def compare_f1_f2():
 		pos_num_list_comp = get_position(diff_list=comp_diff,
 										  insert_label=insert_label, delete_label=delete_label,
 										  case_label = case_label)
+
 		word_list_ori = removeOverlap(ori_data_frame, pos_num_list_ori, ori_overlap)
 		word_list_comp = removeOverlap(comp_data_frame, pos_num_list_comp, comp_overlap)
 
 		oriLowConfWordNum = lowConfidenceWordNum(ori_data_frame, 0.8)
-		print("aa",oriLowConfWordNum)
 		compLowConfWordNum = lowConfidenceWordNum(ori_data_frame, 0.8)
+
 		highlight(ori_data_frame, word_list_ori, "ori", oriLowConfWordNum)
 		highlight(comp_data_frame, word_list_comp, "comp", compLowConfWordNum)
 
-	extractResult = extract_info(comp_data_frame, extract_list)
+	extractResult = extract_info(ori_data_frame, comp_data_frame, extract_ori)
+
+
+
 	oriLowConf = lowConfidence(ori_data_frame, 0.8)
 	compLowConf = lowConfidence(ori_data_frame, 0.8)
-
-	return insertion_num, deletion_num, case_diff_num, ori_max_page, comp_max_page, extractResult, oriLowConf, compLowConf
+	oriExtraPage = checkExtraPage(ori_data_frame, comp_data_frame)
+	compExtraPage = checkExtraPage(comp_data_frame, ori_data_frame)	
+	return insertion_num, deletion_num, case_diff_num, ori_max_page, comp_max_page, extractResult, oriLowConf, compLowConf, oriExtraPage, compExtraPage
 
 def get_position( diff_list, insert_label, delete_label, case_label):
 	print("---------------Getting Word Number and Line Number-------------")
@@ -149,6 +161,38 @@ def get_position( diff_list, insert_label, delete_label, case_label):
 
 	return position_list_num
 
+def diff_match_blcok(oriFrame, compFrame, insertion_num, deletion_num, case_diff_num, insert_label, delete_label, case_label, caseSensitive):
+
+	ori_output = []
+	comp_output = []
+
+	for block in range(1, oriFrame['block_num_adjusted'].max() + 1):
+		oriText = []
+		compText = []
+
+		for index, rows in oriFrame[oriFrame['block_num_adjusted'] == block].iterrows():
+			oriText.append(rows['text'])
+		oriText = ' '.join(oriText)
+
+		for index, rows in compFrame[compFrame['block_num_adjusted'] == block].iterrows():
+			compText.append(rows['text'])
+		compText = ' '.join(compText)
+
+		dmp = dmp_module.diff_match_patch()
+		diff = dmp.diff_main(oriText, compText)
+		dmp.diff_cleanupEfficiency(diff)
+
+		print("difference: ", diff)
+
+
+
+	ori_output = "".join(ori_output)
+	comp_output = "".join(comp_output)
+	print("ori", ori_output)
+	print("comp", comp_output)
+	print("----------- end of 1 block comparison -----------")
+	return ori_output, comp_output, insertion_num, deletion_num, case_diff_num
+
 def diff_match(line1, line2, insertion_num, deletion_num, case_diff_num, insert_label, delete_label, case_label, caseSensitive):
 
 	ori_output = []
@@ -156,14 +200,14 @@ def diff_match(line1, line2, insertion_num, deletion_num, case_diff_num, insert_
 
 	dmp = dmp_module.diff_match_patch()
 	diff = dmp.diff_main(line1, line2)
-	dmp.diff_cleanupEfficiency(diff)
+	# dmp.diff_cleanupEfficiency(diff)
+	dmp.diff_cleanupSemantic(diff)
 	print("difference: ", diff)
 
 	skip = False
 	print("CaseSensitive: ", caseSensitive)
 	if caseSensitive == "True":
 		for index, element in enumerate(diff):
-			# try:
 				if (skip is True):
 					skip = False
 					continue
@@ -239,16 +283,20 @@ def diff_match(line1, line2, insertion_num, deletion_num, case_diff_num, insert_
 	return ori_output, comp_output, insertion_num, deletion_num, case_diff_num
 
 
-def get_group_of_text(data_frame):
-
+def getAllText(dataFrame):
 	text = []
-
-	for index, rows in data_frame.iterrows():
+	for index, rows in dataFrame.iterrows():
 		text.append(rows['text'])
+	allText = ' '.join(text)
+	return allText
 
-	block_text = ' '.join(text)
-
-	return block_text
+def getAllTextPage(dataFrame, pageNum):
+	text = []
+	dataFramePage = dataFrame[dataFrame['page_num'] == pageNum]
+	for index, rows in dataFramePage.iterrows():
+		text.append(rows['text'])
+	allText = ' '.join(text)
+	return allText
 
 
 def get_data_frame():
@@ -284,6 +332,8 @@ def get_data_frame():
 
 	ori_data_frame = adjustWordNum(ori_data_frame)
 	comp_data_frame = adjustWordNum(comp_data_frame)
+
+	print(ori_data_frame.to_string())
 	return ori_data_frame, comp_data_frame
 
 
@@ -358,28 +408,53 @@ def cal_overlap_area(marked_region, diff_region):
 						   (diff_x2, diff_y2), (diff_x1, diff_y2)])
 		overlap_area = marked_polygon.intersection(diff_polygon).area/ marked_polygon.area
 		if overlap_area > 0:
-			print("overlap_area: ", overlap_area)
 			return True
 	return False
 
-def extract_info(data_frame, list):
-	if len(list) ==0 :
-		return
-	final_list = []
+def extract_info(oriFrame, compFrame, markedRegion):
+	oriWordNum, compWordNum = [], []
+	dataFrame = pypdf2_cv2_coordinates(compFrame, "comp")
+	for index, row in dataFrame.iterrows():
+		diff_region = [row['x_1'], row['y_1'], row['x_2'], row['y_2']]
+		if markedRegion is not None:
+			for marked in markedRegion:
+				marked_pageIndex = int(marked[0][0])
+				if (row['page_num'] - 1 == marked_pageIndex and row['word_num'] != 0):
+					if (cal_overlap_area(marked, diff_region)):
+						compWordNum.append(row['word_num'])
 
-	print("Start extraction")
-	for word in list:
-		stripped_word = word.strip()
-		extracted_list = []
-		block = data_frame[data_frame['text'].str.contains(stripped_word, case= False)][['block_num_adjusted','word_num','page_num']]
-		block_word_num =  block.drop_duplicates(subset = ["block_num_adjusted"]).values.tolist()
-		block_text = get_block_text(data_frame, stripped_word, block_word_num)
-		for text in block_text:
-			text_list = text[0].split(" ")
-			extractSplit(stripped_word, text_list, extracted_list, text[1])
-		final_list.append([stripped_word, extracted_list])
-	return final_list
+	dataFrame = pypdf2_cv2_coordinates(oriFrame, "ori")
+	for index, row in dataFrame.iterrows():
+		diff_region = [row['x_1'], row['y_1'], row['x_2'], row['y_2']]
+		if markedRegion is not None:
+			for marked in markedRegion:
+				marked_pageIndex = int(marked[0][0])
+				if (row['page_num'] - 1 == marked_pageIndex and row['word_num'] != 0):
+					if (cal_overlap_area(marked, diff_region)):
+						oriWordNum.append(row['word_num'])
+	extractTextOri = sameBlock(oriFrame, markedRegion, oriWordNum)
+	extractTextComp = sameBlock(compFrame, markedRegion, compWordNum)
+	extractResult = []
+	for i, j in zip(extractTextOri, extractTextComp):
+		extractResult.append([i[0], i[1], j[1]])
 
+	# extractResult = [extractTextOri, extractTextComp]
+	return extractResult
+
+def sameBlock(dataFrame, markedRegion, wordList):
+	extract = []
+	for region in markedRegion:
+		tmp = []
+		marked_pageIndex = int(region[0][0])
+		for word in wordList:
+			row = dataFrame.loc[(dataFrame['word_num'] == word) & (dataFrame['page_num'] - 1 == marked_pageIndex)]
+			diff_region = [row.iloc[0]['x_1'], row.iloc[0]['y_1'], row.iloc[0]['x_2'], row.iloc[0]['y_2']]
+			if (cal_overlap_area(region, diff_region)):
+				tmp.append(row.iloc[0]['text'])
+		tmp = [i for i in tmp]
+		tmp = " ".join(tmp)
+		extract.append([marked_pageIndex + 1, tmp])
+	return extract
 def extractSplit(word, text, extracted_list, page_num):
 	tmp_1 = []
 	for index, str in enumerate(text):
@@ -416,12 +491,11 @@ def pypdf2_cv2_coordinates(dataFrame, compOrori):
 		pypdf2_height = page.mediaBox.getHeight()
 		pypdf2_width = page.mediaBox.getWidth()
 
-		#top left and bottom right
 		img = cv2.imread('images/' + compOrori + '_' + str(pageIndex + 1) + ".tiff")
 		cv2_height, cv2_width, _ = img.shape
 		nh = pypdf2_height/cv2_height
 		nw = pypdf2_width/cv2_width
-
+		print("cv2_height", cv2_height)
 		dataFrame.loc[dataFrame.page_num == pageIndex + 1, 'x_1'] = dataFrame['left'] * nw
 		dataFrame.loc[dataFrame.page_num == pageIndex + 1, 'x_2'] = (dataFrame['left'] + dataFrame['width']) * nw
 		dataFrame.loc[dataFrame.page_num == pageIndex + 1, 'y_1'] = (cv2_height - dataFrame['top'] - dataFrame['height']) * nh
@@ -464,6 +538,7 @@ def removeOverlap(dataFrame, word_list, overlapWord_num):
 	return output_list
 
 def highlight(dataFrame, word_list, compOrori, lowConfWordNum):
+	print("word list", word_list)
 	for position in (item for item in word_list):
 		new_list = []
 		for index, num_list in enumerate(position[1]):
@@ -582,6 +657,21 @@ def matchInList(wordNum, numList):
 		if wordNum == i[0]:
 			return True
 	return False
+
+def checkExtraPage(oriFrame, compFrame):
+	pageSimilarity = []
+	for oriPage in range(1, oriFrame['page_num'].max() + 1):
+		pageSim = []
+		oriText = getAllTextPage(oriFrame, oriPage)
+		# print("ori page" ,oriPage ,":", oriText)
+		for compPage in range(1, compFrame['page_num'].max() + 1):
+			compText = getAllTextPage(compFrame, compPage)
+			similarity = SequenceMatcher(None, oriText, compText).ratio()
+			pageSim.append(similarity)
+		pageSimilarity.append(pageSim)
+	pageSimilarity = [page.index(max(page)) + 1  for page in pageSimilarity if(max(page) > 0.8)]
+	return pageSimilarity
+
 
 if __name__ == '__main__':
 	compare_f1_f2()

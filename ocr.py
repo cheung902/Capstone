@@ -68,18 +68,26 @@ def ocr(inputFile, size, contrast, dpiNum, compOrori, lang):
 		file.write(json.dumps(data))
 
 	pdf_paths = []
+	pdf_paths_processed = []
 	for i in range(1, fileLimt+1):
-		input_path = "images/" + compOrori	+ "_" + str(i) + ".tiff"
+		input_path = "compare/" + compOrori	+ "/images/" + compOrori + "_" + str(i) + ".tiff"
 		output_path = "compare/" + compOrori + "/pdfs/" + compOrori + "_" + str(i) + ".pdf"
 		pdf_paths.append(output_path)
 
+		input_path_processed = "images/" + compOrori + "_" + str(i) + ".tiff"
+		output_path_processed = "compare/" + compOrori + "/pdfs/" + compOrori + "_" + str(i) + "_processed.pdf"
+		pdf_paths_processed.append(output_path_processed)
+
 		createSearchablePDF(input_path=input_path, output_path=output_path)
+		createSearchablePDF(input_path=input_path_processed, output_path=output_path_processed)
 		# pdf_paths.append("output/diff" + str(i) + ".pdf")
 		# with open("output/diff" + str(i) +".pdf", "wb") as pdf:
 		# 	pdf.write(img2pdf.convert("compare/comp/images/comp_" + str(i) + ".tiff"))
 
 	out_path = "output/" + compOrori + ".pdf"
+	out_path_processed = "output/" + compOrori + "_processed.pdf"
 	mergePDF(pdf_paths, out_path)
+	mergePDF(pdf_paths_processed, out_path_processed)
 
 
 # def createSearchablePDF(imgFile, imgName):
