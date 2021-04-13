@@ -1,28 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91c8f46a-5302-4e35-9116-299e47a42f96" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/annotateTmp.txt" afterDir="false" />
+    <list default="true" id="91c8f46a-5302-4e35-9116-299e47a42f96" name="Default Changelist" comment="Edited a lot">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compare.py" beforeDir="false" afterPath="$PROJECT_DIR$/compare.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contract_sample/testing_1_changed.docx" beforeDir="false" afterPath="$PROJECT_DIR$/contract_sample/testing_1_changed.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contract_sample/testing_1_changed.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/contract_sample/testing_1_changed.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluation_word_doc.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ocr.py" beforeDir="false" afterPath="$PROJECT_DIR$/ocr.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/playground/playground.py" beforeDir="false" afterPath="$PROJECT_DIR$/playground/playground.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocess.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/upload/c_testing_1_changed.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/static/upload/c_testing_1_changed.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/css/upload_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/css/upload_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/js/pdf_annotate.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/js/pdf_annotate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/js/pdf_view.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/js/pdf_view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/js/upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/js/upload.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pdf_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pdf_view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/upload.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/annotate_compare.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/annotate_compare.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/annotate_compare.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/annotate_compare.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/annotate_original.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/annotate_original.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/annotate_original.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/annotate_original.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewer/web/viewer.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewer/web/viewer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Annual_report.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Annual_report_1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Annual_report_1.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Annual_report_1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Annual_report_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Annual_report_2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Annual_report_2.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Annual_report_2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Annual_report_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Annual_report_3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Annual_report_3.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Annual_report_3.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Annual_report_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/App_form.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/App_form_1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/App_form_1.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/App_form_1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/App_form_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/App_form_2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/App_form_2.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/App_form_2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/App_form_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_1.doc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_2.doc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_3.doc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_3.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_4.doc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_4.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_5.doc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_5.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_6.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_6.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_6.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/Contract_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/upload/c_testing_1_changed.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/upload/o_testing_1.pdf" beforeDir="false" />
     </list>
     <list id="b3719226-631c-4385-95de-880d5d71d06f" name="Unhandled Problem" comment="Unhandled Problem" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,8 +71,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/compare.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="572" column="24" selection-start-line="572" selection-start-column="24" selection-end-line="572" selection-end-column="24" />
+            <state relative-caret-position="12528">
+              <caret line="617" column="31" selection-start-line="617" selection-start-column="31" selection-end-line="617" selection-end-column="31" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -46,36 +81,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/label.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="55" column="26" selection-start-line="55" selection-start-column="26" selection-end-line="55" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="-223">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ocr.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1263">
-              <caret line="77" column="45" selection-start-line="77" selection-start-column="45" selection-end-line="77" selection-end-column="45" />
-              <folding>
-                <element signature="e#19#37#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -84,8 +95,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/preprocess.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="121">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -98,22 +109,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>uncheckButton</find>
-      <find>ignore</find>
-      <find>ori_overlap</find>
-      <find>remove</find>
-      <find>highlight</find>
-      <find>word_num_get_page_num</find>
-      <find>removeOverlap</find>
-      <find>overlapWithMarkedRegion</find>
-      <find>extract_info</find>
       <find>pypdf2_cv2_coordinates</find>
       <find>extract</find>
       <find>extractRe</find>
@@ -135,6 +137,15 @@
       <find>page</find>
       <find>checkExtraPage</find>
       <find>SequenceMatcher</find>
+      <find>mergePdf</find>
+      <find>addLineIndex</find>
+      <find>case</find>
+      <find>cv2_height</find>
+      <find>highlight_by</find>
+      <find>highlight</find>
+      <find>get_data_frame</find>
+      <find>compare_file</find>
+      <find>original_file</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -148,9 +159,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/viewer/web/viewer.js" />
-        <option value="$PROJECT_DIR$/templates/viewer/build/pdf.js" />
-        <option value="$PROJECT_DIR$/playground/ori.txt" />
         <option value="$PROJECT_DIR$/playground/comp.txt" />
         <option value="$PROJECT_DIR$/playground/diff.py" />
         <option value="$PROJECT_DIR$/output/ori.txt" />
@@ -195,7 +203,10 @@
         <option value="$PROJECT_DIR$/templates/pdf_view.html" />
         <option value="$PROJECT_DIR$/templates/js/pdf_view.js" />
         <option value="$PROJECT_DIR$/playground/playground.py" />
+        <option value="$PROJECT_DIR$/evaluation_word_doc_EasyOCR.py" />
+        <option value="$PROJECT_DIR$/evaluation_word_doc.py" />
         <option value="$PROJECT_DIR$/compare.py" />
+        <option value="$PROJECT_DIR$/ocr_EasyOCR.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/ocr.py" />
         <option value="$PROJECT_DIR$/preprocess.py" />
@@ -203,9 +214,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="40" />
-    <option name="width" value="1440" />
-    <option name="height" value="820" />
+    <option name="x" value="2" />
+    <option name="y" value="39" />
+    <option name="width" value="1441" />
+    <option name="height" value="821" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -223,7 +235,13 @@
             <path>
               <item name="Capstone" type="b2602c69:ProjectViewProjectNode" />
               <item name="Capstone" type="462c0819:PsiDirectoryNode" />
-              <item name="output" type="462c0819:PsiDirectoryNode" />
+              <item name="astri_sample" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Capstone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Capstone" type="462c0819:PsiDirectoryNode" />
+              <item name="astri_sample" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -237,6 +255,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/contract_sample" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -248,18 +267,18 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/contract_sample" />
+      <recent name="$PROJECT_DIR$/compare/comp/images" />
+      <recent name="$PROJECT_DIR$/playground" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/playground" />
       <recent name="$PROJECT_DIR$/templates/icons" />
       <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$/output" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/contract_sample" />
-      <recent name="$PROJECT_DIR$/compare/comp/images" />
-      <recent name="$PROJECT_DIR$/playground" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -380,6 +399,48 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="evaluation_word_doc" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Capstone" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/opt/anaconda3/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/evaluation_word_doc.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="evaluation_word_doc_EasyOCR" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Capstone" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/opt/anaconda3/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/evaluation_word_doc_EasyOCR.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="label" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Capstone" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -435,6 +496,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ocr.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ocr_EasyOCR" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Capstone" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/opt/anaconda3/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ocr_EasyOCR.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -514,6 +596,9 @@
       <item itemvalue="Python.diff" />
       <item itemvalue="Python.label" />
       <item itemvalue="Python.main" />
+      <item itemvalue="Python.evaluation_word_doc" />
+      <item itemvalue="Python.evaluation_word_doc_EasyOCR" />
+      <item itemvalue="Python.ocr_EasyOCR" />
       <item itemvalue="Python.ocr" />
       <item itemvalue="Python.playground" />
       <item itemvalue="Python.test" />
@@ -815,7 +900,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612255082226</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Edited a lot">
+      <created>1617958807891</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1617958807891</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TodoView">
@@ -828,8 +920,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="26" width="1440" height="820" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="25" width="1440" height="820" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48314607" visible="true" weight="0.17547569" />
       <window_info id="Structure" order="1" sideWeight="0.5168539" side_tool="true" weight="0.17336152" />
@@ -841,8 +932,8 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32825485" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49541932" weight="0.32686982" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32548475" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49541932" weight="0.6066482" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32409972" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50880903" side_tool="true" weight="0.3836565" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32686982" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49964765" weight="0.32970026" />
@@ -885,6 +976,30 @@
     </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="RECENT_FILTERS">
       <map>
         <entry key="Branch">
@@ -902,7 +1017,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="romove 1" />
     <MESSAGE value="delete all file in images" />
     <MESSAGE value="Run Job Parallel" />
     <MESSAGE value="Added clear files in images&#10;Added process time counting" />
@@ -927,39 +1041,14 @@
     <MESSAGE value="Changed session method" />
     <MESSAGE value="CSS style" />
     <MESSAGE value="Show message for low confidence word and checkList" />
-    <option name="LAST_COMMIT_MESSAGE" value="Show message for low confidence word and checkList" />
+    <MESSAGE value="Edited a lot" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edited a lot" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/loading.html" />
-    <entry file="file://$PROJECT_DIR$/compare_diff.py" />
-    <entry file="file://$PROJECT_DIR$/templates/css/loading_style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="504" column="3" selection-start-line="504" selection-start-column="3" selection-end-line="504" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/ori_1.tiff" />
-    <entry file="file://$PROJECT_DIR$/templates/js/pdf_view_test.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/viewer/web/viewer.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/viewer/build/pdf.worker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="3598" column="10" selection-start-line="3598" selection-start-column="4" selection-end-line="3598" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate.js" />
-    <entry file="file://$PROJECT_DIR$/viewer_old/web/annotate.js" />
     <entry file="file://$PROJECT_DIR$/viewer_old/web/annotate.html" />
     <entry file="file://$PROJECT_DIR$/viewer_old/web/annotate.css" />
     <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate.css" />
     <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate.html" />
-    <entry file="file://$PROJECT_DIR$/images/comp_2.tiff" />
     <entry file="file://$PROJECT_DIR$/templates/js/pdf_annotate.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -1049,16 +1138,6 @@
     <entry file="file://$PROJECT_DIR$/annotateTmp.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/commonFNC.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="39" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/viewer/web/annotate_original.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318423">
@@ -1116,13 +1195,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ori_text.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="17114" lean-forward="true" selection-start-column="17114" selection-end-column="17114" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ori_text.txt" />
     <entry file="file://$PROJECT_DIR$/playground/ori_1.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -1145,29 +1218,6 @@
     <entry file="file://$PROJECT_DIR$/output/comp_text.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/compare.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="572" column="24" selection-start-line="572" selection-start-column="24" selection-end-line="572" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/label.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="55" column="26" selection-start-line="55" selection-start-column="26" selection-end-line="55" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/compare/comp/images/comp_1.tiff">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/output/ori_text.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1175,33 +1225,118 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/images/comp_1.tiff">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/samples/Annual_report.csv">
+      <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/evaluation_word_doc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="-4">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="e#0#17#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/evaluation_word_doc_EasyOCR.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/samples/Annual_report_1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1512">
+          <caret line="72" column="13" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/label.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="536">
+          <caret line="33" column="20" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commonFNC.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/compare/comp/images/comp_2.tiff">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/compare/comp/images/comp_1.tiff">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ocr_EasyOCR.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/comp_3.tiff">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/ori_2.tiff">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/comp_2.tiff">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/ocr.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1263">
-          <caret line="77" column="45" selection-start-line="77" selection-start-column="45" selection-end-line="77" selection-end-column="45" />
+        <state relative-caret-position="45">
+          <caret line="52" selection-start-line="52" selection-end-line="52" selection-end-column="52" />
           <folding>
             <element signature="e#19#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/images/ori_1.tiff">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/comp_1.tiff">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-223">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/compare.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12528">
+          <caret line="617" column="31" selection-start-line="617" selection-start-column="31" selection-end-line="617" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/preprocess.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="121">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>

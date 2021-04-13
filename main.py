@@ -10,7 +10,6 @@ from flask_cache import Cache
 from datetime import timedelta
 
 
-
 UPLOAD_FOLDER = 'static/upload'
 ALLOWED_EXTENSIONS = {'pdf'}
 compare_file = "contract_sample/ECsample_eng.pdf"

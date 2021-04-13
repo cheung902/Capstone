@@ -57,13 +57,6 @@ def compare_f1_f2():
 	ori_text = getAllText(ori_data_frame)
 	comp_text = getAllText(comp_data_frame)
 
-	text_file = open("output/ori_text.txt", "w")
-	text_file.write(ori_text)
-	text_file.close()
-	text_file = open("output/comp_text.txt", "w")
-	text_file.write(comp_text)
-	text_file.close()
-
 	extractOverlapOri = overlapWithMarkedRegion(ori_data_frame, extract_ori, "ori")
 	extractOverlapComp = overlapWithMarkedRegion(comp_data_frame, extract_ori, "comp")
 	ori_overlap = overlapWithMarkedRegion(ori_data_frame, ignore_ori, "ori")

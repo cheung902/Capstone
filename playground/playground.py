@@ -53,7 +53,7 @@ def ocr(inputFile, size, contrast, dpiNum, compOrori, lang):
 		print("Ocring: " + imgFile)
 		start = timeit.default_timer()
 
-		img = cv2.imread("../images/" + imgFile)
+		img = cv2.imread("images/" + imgFile)
 
 		if lang != "":
 			data.append(pytesseract.image_to_data(img, output_type=pytesseract.Output.DICT, lang=lang))
@@ -104,4 +104,4 @@ def addLineIndex(input_path, output_path):
 
 
 if __name__ == '__main__':
-	ocr("testing_1.pdf", 2, 1.5, 300, "comp", "")
+	ocr("testing_1.pdf", 1.5, 1.5, 300, "comp", "")

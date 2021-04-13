@@ -58,7 +58,7 @@ def ocr(inputFile, size, contrast, dpiNum, compOrori, lang):
 		img = cv2.imread("images/" + imgFile)
 
 		if lang != "":
-			data.append(pytesseract.image_to_data(img, output_type= pytesseract.Output.DICT, lang= lang))
+			data.append(pytesseract.image_to_data(img, output_type= pytesseract.Output.DICT, lang = lang))
 		else:
 			data.append(pytesseract.image_to_data(img, output_type=pytesseract.Output.DICT))
 		stop = timeit.default_timer()
@@ -69,8 +69,8 @@ def ocr(inputFile, size, contrast, dpiNum, compOrori, lang):
 
 	pdf_paths = []
 	pdf_paths_processed = []
-	for i in range(1, fileLimt+1):
-		input_path = "compare/" + compOrori	+ "/images/" + compOrori + "_" + str(i) + ".tiff"
+	for i in range(1, fileLimt + 1):
+		input_path = "compare/" + compOrori + "/images/" + compOrori + "_" + str(i) + ".tiff"
 		output_path = "compare/" + compOrori + "/pdfs/" + compOrori + "_" + str(i) + ".pdf"
 		pdf_paths.append(output_path)
 
@@ -80,9 +80,9 @@ def ocr(inputFile, size, contrast, dpiNum, compOrori, lang):
 
 		createSearchablePDF(input_path=input_path, output_path=output_path)
 		createSearchablePDF(input_path=input_path_processed, output_path=output_path_processed)
-		# pdf_paths.append("output/diff" + str(i) + ".pdf")
-		# with open("output/diff" + str(i) +".pdf", "wb") as pdf:
-		# 	pdf.write(img2pdf.convert("compare/comp/images/comp_" + str(i) + ".tiff"))
+	# pdf_paths.append("output/diff" + str(i) + ".pdf")
+	# with open("output/diff" + str(i) +".pdf", "wb") as pdf:
+	# 	pdf.write(img2pdf.convert("compare/comp/images/comp_" + str(i) + ".tiff"))
 
 	out_path = "output/" + compOrori + ".pdf"
 	out_path_processed = "output/" + compOrori + "_processed.pdf"
