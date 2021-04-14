@@ -38,7 +38,7 @@ def compare_f1_f2():
 	# shdChange_ori = session.get('shdChange_region_ori')
 	# shdNotChange_ori = session.get('shdNotChange_region_ori')
 	# # extract_ori = session.get('extract_region_ori')
-	# caseSensitive = session.get('caseSensitive')
+	caseSensitive = session.get('caseSensitive')
 	extract_ori = [['0', ['534.1475667189952', '2029.2559654631084', '1159.1002197802197', '1970.4997331240188']],
 	 ['0', ['779.855447409733', '1959.816781789639', '1169.7831711145996', '1901.0605494505494']],
 	 ['0', ['624.9526530612244', '1903.7312872841446', '1081.6488226059653', '1828.950627943485']]]
@@ -49,7 +49,7 @@ def compare_f1_f2():
 	ignore_ori = []
 	shdChange_ori = []
 	shdNotChange_ori = []
-	caseSensitive = []
+	# caseSensitive = []
 	extract_comp = []
 	ori_data_frame, comp_data_frame = get_data_frame()
 	ori_max_page = ori_data_frame["page_num"].max()
@@ -57,6 +57,8 @@ def compare_f1_f2():
 	ori_text = getAllText(ori_data_frame)
 	comp_text = getAllText(comp_data_frame)
 
+	# we will first get the word that falls in "ignore" and "extract" region, since they are supposed to be different.
+	# we will ignore these words in the comparing process.
 	extractOverlapOri = overlapWithMarkedRegion(ori_data_frame, extract_ori, "ori")
 	extractOverlapComp = overlapWithMarkedRegion(comp_data_frame, extract_ori, "comp")
 	ori_overlap = overlapWithMarkedRegion(ori_data_frame, ignore_ori, "ori")
@@ -66,6 +68,8 @@ def compare_f1_f2():
 	# ori_diff, comp_diff, insertion_num, deletion_num, case_diff_num = diff_match_blcok(ori_data_frame, comp_data_frame,
 	# 																			  insertion_num, deletion_num, case_diff_num,
 	# 																			  insert_label, delete_label, case_label, caseSensitive)
+
+	# start comparing and label the words that found to be different
 	ori_diff, comp_diff, insertion_num, deletion_num, case_diff_num = diff_match(ori_text, comp_text, insertion_num,
 																				 deletion_num, case_diff_num,
 																				 insert_label, delete_label,
@@ -98,6 +102,7 @@ def compare_f1_f2():
 	oriExtraPage = checkExtraPage(ori_data_frame, comp_data_frame)
 	compExtraPage = checkExtraPage(comp_data_frame, ori_data_frame)	
 	return insertion_num, deletion_num, case_diff_num, ori_max_page, comp_max_page, extractResult, oriLowConf, compLowConf, oriExtraPage, compExtraPage
+
 
 def get_position( diff_list, insert_label, delete_label, case_label):
 	print("---------------Getting Word Number and Line Number-------------")
@@ -186,8 +191,11 @@ def diff_match_blcok(oriFrame, compFrame, insertion_num, deletion_num, case_diff
 	print("----------- end of 1 block comparison -----------")
 	return ori_output, comp_output, insertion_num, deletion_num, case_diff_num
 
+# Here after comparing, it will add a "label" to the word that are different
+# it is compare in character level, different in character can be detected as well as different in word
+# For example "Sample " and "Eample" will yields (1, 'S'), (-1, 'E'), (0, 'ample)
+# Where 1 means insertion, -1 means deletion, 0 meas they are equal
 def diff_match(line1, line2, insertion_num, deletion_num, case_diff_num, insert_label, delete_label, case_label, caseSensitive):
-
 	ori_output = []
 	comp_output = []
 
@@ -199,6 +207,7 @@ def diff_match(line1, line2, insertion_num, deletion_num, case_diff_num, insert_
 
 	skip = False
 	print("CaseSensitive: ", caseSensitive)
+	# When the user selected to compare the letter case.
 	if caseSensitive == "True":
 		for index, element in enumerate(diff):
 				if (skip is True):
@@ -210,6 +219,10 @@ def diff_match(line1, line2, insertion_num, deletion_num, case_diff_num, insert_
 					skip = False
 				elif (element[0] == -1 or element[0] == 1):
 					next_item = diff[index + 1][1]
+					# Here when there is difference, suppose it is (-1,'T'), the next_item can be (1, 't') or (1, 'A').
+					# To confirm it is due to the letter case difference, we will compare the lower case in next_item.
+					# if (-1, 'T') and (1, 't'), then .lower() yields 't' and 't', then it must be due to case difference.
+					# since confirmed case difference and the next_item is labelled together, it will "skip" the next_item.
 					if (next_item.lower() == element[1].lower()):
 						if (element[0] == -1):
 							ori_output.append(addTextLabel(text=element[1], label=case_label))
@@ -233,6 +246,7 @@ def diff_match(line1, line2, insertion_num, deletion_num, case_diff_num, insert_
 							else:
 								comp_output.append(addTextLabel(text=element[1], label=insert_label))
 							insertion_num += 1
+	# without comparing letter case
 	else:
 		for index, element in enumerate(diff):
 			if (skip is True):
@@ -249,6 +263,9 @@ def diff_match(line1, line2, insertion_num, deletion_num, case_diff_num, insert_
 					elif element[0] == 1:
 						comp_output.append(addTextLabel(text=element[1], label=insert_label))
 					break
+				# since we do not need to compare the letter case.
+				# if the difference is due to letter case, we don't need to label it as difference
+				# Same as before, since the next_item already taken into account, we will skip it at the next round
 				next_item = diff[index + 1][1]
 				if (next_item.lower() == element[1].lower()):
 					ori_output.append(element[1])
@@ -267,6 +284,7 @@ def diff_match(line1, line2, insertion_num, deletion_num, case_diff_num, insert_
 						else:
 							comp_output.append(addTextLabel(text=element[1], label=insert_label))
 						insertion_num += 1
+
 
 	ori_output = "".join(ori_output)
 	comp_output = "".join(comp_output)

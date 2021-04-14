@@ -9,11 +9,12 @@ from werkzeug.utils import secure_filename
 from flask_cache import Cache
 from datetime import timedelta
 
-
+# Here we will use the flask package to communicate between the frontend and backend
+# Variables collected from the frontend will be collected via request and store to the session for later processing
 UPLOAD_FOLDER = 'static/upload'
 ALLOWED_EXTENSIONS = {'pdf'}
-compare_file = "contract_sample/ECsample_eng.pdf"
-original_file = "contract_sample/TemplateTenancyAgreement.pdf"
+# compare_file = "contract_sample/ECsample_eng.pdf"
+# original_file = "contract_sample/TemplateTenancyAgreement.pdf"
 
 contrast = 1.5
 size = 1
@@ -31,10 +32,13 @@ cache = Cache(app)
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+#This first page
+#User will upload the document and select the OCR perferences
 @app.route('/',methods = ['GET', 'POST'])
 def upload_page():
 	session.permanent = True
 	if (request.method == 'POST'):
+		# When use uploaded the two documents, it will get the file name and create file path and save the files temporary
 		if (request.form['upload'] == "submit"):
 			# session.clear()
 			[os.unlink(file.path) for file in os.scandir('output')]
@@ -65,10 +69,8 @@ def upload_page():
 				return render_template('upload.html', error = "no_file")
 			if (not allowed_file(comp_file.filename) or not allowed_file(ori_file.filename)):
 				return render_template('upload.html', error = "file_format")
-
+		# When user submitted the OCR options such as languages and case sensitives
 		elif (request.form['upload'] == "filter"):
-
-
 			lang_list = request.form.getlist('name_language')
 			caseSensitive = request.form.get('name_case_diff')
 			selectedTmp = request.form.get('name_template')
@@ -83,6 +85,7 @@ def upload_page():
 			ori_pdf_size = session.get('ori_pdf_size')
 			comp_pdf_size = session.get('comp_pdf_size')
 
+			# concat if multiple languages selected
 			if len(lang_list) > 1:
 				lang = "+".join(lang_list)
 			elif len(lang_list) == 1:
@@ -94,6 +97,7 @@ def upload_page():
 			print("Case Sensitive Option", caseSensitive)
 			print("extract_list", extract_list)
 
+			# Start processing the ocr
 			p1 = Process(target=main, args=(comp_path, size, contrast, dpiNum, "comp", lang))
 			p1.start()
 			print("Compare File Job Start")
@@ -103,6 +107,7 @@ def upload_page():
 			p1.join()
 			p2.join()
 
+			# after ocr, it will redirect to the annotation page
 			return redirect('/pdf_annotate')
 
 	elif (request.method == 'GET'):
@@ -111,9 +116,11 @@ def upload_page():
 		return render_template('upload.html', tmp = tmp)
 	return ('', 204)
 
+#This is the page for annotation.
 @app.route('/pdf_annotate',methods = ['GET', 'POST'])	
 def annotate():
 	if (request.method == 'POST'):
+		#  After users proceed to compare, it will start compare the document
 		if (request.form["name_next"] == "submit"):
 			comp_path = session.get('comp')
 			ori_path = session.get('ori')
@@ -147,7 +154,7 @@ def annotate():
 								extractResult = extractResult, oriLowConf = oriLowConf, 
 								compLowConf = compLowConf,
 								oriExtraPage= oriExtraPage, compExtraPage = compExtraPage)
-	#if user selected template
+	#if user selected template, the marked regions will be generated automatically and save the coordinates to session.
 	selectedTmp = session.get('selectedTmp')
 	templates = session.get('tmpName')
 	if selectedTmp is not None:
@@ -177,6 +184,7 @@ def annotate():
 
 		print('Finished')
 
+		# after collecting all the result, redirect to the report page
 		return render_template('pdf_view.html',
 							   process_datetime=process_datetime,
 							   comp_max_page=comp_max_page, ori_max_page=ori_max_page,
@@ -191,12 +199,14 @@ def annotate():
 							   oriExtraPage= oriExtraPage, compExtraPage = compExtraPage)
 	return render_template('pdf_annotate.html')
 
+# Since we are using pdf.js, There are two pdf windows embedded into the iframe.
+# Which means there are two html and js worksheet for the two pdf viewers.
+
+# This part is to collect the coordinates of marked regions specified by user on the original document.
 @app.route('/annotate_ori',methods = ['GET', 'POST'])
 def annotate_ori():
 	print("submitted", "\n")
-
 	array_value = list(request.form.to_dict(flat=False).values())
-
 	ignore_ori, shdChange_ori, shdNotChange_ori, extract_ori = [],[],[], []
 	for index, item in enumerate(array_value):
 		if item[1] == "ignore":
@@ -218,6 +228,7 @@ def annotate_ori():
 	session['extract_region_ori'] = extract_ori
 	return ('', 204)
 
+# This part is to collect the coordinates of marked regions specified by user on the targeted document.
 @app.route('/annotate_comp',methods = ['GET', 'POST'])
 def annotate_comp():
 	session.permanent = True
@@ -242,11 +253,10 @@ def annotate_comp():
 	session['shdNotChange_region_comp'] = shdChange_comp
 	session['extract_region_comp'] = extract_comp
 
+# If user choose to save the marked regions as template to use for similar documents, it will save all coordinates.
 @app.route('/saveTmp',methods = ['GET', 'POST'])
 def saveTmp():
 	name = list(request.form.to_dict(flat=False).values())[0][0]
-
-
 	ignore_comp = session.get('ignore_region_comp')
 	shdChange_comp = session.get('shdChange_region_comp')
 	shdNotChange_comp = session.get('shdNotChange_region_comp')
